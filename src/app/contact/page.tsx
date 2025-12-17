@@ -167,10 +167,10 @@ export default function ContactPage() {
               Prefer email? Reach us directly at:
             </p>
             <a
-              href="mailto:hello@frozengrape.studio"
-              className="text-grape hover:text-grape-dark transition-colors font-medium"
+              href="mailto:support@frozengrape.com"
+              className="text-primary hover:text-primary-hover transition-colors font-medium"
             >
-              hello@frozengrape.studio
+              support@frozengrape.com
             </a>
           </div>
         </div>

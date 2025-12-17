@@ -1,35 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
-  --foreground: #1a1a2e;
-  --primary: #7c3aed;
-  --primary-dark: #5b21b6;
-  --secondary: #06b6d4;
-  --accent: #f472b6;
-  --grape: #8b5cf6;
-  --grape-light: #a78bfa;
-  --grape-dark: #6d28d9;
+  --background: #ffffff;
+  --foreground: #171717;
+  /* Sophisticated Grape Palette */
+  --primary: #5b21b6; /* Deep Violet */
+  --primary-hover: #4c1d95;
+  --grape-light: #ddd6fe;
+  --grape-subtle: #f5f3ff;
+  --accent: #d946ef; /* Magenta for small pops */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-grape: var(--grape);
+  --color-primary-hover: var(--primary-hover);
   --color-grape-light: var(--grape-light);
-  --color-grape-dark: var(--grape-dark);
+  --color-grape-subtle: var(--grape-subtle);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0f0f1a;
-    --foreground: #f5f5f5;
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --grape-subtle: #1e1b4b; /* Dark violet bg */
   }
 }
 
@@ -37,76 +35,93 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Gradient text utility */
-.gradient-text {
-  background: linear-gradient(135deg, var(--grape) 0%, var(--accent) 50%, var(--secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Typography Utilities */
+.text-balance {
+  text-wrap: balance;
 }
 
-/* Animated gradient background */
-.gradient-bg {
-  background: linear-gradient(-45deg, #7c3aed, #06b6d4, #f472b6, #8b5cf6);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+/* Subtle pattern for hero/sections instead of loud gradients */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@media (prefers-color-scheme: dark) {
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  }
 }
 
-/* Glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Card hover effect */
-.card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
-}
-
-/* Button styles */
+/* Clean Button Styles */
 .btn-primary {
-  background: linear-gradient(135deg, var(--grape) 0%, var(--primary) 100%);
+  background-color: var(--primary);
   color: white;
-  padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem; /* Standard rounded, not full pill unless intended */
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
 }
 
 .btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: transparent;
-  border: 2px solid var(--grape);
-  color: var(--grape);
-  padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-block;
+  background-color: transparent;
+  color: var(--foreground);
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  .btn-secondary {
+    border-color: rgba(255,255,255,0.2);
+  }
+}
+
 .btn-secondary:hover {
-  background: var(--grape);
-  color: white;
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+/* Card Styles - Clean, Minimal */
+.card {
+  background: var(--background);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 1rem;
+  transition: all 0.2s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+  }
+}
+
+.card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px -10px rgba(0,0,0,0.1);
 }

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Frozen Grape Studios | iOS App Development",
-  description: "We create beautiful, intuitive iOS apps that make your life easier. Discover our collection of apps designed with care.",
+  description: "Crafting intuitive and beautiful iOS experiences.",
 };
 
 export default function RootLayout({
@@ -26,79 +26,52 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 glass">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">FG</span>
-                </div>
-                <span className="font-bold text-xl">Frozen Grape</span>
-              </Link>
-              <div className="flex items-center gap-8">
-                <Link href="/" className="hover:text-grape transition-colors font-medium">
-                  Home
-                </Link>
-                <Link href="/#apps" className="hover:text-grape transition-colors font-medium">
-                  Apps
-                </Link>
-                <Link href="/contact" className="btn-primary text-sm">
-                  Contact
-                </Link>
+        {/* Navigation - Clean, solid border */}
+        <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-black/5 dark:border-white/10">
+          <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="w-8 h-8 rounded-lg bg-primary text-white flex items-center justify-center transition-transform group-hover:scale-105">
+                <span className="font-bold text-sm tracking-tighter">FG</span>
               </div>
+              <span className="font-bold text-lg tracking-tight">Frozen Grape</span>
+            </Link>
+            
+            <div className="flex items-center gap-6">
+              <Link href="/#apps" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
+                Apps
+              </Link>
+              <Link href="/contact" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
+                Contact
+              </Link>
             </div>
           </div>
         </nav>
 
         {/* Main Content */}
-        <main>{children}</main>
+        <main className="flex-grow">{children}</main>
 
-        {/* Footer */}
-        <footer className="bg-foreground/5 mt-20">
-          <div className="max-w-7xl mx-auto px-6 py-12">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div>
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center">
-                    <span className="text-white font-bold text-xl">FG</span>
-                  </div>
-                  <span className="font-bold text-xl">Frozen Grape</span>
+        {/* Footer - Simple, minimal */}
+        <footer className="border-t border-black/5 dark:border-white/5 mt-24">
+          <div className="max-w-5xl mx-auto px-6 py-12">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center">
+                   <span className="text-primary font-bold text-xs">FG</span>
                 </div>
-                <p className="text-foreground/60">
-                  Creating beautiful iOS apps that make your digital life better.
-                </p>
+                <span className="font-semibold text-sm">Frozen Grape Studios</span>
               </div>
-              <div>
-                <h4 className="font-bold mb-4">Quick Links</h4>
-                <div className="flex flex-col gap-2">
-                  <Link href="/" className="text-foreground/60 hover:text-grape transition-colors">
-                    Home
-                  </Link>
-                  <Link href="/#apps" className="text-foreground/60 hover:text-grape transition-colors">
-                    Our Apps
-                  </Link>
-                  <Link href="/contact" className="text-foreground/60 hover:text-grape transition-colors">
-                    Contact
-                  </Link>
-                </div>
+              
+              <div className="flex gap-6 text-sm text-foreground/60">
+                <Link href="#" className="hover:text-foreground transition-colors">Twitter</Link>
+                <Link href="#" className="hover:text-foreground transition-colors">GitHub</Link>
+                <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
               </div>
-              <div>
-                <h4 className="font-bold mb-4">Connect</h4>
-                <div className="flex flex-col gap-2">
-                  <a href="#" className="text-foreground/60 hover:text-grape transition-colors">
-                    Twitter
-                  </a>
-                  <a href="#" className="text-foreground/60 hover:text-grape transition-colors">
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="border-t border-foreground/10 mt-8 pt-8 text-center text-foreground/40">
-              <p>&copy; {new Date().getFullYear()} Frozen Grape Studios. All rights reserved.</p>
+
+              <p className="text-xs text-foreground/40">
+                &copy; {new Date().getFullYear()} All rights reserved.
+              </p>
             </div>
           </div>
         </footer>

@@ -3,109 +3,70 @@ import Link from "next/link";
 // Sample apps data - you can update this with your actual apps
 const apps = [
   {
-    id: "app-one",
-    name: "App One",
-    tagline: "Your first amazing app",
-    description: "A brief description of what this app does and why users love it.",
-    icon: "/app-icon-placeholder.png",
-    color: "from-purple-500 to-pink-500",
-    appStoreUrl: "#",
-  },
-  {
-    id: "app-two",
-    name: "App Two",
-    tagline: "Another great creation",
-    description: "A brief description of what this app does and why users love it.",
-    icon: "/app-icon-placeholder.png",
-    color: "from-cyan-500 to-blue-500",
-    appStoreUrl: "#",
-  },
+    id: "daily-wisdom",
+    name: "Daily Wisdom: Proverbs",
+    tagline: "Start your day with wisdom",
+    description: "A clean, distraction-free way to read and reflect on the Book of Proverbs. Daily inspiration for your spiritual journey.",
+    icon: "bg-purple-900", 
+    appStoreUrl: "https://apps.apple.com/us/app/daily-wisdom-book-of-proverbs/id977329614",
+  }
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="bg-grid-pattern">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 gradient-bg opacity-90" />
-
-        {/* Floating shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        </div>
-
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Frozen Grape
-            <span className="block text-2xl md:text-3xl font-normal mt-2 text-white/80">
-              Studios
-            </span>
+      <section className="relative pt-32 pb-20 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            Indie iOS Development Studio
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
+            Software with a <span className="text-primary">human touch</span>.
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Crafting beautiful iOS apps that make your digital life simpler,
-            smarter, and more enjoyable.
+          <p className="text-xl text-foreground/60 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
+            Frozen Grape Studios crafts intuitive, beautiful iOS applications designed to fit naturally into your daily life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#apps" className="bg-white text-grape font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-lg">
-              Explore Our Apps
+            <a href="#apps" className="btn-primary">
+              View Our Apps
             </a>
-            <Link href="/contact" className="border-2 border-white text-white font-semibold px-8 py-4 rounded-full hover:bg-white hover:text-grape transition-all">
+            <Link href="/contact" className="btn-secondary">
               Get in Touch
             </Link>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/60 animate-bounce">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
       </section>
 
       {/* Apps Section */}
-      <section id="apps" className="py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="gradient-text">Our Apps</span>
-            </h2>
-            <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
-              Each app is crafted with attention to detail, focusing on user experience
-              and solving real problems.
+      <section id="apps" className="py-24 px-6 border-t border-black/5 dark:border-white/5 bg-background">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">Our Applications</h2>
+            <p className="text-foreground/60 text-lg max-w-2xl">
+              Tools designed with care, focusing on usability, performance, and privacy.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {apps.map((app) => (
               <Link
                 key={app.id}
                 href={`/apps/${app.id}`}
-                className="group"
+                className="card block p-6 group no-underline"
               >
-                <div className="bg-white dark:bg-white/5 rounded-3xl p-8 card-hover border border-foreground/5">
-                  <div className="flex items-start gap-6">
-                    {/* App Icon Placeholder */}
-                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${app.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                      <span className="text-white text-3xl font-bold">
-                        {app.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-1 group-hover:text-grape transition-colors">
-                        {app.name}
-                      </h3>
-                      <p className="text-grape font-medium mb-3">{app.tagline}</p>
-                      <p className="text-foreground/60">{app.description}</p>
-                    </div>
+                <div className="flex items-start gap-5">
+                  <div className={`w-16 h-16 rounded-2xl ${app.icon} flex-shrink-0 shadow-sm flex items-center justify-center text-white font-bold text-xl`}>
+                    {app.name.charAt(0)}
                   </div>
-                  <div className="mt-6 flex items-center justify-between">
-                    <span className="text-sm text-foreground/40">Available on the App Store</span>
-                    <span className="text-grape group-hover:translate-x-2 transition-transform inline-block">
-                      Learn more &rarr;
-                    </span>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1 text-foreground group-hover:text-primary transition-colors">
+                      {app.name}
+                    </h3>
+                    <p className="text-sm font-medium text-primary mb-2">{app.tagline}</p>
+                    <p className="text-foreground/70 leading-relaxed text-sm">
+                      {app.description}
+                    </p>
                   </div>
                 </div>
               </Link>
@@ -114,67 +75,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-24 px-6 bg-foreground/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="gradient-text">About the Studio</span>
-              </h2>
-              <p className="text-foreground/70 text-lg mb-6">
-                Frozen Grape Studios is an indie iOS development studio focused on
-                creating apps that are both beautiful and functional. We believe
-                great software should feel intuitive and bring joy to everyday tasks.
+      {/* About Section - Simplified */}
+      <section className="py-24 px-6 border-t border-black/5 dark:border-white/5 bg-grape-subtle/30">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight mb-6">Small team, big care.</h2>
+            <div className="space-y-4 text-foreground/80 leading-relaxed">
+              <p>
+                Frozen Grape Studios is an independent development shop. We don&apos;t chase trends or engagement metrics.
               </p>
-              <p className="text-foreground/70 text-lg mb-8">
-                Every app we build starts with a simple question: &quot;How can we make
-                this better?&quot; From there, we obsess over the details until we have
-                something we&apos;re proud to share with the world.
+              <p>
+                We build software that we want to use ourselves. We believe that software should be quiet, reliable, and respectful of your attention.
               </p>
-              <div className="flex gap-6">
-                <div className="text-center">
-                  <div className="text-4xl font-bold gradient-text">2+</div>
-                  <div className="text-foreground/60">Apps</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold gradient-text">iOS</div>
-                  <div className="text-foreground/60">Platform</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold gradient-text">100%</div>
-                  <div className="text-foreground/60">Passion</div>
-                </div>
+            </div>
+            
+            <div className="mt-8 pt-8 border-t border-black/5 dark:border-white/5 grid grid-cols-3 gap-8">
+              <div>
+                <div className="font-bold text-2xl text-primary">100%</div>
+                <div className="text-xs uppercase tracking-wider text-foreground/50 mt-1">Independent</div>
+              </div>
+              <div>
+                <div className="font-bold text-2xl text-primary">iOS</div>
+                <div className="text-xs uppercase tracking-wider text-foreground/50 mt-1">Focused</div>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-square rounded-3xl gradient-bg opacity-20" />
-              <div className="absolute inset-4 rounded-2xl bg-white dark:bg-foreground/10 shadow-2xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-2xl gradient-bg flex items-center justify-center">
-                    <span className="text-white text-4xl font-bold">FG</span>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">Frozen Grape Studios</h3>
-                  <p className="text-foreground/60">Indie iOS Development</p>
-                </div>
-              </div>
-            </div>
+          </div>
+          
+          <div className="bg-background rounded-2xl p-8 border border-black/5 dark:border-white/5 shadow-sm">
+             <blockquote className="text-lg font-medium italic mb-4">
+               &quot;The details are not the details. They make the design.&quot;
+             </blockquote>
+             <cite className="not-italic text-sm text-foreground/50">— Charles Eames</cite>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Have an idea? <span className="gradient-text">Let&apos;s talk.</span>
-          </h2>
-          <p className="text-foreground/60 text-lg mb-8 max-w-2xl mx-auto">
-            Whether you have questions about our apps, feedback, or just want to say hi,
-            we&apos;d love to hear from you.
+      <section className="py-24 px-6 border-t border-black/5 dark:border-white/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to improve your digital workflow?</h2>
+          <p className="text-foreground/60 mb-8">
+            Check out our apps on the App Store or get in touch if you have any questions.
           </p>
-          <Link href="/contact" className="btn-primary text-lg">
-            Get in Touch
+          <Link href="/contact" className="btn-primary">
+            Contact Support
           </Link>
         </div>
       </section>
