@@ -1,15 +1,32 @@
 import Link from "next/link";
+import Image from "next/image";
 
-// Sample apps data - you can update this with your actual apps
+// Apps data with real App Store icons
 const apps = [
   {
+    id: "brighterstart",
+    name: "BrighterStart",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/1a/a1/2a/1aa12a07-d6f8-c94b-ff62-1af58e0a5c69/AppIcon-0-0-1x_U007epad-0-1-85-220.png/200x200bb.png",
+    appStoreUrl: "https://apps.apple.com/us/app/brighterstart/id6745766308",
+  },
+  {
     id: "daily-wisdom",
-    name: "Daily Wisdom: Proverbs",
-    tagline: "Start your day with wisdom",
-    description: "A clean, distraction-free way to read and reflect on the Book of Proverbs. Daily inspiration for your spiritual journey.",
-    icon: "bg-purple-900", 
+    name: "Daily Wisdom",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5d/e7/45/5de7457e-ed74-f7f9-ea7d-55dee66a3d32/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/200x200bb.png",
     appStoreUrl: "https://apps.apple.com/us/app/daily-wisdom-book-of-proverbs/id977329614",
-  }
+  },
+  {
+    id: "hoops-trivia",
+    name: "Hoops Trivia",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple5/v4/95/4e/33/954e339a-3839-bf69-0004-e0bf5fb86ff9/mzl.cvpayvfg.jpg/200x200bb.png",
+    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia-lebron-james-edition/id946326329",
+  },
+  {
+    id: "hoops-trivia-lite",
+    name: "Hoops Trivia Lite",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple1/v4/1b/79/66/1b7966a9-321c-c16b-82cd-e4a4f422378a/pr_source.png/200x200bb.png",
+    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia-lebron-james-edition-lite/id968168697",
+  },
 ];
 
 export default function Home() {
@@ -48,27 +65,24 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {apps.map((app) => (
               <Link
                 key={app.id}
                 href={`/apps/${app.id}`}
-                className="card block p-6 group no-underline"
+                className="group flex flex-col items-center text-center no-underline"
               >
-                <div className="flex items-start gap-5">
-                  <div className={`w-16 h-16 rounded-2xl ${app.icon} flex-shrink-0 shadow-sm flex items-center justify-center text-white font-bold text-xl`}>
-                    {app.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-1 text-foreground group-hover:text-primary transition-colors">
-                      {app.name}
-                    </h3>
-                    <p className="text-sm font-medium text-primary mb-2">{app.tagline}</p>
-                    <p className="text-foreground/70 leading-relaxed text-sm">
-                      {app.description}
-                    </p>
-                  </div>
+                <div className="relative w-20 h-20 md:w-24 md:h-24 mb-3 rounded-[22%] overflow-hidden shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-200">
+                  <Image
+                    src={app.icon}
+                    alt={`${app.name} app icon`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
+                <h3 className="text-sm md:text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {app.name}
+                </h3>
               </Link>
             ))}
           </div>

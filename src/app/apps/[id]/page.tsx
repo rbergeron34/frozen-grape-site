@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 // Apps data - keep in sync with home page or move to a shared file
@@ -7,17 +8,34 @@ const apps: Record<string, {
   tagline: string;
   description: string;
   longDescription: string;
-  color: string;
+  icon: string;
   features: string[];
   appStoreUrl: string;
   screenshots: string[];
 }> = {
+  "brighterstart": {
+    name: "BrighterStart",
+    tagline: "Move forward, one step at a time",
+    description: "Helps ADHD minds build momentum through guided routines.",
+    longDescription: "BrighterStart helps individuals with ADHD manage daily challenges through guided routines. Select your current emotional state and receive customizable routines featuring small, achievable tasks. Features mood-boosting techniques like breathwork and mindfulness, streak tracking to celebrate progress, and the ability to build personalized routines for morning prep, work transitions, and wind-down periods.",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/1a/a1/2a/1aa12a07-d6f8-c94b-ff62-1af58e0a5c69/AppIcon-0-0-1x_U007epad-0-1-85-220.png/200x200bb.png",
+    features: [
+      "Emotion-based routine selection",
+      "Small, achievable tasks to build momentum",
+      "Breathwork and mindfulness exercises",
+      "Streak tracking to celebrate progress",
+      "Customizable morning and evening routines",
+      "Privacy-focused—no data collected",
+    ],
+    appStoreUrl: "https://apps.apple.com/us/app/brighterstart/id6745766308",
+    screenshots: [],
+  },
   "daily-wisdom": {
-    name: "Daily Wisdom: Proverbs",
+    name: "Daily Wisdom: Book of Proverbs",
     tagline: "Start your day with wisdom",
     description: "A clean, distraction-free way to read and reflect on the Book of Proverbs.",
     longDescription: "Start each day with a carefully selected proverb from the Book of Proverbs, designed to inspire and guide your spiritual journey. Daily Wisdom offers a clean, distraction-free reading experience, allowing you to reflect on timeless biblical truths that provide practical wisdom for modern life. Whether you're seeking guidance, meditation, or a habit of scripture reading, this app serves as your daily companion for spiritual growth.",
-    color: "bg-purple-900",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5d/e7/45/5de7457e-ed74-f7f9-ea7d-55dee66a3d32/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/200x200bb.png",
     features: [
       "Daily proverb delivered fresh each morning",
       "Adjustable text size for comfortable reading",
@@ -28,7 +46,40 @@ const apps: Record<string, {
     ],
     appStoreUrl: "https://apps.apple.com/us/app/daily-wisdom-book-of-proverbs/id977329614",
     screenshots: [],
-  }
+  },
+  "hoops-trivia": {
+    name: "Hoops Trivia - LeBron James Edition",
+    tagline: "The ultimate LeBron James quiz",
+    description: "Test your knowledge about the NBA legend with hundreds of questions.",
+    longDescription: "The most extensive LeBron James quiz you will ever find! With hundreds of questions all about the basketball legend, this app tests your knowledge across six categories including LeBron's Personal Life, High School Career, Cleveland Cavaliers, Miami Heat, and his incredible achievements. Completely ad-free for an uninterrupted trivia experience.",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple5/v4/95/4e/33/954e339a-3839-bf69-0004-e0bf5fb86ff9/mzl.cvpayvfg.jpg/200x200bb.png",
+    features: [
+      "Hundreds of LeBron James trivia questions",
+      "Six different categories to test your knowledge",
+      "Track your high scores and progress",
+      "Completely ad-free experience",
+      "Perfect for basketball fans",
+      "Offline play—no internet required",
+    ],
+    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia-lebron-james-edition/id946326329",
+    screenshots: [],
+  },
+  "hoops-trivia-lite": {
+    name: "Hoops Trivia Lite",
+    tagline: "Free LeBron James trivia",
+    description: "Try the free version of the ultimate LeBron James quiz.",
+    longDescription: "Get started with LeBron James trivia for free! This lite version gives you a taste of the extensive quiz experience with a selection of questions about the basketball legend. Test your knowledge and see if you have what it takes to master the full version.",
+    icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple1/v4/1b/79/66/1b7966a9-321c-c16b-82cd-e4a4f422378a/pr_source.png/200x200bb.png",
+    features: [
+      "Free LeBron James trivia questions",
+      "Multiple categories to explore",
+      "Perfect introduction to Hoops Trivia",
+      "No commitment—try before you buy",
+      "Offline play—no internet required",
+    ],
+    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia-lebron-james-edition-lite/id968168697",
+    screenshots: [],
+  },
 };
 
 export function generateStaticParams() {
@@ -75,8 +126,13 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
             <div>
               <div className="flex items-center gap-6 mb-8">
                 {/* App Icon */}
-                <div className={`w-24 h-24 rounded-2xl ${app.color} flex items-center justify-center shadow-lg text-white`}>
-                   <span className="text-4xl font-bold">{app.name.charAt(0)}</span>
+                <div className="relative w-24 h-24 rounded-[22%] overflow-hidden shadow-lg flex-shrink-0">
+                  <Image
+                    src={app.icon}
+                    alt={`${app.name} app icon`}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div>
                   <h1 className="text-4xl font-bold tracking-tight mb-2">{app.name}</h1>
