@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx create-next-app:*)"
+      "Bash(npx create-next-app@latest frozen-grape-temp --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npm run build)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo create:*)",
+      "Bash(git push:*)",
+      "Bash(gh repo view:*)",
+      "Bash(cd:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git fetch:*)",
+      "Bash(git checkout:*)",
+      "WebSearch",
+      "WebFetch(domain:apps.apple.com)",
+      "Bash(npm install:*)",
+      "Bash(git diff next.config.ts src/app/page.tsx src/app/apps/[id]/page.tsx)"
     ]
   }
 }
