@@ -1,93 +1,108 @@
 import Link from "next/link";
-import AppsGrid from "./components/AppsGrid";
+import { AppShowcase } from "./components/showcase/AppShowcase";
+import { NotifyForm } from "./components/NotifyForm";
 
 export default function Home() {
   return (
-    <div className="bg-grid-pattern">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-            Indie iOS Development Studio
-          </div>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-balance">
-            Software with a <span className="text-primary">human touch</span>.
-          </h1>
-          <p className="text-xl text-foreground/60 mb-10 max-w-2xl mx-auto text-balance leading-relaxed">
-            Frozen Grape Studios crafts intuitive, beautiful iOS applications designed to fit naturally into your daily life.
+    <>
+      {/* Hero */}
+      <header className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 pt-[150px] pb-10">
+        <span className="text-[13px] font-semibold text-[var(--muted)] px-3.5 py-1.5 border border-[var(--border)] rounded-full bg-[var(--surface)] mb-7">
+          Indie iOS studio · Austin
+        </span>
+        <h1 className="font-extrabold tracking-[-0.035em] leading-[1.05] text-[clamp(38px,6vw,66px)] max-w-[15ch]">
+          Small iOS apps, thoughtfully made.
+        </h1>
+        <p className="mt-5 max-w-[50ch] text-[var(--muted)] text-[clamp(16px,1.6vw,19px)]">
+          Frozen Grape is a tiny app studio building simple tools for routines, reflection,
+          and games.
+        </p>
+        <div className="mt-8 flex gap-3 flex-wrap justify-center">
+          <Link href="#apps" className="btn btn-dark">
+            See the apps
+          </Link>
+          <Link href="/contact" className="btn btn-ghost">
+            Get in touch
+          </Link>
+        </div>
+        <div className="mt-16 text-xs tracking-[0.18em] uppercase text-[var(--muted)] flex flex-col items-center gap-2.5">
+          <span>Scroll to explore</span>
+          <span className="hero-ln" />
+        </div>
+      </header>
+
+      {/* Apps showcase (pinned phone on desktop, static list on mobile/reduced-motion) */}
+      <AppShowcase />
+
+      {/* Studio */}
+      <section
+        id="studio"
+        className="max-w-[1000px] mx-auto mt-10 px-6 py-[90px] text-center border-t border-[var(--border)]"
+      >
+        <h2 className="font-extrabold tracking-[-0.03em] text-[clamp(28px,3.4vw,40px)]">
+          Built independently in Austin.
+        </h2>
+        <div className="mt-5 mx-auto max-w-[52ch] text-[var(--muted)] text-lg space-y-4">
+          <p>
+            Frozen Grape is a small, independent shop. We build the software we want to use
+            ourselves — and we don&rsquo;t chase trends or engagement metrics.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#apps" className="btn-primary">
-              View Our Apps
-            </a>
-            <Link href="/contact" className="btn-secondary">
-              Get in Touch
-            </Link>
-          </div>
+          <p>
+            We believe software should be quiet, reliable, and respectful of your attention.
+          </p>
         </div>
-      </section>
 
-      {/* Apps Section */}
-      <section id="apps" className="py-24 px-6 border-t border-black/5 dark:border-white/5 bg-background">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Our Applications</h2>
-            <p className="text-foreground/60 text-lg max-w-2xl">
-              Tools designed with care, focusing on usability, performance, and privacy.
-            </p>
-          </div>
-
-          <AppsGrid />
-        </div>
-      </section>
-
-      {/* About Section - Simplified */}
-      <section className="py-24 px-6 border-t border-black/5 dark:border-white/5 bg-grape-subtle/30">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div className="mt-10 mx-auto max-w-md grid grid-cols-2 gap-8 border-t border-[var(--border)] pt-8">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-6">Small team, big care.</h2>
-            <div className="space-y-4 text-foreground/80 leading-relaxed">
-              <p>
-                Frozen Grape Studios is an independent development shop. We don&apos;t chase trends or engagement metrics.
-              </p>
-              <p>
-                We build software that we want to use ourselves. We believe that software should be quiet, reliable, and respectful of your attention.
-              </p>
-            </div>
-            
-            <div className="mt-8 pt-8 border-t border-black/5 dark:border-white/5 grid grid-cols-3 gap-8">
-              <div>
-                <div className="font-bold text-2xl text-primary">100%</div>
-                <div className="text-xs uppercase tracking-wider text-foreground/50 mt-1">Independent</div>
-              </div>
-              <div>
-                <div className="font-bold text-2xl text-primary">iOS</div>
-                <div className="text-xs uppercase tracking-wider text-foreground/50 mt-1">Focused</div>
-              </div>
+            <div className="font-extrabold text-3xl tracking-tight text-[var(--ink)]">100%</div>
+            <div className="text-xs uppercase tracking-wider text-[var(--muted)] mt-1">
+              Independent
             </div>
           </div>
-          
-          <div className="bg-background rounded-2xl p-8 border border-black/5 dark:border-white/5 shadow-sm">
-             <blockquote className="text-lg font-medium italic mb-4">
-               &quot;The details are not the details. They make the design.&quot;
-             </blockquote>
-             <cite className="not-italic text-sm text-foreground/50">— Charles Eames</cite>
+          <div>
+            <div className="font-extrabold text-3xl tracking-tight text-[var(--ink)]">iOS</div>
+            <div className="text-xs uppercase tracking-wider text-[var(--muted)] mt-1">Focused</div>
           </div>
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-6 border-t border-black/5 dark:border-white/5">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to improve your digital workflow?</h2>
-          <p className="text-foreground/60 mb-8">
-            Check out our apps on the App Store or get in touch if you have any questions.
-          </p>
-          <Link href="/contact" className="btn-primary">
-            Contact Support
+        <figure className="mt-10 mx-auto max-w-xl rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-8 shadow-sm">
+          <blockquote className="text-lg font-medium italic text-[var(--ink)]">
+            &ldquo;The details are not the details. They make the design.&rdquo;
+          </blockquote>
+          <figcaption className="not-italic text-sm text-[var(--muted)] mt-3">
+            — Charles Eames
+          </figcaption>
+        </figure>
+
+        <div className="mt-10 flex gap-2.5 justify-center flex-wrap">
+          <Link href="/apps/guiding-light" className="studio-link">
+            Guiding Light
+          </Link>
+          <Link href="/apps/brighterstart" className="studio-link">
+            BrighterStart
+          </Link>
+          <Link href="/apps/hoops-trivia" className="studio-link">
+            Hoops Trivia
+          </Link>
+          <Link href="/apps/daily-wisdom" className="studio-link">
+            Daily Wisdom
           </Link>
         </div>
       </section>
-    </div>
+
+      {/* Notify */}
+      <section
+        id="notify"
+        className="max-w-[1000px] mx-auto px-6 pb-[90px] text-center scroll-mt-24"
+      >
+        <h2 className="font-extrabold tracking-[-0.03em] text-[clamp(24px,3vw,32px)]">
+          New apps, now and then.
+        </h2>
+        <p className="mt-3 mx-auto max-w-[42ch] text-[var(--muted)]">
+          An email when something new ships. Nothing else — no newsletters, no noise.
+        </p>
+        <NotifyForm />
+      </section>
+    </>
   );
 }
