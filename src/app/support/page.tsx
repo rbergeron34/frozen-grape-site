@@ -45,8 +45,8 @@ export default function SupportPage() {
 
       <p className="mt-6 text-[var(--muted)]">
         Prefer email? Reach us at{" "}
-        <a href="mailto:support@frozengrape.com" className="text-[var(--ink)] font-medium hover:underline">
-          support@frozengrape.com
+        <a href="mailto:support@frozengrape.app" className="text-[var(--ink)] font-medium hover:underline">
+          support@frozengrape.app
         </a>
         .
       </p>
@@ -101,8 +101,8 @@ export default function SupportPage() {
               <span className="font-bold text-[var(--ink)]">By email:</span>
               <span>
                 Email{" "}
-                <a href="mailto:support@frozengrape.com" className="font-medium hover:underline">
-                  support@frozengrape.com
+                <a href="mailto:support@frozengrape.app" className="font-medium hover:underline">
+                  support@frozengrape.app
                 </a>{" "}
                 from the address on your account and we&rsquo;ll delete it within 30 days.
               </span>

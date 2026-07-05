@@ -63,10 +63,6 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
                   <span className="lbl">{app.shortName}</span>
                 </div>
               ))}
-              <div className="hicon more">
-                <div className="tile">+</div>
-                <span className="lbl">More soon</span>
-              </div>
             </div>
             <div className="dock">
               {DOCK.map((d) => (
