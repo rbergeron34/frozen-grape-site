@@ -126,8 +126,8 @@ export default function ContactPage() {
 
         <div className="mt-10 text-center text-[var(--muted)]">
           <p className="mb-2">Prefer email? Reach us directly at</p>
-          <a href="mailto:support@frozengrape.com" className="font-medium text-[var(--ink)] hover:underline">
-            support@frozengrape.com
+          <a href="mailto:support@frozengrape.app" className="font-medium text-[var(--ink)] hover:underline">
+            support@frozengrape.app
           </a>
         </div>
       </section>

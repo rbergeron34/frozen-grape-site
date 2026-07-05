@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 import { APPS } from "@/lib/apps";
 
@@ -29,14 +30,14 @@ export const metadata: Metadata = {
     title: "Frozen Grape — Small iOS apps, thoughtfully made.",
     description:
       "A tiny iOS studio building simple, quiet tools for routines, reflection, and games.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Frozen Grape Studios" }],
+    // image auto-wired from src/app/opengraph-image.png
   },
   twitter: {
     card: "summary_large_image",
     title: "Frozen Grape — Small iOS apps, thoughtfully made.",
     description:
       "A tiny iOS studio building simple, quiet tools for routines, reflection, and games.",
-    images: ["/og.png"],
+    // image auto-wired from src/app/twitter-image.png
   },
 };
 
@@ -81,10 +82,16 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <nav className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 sm:px-8 py-4 bg-[var(--bg)]/70 backdrop-blur-md border-b border-transparent">
-          <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-            <span className="inline-block w-2 h-2 rounded-full bg-[var(--ink)]" />
-            Frozen Grape
+        <nav className="fixed top-3 inset-x-3 sm:inset-x-6 z-50 flex items-center justify-between px-5 sm:px-6 py-3 rounded-full bg-white/70 backdrop-blur-xl border border-[var(--border)] shadow-[0_12px_40px_rgba(31,20,54,0.06)]">
+          <Link href="/" className="flex items-center" aria-label="Frozen Grape Studios — home">
+            <Image
+              src="/brand/logo-wordmark.png"
+              alt="Frozen Grape Studios"
+              width={131}
+              height={32}
+              priority
+              className="h-8 w-auto"
+            />
           </Link>
           <div className="flex items-center gap-6 text-sm font-medium text-[var(--muted)]">
             <Link href="/#apps" className="hover:text-[var(--ink)] transition-colors">
@@ -103,9 +110,10 @@ export default function RootLayout({
           {children}
         </main>
 
-        <footer className="max-w-5xl mx-auto w-full px-6 py-9 mt-10 flex flex-wrap items-center justify-between gap-4 text-[13px] text-[var(--muted)] border-t border-[var(--border)]">
+        <footer className="site-footer w-full px-6 py-9 mt-10 text-[13px] text-[var(--muted)]">
+          <div className="max-w-5xl mx-auto w-full flex flex-wrap items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2 font-bold tracking-tight text-[var(--ink)]">
-            <span className="inline-block w-2 h-2 rounded-full bg-[var(--ink)]" />
+            <span className="inline-block w-2 h-2 rounded-full bg-[var(--grape)]" />
             Frozen Grape
           </Link>
           <div className="flex gap-5">
@@ -126,6 +134,7 @@ export default function RootLayout({
             </Link>
           </div>
           <span>© {new Date().getFullYear()} Frozen Grape Studios</span>
+          </div>
         </footer>
 
         <script

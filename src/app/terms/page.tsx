@@ -54,8 +54,8 @@ export default function TermsPage() {
         <h2 className="text-xl font-bold text-[var(--ink)] pt-4">Contact</h2>
         <p>
           Questions? Email{" "}
-          <a href="mailto:support@frozengrape.com" className="text-[var(--ink)] font-medium hover:underline">
-            support@frozengrape.com
+          <a href="mailto:support@frozengrape.app" className="text-[var(--ink)] font-medium hover:underline">
+            support@frozengrape.app
           </a>
           .
         </p>

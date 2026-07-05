@@ -51,6 +51,8 @@ export interface AppEntry {
   subscription?: { name: string; period: string; price: string; note?: string };
   /** Optional in-app account-deletion path; EDITABLE — confirm exact steps with Ryan. */
   accountDeletionPath?: string;
+  /** App-specific legal pages; falls back to the studio-wide /privacy and /terms. */
+  legal?: { privacy: string; terms: string };
 
   // --- showcase presentation ---
   accent: string; // hex, applied only while this app is active
@@ -63,8 +65,10 @@ export interface AppEntry {
   screen: ScreenKind; // what fills the phone
 }
 
-export const NEUTRAL_ACCENT = "#9aa0aa";
-export const NEUTRAL_TINT = "rgba(150,153,162,.07)";
+// Studio grape — the neutral/home-beat brand. Each app's accent takes over
+// during its own showcase moment, then resets to this.
+export const NEUTRAL_ACCENT = "#7b4ae2";
+export const NEUTRAL_TINT = "rgba(123,74,226,.10)";
 
 export const APPS: AppEntry[] = [
   {
@@ -95,6 +99,7 @@ export const APPS: AppEntry[] = [
     hasAccount: true,
     usesAI: true,
     accountDeletionPath: "Settings → Account → Delete Account", // EDITABLE — confirm exact path
+    legal: { privacy: "/guidinglight/privacy", terms: "/guidinglight/terms" },
     accent: "#C28A2C",
     tint: "rgba(194,138,44,.12)",
     iconBg: "#F3EAD7",
@@ -156,12 +161,16 @@ export const APPS: AppEntry[] = [
       { glyph: "◔", title: "Gentle reminders", desc: "Nudges, never nags." },
       { glyph: "△", title: "Quiet progress", desc: "Momentum without pressure." },
     ],
-    screen: { kind: "mock", component: "BrighterStartMock" },
+    screen: {
+      kind: "image",
+      src: "/assets/apps/brighterstart/screen-1.png",
+      alt: "BrighterStart home screen with mood check-in and routines",
+    },
   },
   {
     slug: "hoops-trivia",
     name: "Hoops Trivia",
-    shortName: "Hoops",
+    shortName: "Trivia",
     category: "Games",
     status: "live",
     tagline: "The ultimate LeBron James quiz",
@@ -202,6 +211,48 @@ export const APPS: AppEntry[] = [
       { glyph: "↗", title: "Game Center", desc: "Leaderboards and achievements." },
     ],
     screen: { kind: "mock", component: "HoopsMock" },
+  },
+  {
+    slug: "hoops-connect",
+    name: "Hoops Connect",
+    shortName: "Connect",
+    category: "Games",
+    status: "coming-soon",
+    tagline: "A daily basketball puzzle", // EDITABLE — confirm tagline
+    description: "A daily basketball puzzle: line up the slate and solve the Hoop Connections.",
+    longDescription:
+      "Hoops Connect is a daily basketball puzzle. Each day brings a fresh slate — line up the right players, then solve the day's Hoop Connections. Build a streak, climb the tiers, and collect daily drops. A quick, satisfying hoops habit. (Copy is a draft — confirm before launch.)",
+    icon: "/assets/apps/hoops-connect/icon.png",
+    rating: 0,
+    ratingsCount: 0,
+    price: "Free",
+    ageRating: "4+",
+    size: "—",
+    developer: "Ryan Bergeron",
+    features: [
+      "A fresh daily slate puzzle",
+      "Hoop Connections — group players that belong together",
+      "Streaks, tiers, and daily drops",
+      "Stats and trophies",
+    ],
+    privacyInfo: "Privacy details pending",
+    platforms: ["iPhone"],
+    accent: "#D2742E",
+    tint: "rgba(210,116,46,.12)",
+    iconBg: "#f4f3f0",
+    fallbackGlyph: "🏀",
+    lead: "A daily basketball puzzle — line up the slate.",
+    screenHeadline: "One slate a day.",
+    showcaseFeatures: [
+      { glyph: "◎", title: "Daily slate", desc: "A fresh lineup puzzle every day." },
+      { glyph: "≡", title: "Hoop Connections", desc: "Group the players that belong together." },
+      { glyph: "↗", title: "Streaks & trophies", desc: "Keep your run going." },
+    ],
+    screen: {
+      kind: "image",
+      src: "/assets/apps/hoops-connect/screen-1.png",
+      alt: "Hoops Connect daily slate puzzle screen",
+    },
   },
   {
     slug: "daily-wisdom",
@@ -258,7 +309,11 @@ export const APPS: AppEntry[] = [
       { glyph: "♡", title: "Save favorites", desc: "Keep what resonates." },
       { glyph: "—", title: "No feeds", desc: "Just a moment to think." },
     ],
-    screen: { kind: "mock", component: "DailyWisdomMock" },
+    screen: {
+      kind: "image",
+      src: "/assets/apps/daily-wisdom/screen-1.png",
+      alt: "Daily Wisdom showing a Proverbs verse with copy and share",
+    },
   },
 ];
 

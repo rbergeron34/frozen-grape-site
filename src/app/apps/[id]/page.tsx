@@ -122,7 +122,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
               {app.usesAI && (
                 <p className="mb-7 text-sm text-[var(--muted)]">
                   Uses AI to assist with reflection prompts.{" "}
-                  <Link href="/privacy" className="underline hover:text-[var(--ink)]">
+                  <Link href={app.legal?.privacy ?? "/privacy"} className="underline hover:text-[var(--ink)]">
                     How we handle AI &amp; your data
                   </Link>
                   .
@@ -233,6 +233,16 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
             <div>
               <div className="text-[var(--muted)] mb-1">Privacy</div>
               <div className="text-[var(--ink)]/80">{app.privacyInfo}</div>
+              {app.legal && (
+                <div className="mt-1 flex gap-3">
+                  <Link href={app.legal.privacy} className="underline hover:text-[var(--ink)]">
+                    Privacy Policy
+                  </Link>
+                  <Link href={app.legal.terms} className="underline hover:text-[var(--ink)]">
+                    Terms
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>

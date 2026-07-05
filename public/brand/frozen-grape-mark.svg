@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- stem -->
+  <path d="M104 86c2-14 0-26 8-36" stroke="#7b4ae2" stroke-width="6" stroke-linecap="round"/>
+  <!-- leaf -->
+  <path d="M114 52c10-12 26-14 38-10-2 16-14 28-30 28-6 0-9-8-8-18z" fill="#7b4ae2"/>
+  <!-- grape cluster -->
+  <circle cx="72" cy="98" r="17" fill="#7b4ae2"/>
+  <circle cx="104" cy="92" r="17" fill="#7b4ae2"/>
+  <circle cx="136" cy="100" r="17" fill="#7b4ae2"/>
+  <circle cx="87" cy="126" r="17" fill="#7b4ae2"/>
+  <circle cx="120" cy="126" r="17" fill="#7b4ae2"/>
+  <circle cx="103" cy="153" r="17" fill="#7b4ae2"/>
+</svg>

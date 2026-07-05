@@ -11,8 +11,14 @@
   --ink: #191b1f;
   --muted: #6b7280;
   --border: #e6e8ee;
-  --accent: #9aa0aa; /* neutral default; overridden per active app */
-  --tint: rgba(150, 153, 162, 0.07);
+  --accent: #7b4ae2; /* studio grape — the neutral/home default; overridden per active app */
+  --tint: rgba(123, 74, 226, 0.1);
+
+  /* Frozen Grape brand */
+  --grape: #7b4ae2;
+  --grape-light: #9d6cff;
+  --frost: #84ceeb;
+  --grape-tint: rgba(123, 74, 226, 0.12);
 }
 
 @theme inline {
@@ -26,7 +32,10 @@
 }
 
 body {
-  background: var(--bg);
+  /* faint dot grain layered behind the base color — keeps the light bg from feeling sterile */
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(20, 20, 30, 0.16) 0.7px, transparent 0.7px);
+  background-size: 4px 4px;
   color: var(--ink);
   font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.5;
@@ -64,11 +73,13 @@ body {
   transform: scale(0.97);
 }
 .btn-dark {
-  background: var(--ink);
+  background: linear-gradient(135deg, var(--grape), var(--grape-light));
   color: #fff;
+  box-shadow: 0 12px 28px rgba(123, 74, 226, 0.22);
 }
 .btn-dark:hover {
-  background: #000;
+  background: linear-gradient(135deg, #6c3dd6, #8f5cf5);
+  box-shadow: 0 14px 32px rgba(123, 74, 226, 0.28);
 }
 .btn-ghost {
   border: 1px solid var(--border);
@@ -127,6 +138,20 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
+/* footer — subtle grape→frost top hairline + faint tint */
+.site-footer {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      transparent,
+      rgba(123, 74, 226, 0.35),
+      rgba(132, 206, 235, 0.3),
+      transparent
+    )
+    1;
+  background: linear-gradient(180deg, rgba(123, 74, 226, 0.04), transparent 70%);
+}
+
 /* skip link */
 .skip-link {
   position: absolute;
@@ -143,6 +168,26 @@ textarea:focus-visible {
   left: 0;
 }
 
+/* hero — branded ambient layers over the light foundation */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 760px;
+  height: 760px;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(123, 74, 226, 0.16), transparent 42%),
+    radial-gradient(circle at 70% 45%, rgba(157, 108, 255, 0.12), transparent 40%),
+    radial-gradient(circle at 50% 72%, rgba(132, 206, 235, 0.1), transparent 48%);
+  filter: blur(26px);
+  z-index: -1;
+}
 /* hero scroll hint */
 .hero-ln {
   width: 1px;

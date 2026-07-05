@@ -49,7 +49,7 @@ export async function submitContact(
     };
   }
 
-  const to = process.env.CONTACT_TO_EMAIL ?? "support@frozengrape.com";
+  const to = process.env.CONTACT_TO_EMAIL ?? "support@frozengrape.app";
   const from = process.env.CONTACT_FROM_EMAIL ?? "onboarding@resend.dev";
   const label = SUBJECT_LABELS[subject] ?? subject;
 

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <header className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 pt-[150px] pb-10">
+      <header className="hero min-h-[90vh] flex flex-col justify-center items-center text-center px-6 pt-[150px] pb-10">
         <span className="text-[13px] font-semibold text-[var(--muted)] px-3.5 py-1.5 border border-[var(--border)] rounded-full bg-[var(--surface)] mb-7">
           Indie iOS studio · Austin
         </span>
@@ -83,6 +83,9 @@ export default function Home() {
           </Link>
           <Link href="/apps/hoops-trivia" className="studio-link">
             Hoops Trivia
+          </Link>
+          <Link href="/apps/hoops-connect" className="studio-link">
+            Hoops Connect
           </Link>
           <Link href="/apps/daily-wisdom" className="studio-link">
             Daily Wisdom
