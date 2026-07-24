@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FEATURED_APPS } from "@/lib/apps";
 import { AppShowcase } from "./components/showcase/AppShowcase";
 import { NotifyForm } from "./components/NotifyForm";
 
@@ -14,8 +15,8 @@ export default function Home() {
           Small iOS apps, thoughtfully made.
         </h1>
         <p className="mt-5 max-w-[50ch] text-[var(--muted)] text-[clamp(16px,1.6vw,19px)]">
-          Frozen Grape is a tiny app studio building simple tools for routines, reflection,
-          and games.
+          Frozen Grape is a tiny app studio building simple tools for mornings, reflection,
+          running, photos, and play.
         </p>
         <div className="mt-8 flex gap-3 flex-wrap justify-center">
           <Link href="#apps" className="btn btn-dark">
@@ -75,21 +76,11 @@ export default function Home() {
         </figure>
 
         <div className="mt-10 flex gap-2.5 justify-center flex-wrap">
-          <Link href="/apps/guiding-light" className="studio-link">
-            Guiding Light
-          </Link>
-          <Link href="/apps/brighterstart" className="studio-link">
-            BrighterStart
-          </Link>
-          <Link href="/apps/hoops-trivia" className="studio-link">
-            Hoops Trivia
-          </Link>
-          <Link href="/apps/hoops-connect" className="studio-link">
-            Hoops Connect
-          </Link>
-          <Link href="/apps/daily-wisdom" className="studio-link">
-            Daily Wisdom
-          </Link>
+          {FEATURED_APPS.map((app) => (
+            <Link key={app.slug} href={`/apps/${app.slug}`} className="studio-link">
+              {app.name}
+            </Link>
+          ))}
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { APPS, NEUTRAL_ACCENT, NEUTRAL_TINT, type AppEntry } from "@/lib/apps";
+import { FEATURED_APPS, NEUTRAL_ACCENT, NEUTRAL_TINT, type AppEntry } from "@/lib/apps";
 import { AppScreen } from "./screens";
 import type { ShowcaseState } from "./useShowcaseState";
 
@@ -31,7 +31,7 @@ const DOCK = [
 
 export function PhoneStage({ state }: { state: ShowcaseState }) {
   const activeIndex = state.phase === "home" ? -1 : state.index;
-  const active = activeIndex >= 0 ? APPS[activeIndex] : null;
+  const active = activeIndex >= 0 ? FEATURED_APPS[activeIndex] : null;
   const inApp = state.phase === "screen";
 
   const styleVars = {
@@ -57,7 +57,7 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
           {/* layer 1: home grid (shown once at the top) */}
           <div className={`home${state.phase === "home" ? " show" : ""}`}>
             <div className="home-grid">
-              {APPS.map((app) => (
+              {FEATURED_APPS.map((app) => (
                 <div className="hicon" key={app.slug}>
                   <IconTile app={app} size="grid" />
                   <span className="lbl">{app.shortName}</span>
@@ -93,7 +93,7 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
           </div>
 
           {/* layer 3: app screens */}
-          {APPS.map((app, i) => (
+          {FEATURED_APPS.map((app, i) => (
             <div
               className={`appview${inApp && i === activeIndex ? " show" : ""}`}
               key={app.slug}

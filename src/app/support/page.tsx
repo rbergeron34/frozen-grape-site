@@ -19,7 +19,7 @@ export default function SupportPage() {
       </p>
 
       {/* paths */}
-      <div className="mt-8 grid sm:grid-cols-3 gap-3">
+      <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <Link
           href="/contact?topic=support"
           className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 hover:border-[var(--ink)] transition-colors"
@@ -40,6 +40,13 @@ export default function SupportPage() {
         >
           <div className="font-bold">Request a feature</div>
           <p className="text-sm text-[var(--muted)] mt-1">Tell us what you&rsquo;d like to see.</p>
+        </Link>
+        <Link
+          href="/contact?topic=feedback"
+          className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 hover:border-[var(--ink)] transition-colors"
+        >
+          <div className="font-bold">Share feedback</div>
+          <p className="text-sm text-[var(--muted)] mt-1">What&rsquo;s working, what isn&rsquo;t.</p>
         </Link>
       </div>
 
@@ -72,6 +79,30 @@ export default function SupportPage() {
                 ? `${app.name} isn't out yet. Questions in the meantime? Email support and we'll help.`
                 : `For help with ${app.name}, email support with your device and iOS version and we'll get back to you.`}
             </p>
+            <div className="mt-3 flex gap-4 text-sm flex-wrap">
+              <Link
+                href={app.legal?.privacy ?? "/privacy"}
+                className="text-[var(--muted)] underline hover:text-[var(--ink)]"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href={app.legal?.terms ?? "/terms"}
+                className="text-[var(--muted)] underline hover:text-[var(--ink)]"
+              >
+                Terms of Use
+              </Link>
+              {app.status === "live" && app.appStoreUrl && (
+                <a
+                  href={`${app.appStoreUrl}?action=write-review`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--muted)] underline hover:text-[var(--ink)]"
+                >
+                  Rate on the App Store
+                </a>
+              )}
+            </div>
           </div>
         ))}
       </div>
@@ -79,7 +110,7 @@ export default function SupportPage() {
       {/* account & data deletion */}
       {accountApps.length > 0 && (
         <>
-          <h2 className="text-2xl font-extrabold tracking-tight mt-14 mb-3">
+          <h2 id="account" className="scroll-mt-24 text-2xl font-extrabold tracking-tight mt-14 mb-3">
             Account &amp; data deletion
           </h2>
           <p className="text-[var(--ink)]/80 max-w-2xl">
@@ -108,9 +139,7 @@ export default function SupportPage() {
               </span>
             </li>
           </ul>
-          <p className="mt-4 text-sm text-[var(--muted)] border-t border-[var(--border)] pt-4">
-            Note: exact in-app steps are being finalized per app — confirm before launch.
-          </p>
+          {/* EDITABLE — confirm exact in-app deletion steps per app */}
         </>
       )}
     </div>

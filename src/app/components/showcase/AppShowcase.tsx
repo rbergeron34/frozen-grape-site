@@ -1,13 +1,13 @@
 "use client";
 
 import { Fragment } from "react";
-import { APPS } from "@/lib/apps";
+import { FEATURED_APPS } from "@/lib/apps";
 import { PhoneStage } from "./PhoneStage";
 import { AppScreen } from "./screens";
 import { AppCta } from "./AppCta";
 import { useShowcaseState } from "./useShowcaseState";
 
-function FeatureCards({ app }: { app: (typeof APPS)[number] }) {
+function FeatureCards({ app }: { app: (typeof FEATURED_APPS)[number] }) {
   return (
     <div className="fcards">
       {app.showcaseFeatures.map((f) => (
@@ -45,7 +45,7 @@ export function AppShowcase() {
             </p>
           </section>
 
-          {APPS.map((app, i) => (
+          {FEATURED_APPS.map((app, i) => (
             <Fragment key={app.slug}>
               <section data-step={`icon-${i}`} className="step icon-step">
                 <div className="kicker">
@@ -74,7 +74,7 @@ export function AppShowcase() {
 
       {/* Static fallback: mobile + prefers-reduced-motion (CSS-controlled) */}
       <div className="m-apps" id="apps-mobile">
-        {APPS.map((app) => (
+        {FEATURED_APPS.map((app) => (
           <div
             className="m-app"
             key={app.slug}

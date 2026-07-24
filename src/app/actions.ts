@@ -17,6 +17,7 @@ const SUBJECT_LABELS: Record<string, string> = {
   support: "App support",
   bug: "Bug report",
   feature: "Feature request",
+  feedback: "Feedback",
   business: "Business inquiry",
 };
 

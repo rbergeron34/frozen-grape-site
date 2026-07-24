@@ -7,8 +7,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/guidinglight/terms" },
 };
 
+import { LEGAL_ENTITY, SUPPORT_EMAIL } from "@/lib/studio";
+
 const EFFECTIVE_DATE = "July 5, 2026";
-const SUPPORT_EMAIL = "support@frozengrape.app";
 
 function SupportEmail() {
   return (
@@ -34,7 +35,7 @@ export default function GuidingLightTermsPage() {
           <strong className="text-[var(--ink)]">App:</strong> Guiding Light
         </p>
         <p>
-          <strong className="text-[var(--ink)]">Developer:</strong> Bergy Media
+          <strong className="text-[var(--ink)]">Developer:</strong> {LEGAL_ENTITY}{" "}
           (&ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;)
         </p>
         <p>
@@ -230,7 +231,7 @@ export default function GuidingLightTermsPage() {
         </p>
         <p>
           The app&rsquo;s source code, design, copy, brand, and logo — including the dove mark and
-          the typographic system — remain the intellectual property of Bergy Media. You&rsquo;re
+          the typographic system — remain the intellectual property of {LEGAL_ENTITY}. You&rsquo;re
           welcome to take inspiration from the app, of course; please don&rsquo;t clone the brand
           wholesale.
         </p>
@@ -262,7 +263,7 @@ export default function GuidingLightTermsPage() {
         </p>
         <p>
           To the maximum extent permitted by law,{" "}
-          <strong>Bergy Media disclaims all warranties</strong>, express or implied, including
+          <strong>{LEGAL_ENTITY} disclaims all warranties</strong>, express or implied, including
           warranties of merchantability, fitness for a particular purpose, and non-infringement.
         </p>
 
@@ -270,7 +271,7 @@ export default function GuidingLightTermsPage() {
           11. Limitation of liability
         </h2>
         <p>
-          To the maximum extent permitted by law, Bergy Media&rsquo;s total liability arising out
+          To the maximum extent permitted by law, {LEGAL_ENTITY}&rsquo;s total liability arising out
           of or relating to your use of Guiding Light will not exceed the greater of (a) the
           amount you paid for the app in the twelve months preceding the claim, or (b) USD $50. We
           will not be liable for indirect, incidental, consequential, or punitive damages,
@@ -287,7 +288,7 @@ export default function GuidingLightTermsPage() {
           12. Indemnification
         </h2>
         <p>
-          You agree to indemnify and hold Bergy Media harmless from any claim, damage, or expense
+          You agree to indemnify and hold {LEGAL_ENTITY} harmless from any claim, damage, or expense
           arising out of your misuse of the app or your violation of these Terms or applicable
           law. This clause is intended for serious abuse cases (e.g., using the app to attack
           someone) and is not meant to apply to ordinary, prayerful use.
@@ -298,7 +299,7 @@ export default function GuidingLightTermsPage() {
         </h2>
         <p>
           These Terms are governed by the laws of the State of Texas, United States, without
-          regard to its conflict-of-laws principles. You and Bergy Media agree that any dispute
+          regard to its conflict-of-laws principles. You and {LEGAL_ENTITY} agree that any dispute
           will be resolved in the courts located in the State of Texas, United States, except
           where local consumer-protection law requires otherwise.
         </p>
@@ -347,7 +348,7 @@ export default function GuidingLightTermsPage() {
         </h2>
         <p>Questions about these Terms:</p>
         <p>
-          <strong>Bergy Media</strong>
+          <strong>{LEGAL_ENTITY}</strong>
           <br />
           <SupportEmail />
         </p>
