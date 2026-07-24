@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s · Frozen Grape",
   },
   description:
-    "Frozen Grape is a tiny iOS studio building simple, quiet tools for routines, reflection, and games.",
+    "Frozen Grape is a tiny iOS studio building simple, quiet tools for mornings, reflection, running, photos, and play.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     siteName: "Frozen Grape Studios",
     title: "Frozen Grape — Small iOS apps, thoughtfully made.",
     description:
-      "A tiny iOS studio building simple, quiet tools for routines, reflection, and games.",
+      "A tiny iOS studio building simple, quiet tools for mornings, reflection, running, photos, and play.",
     // image auto-wired from src/app/opengraph-image.png
   },
   twitter: {
     card: "summary_large_image",
     title: "Frozen Grape — Small iOS apps, thoughtfully made.",
     description:
-      "A tiny iOS studio building simple, quiet tools for routines, reflection, and games.",
+      "A tiny iOS studio building simple, quiet tools for mornings, reflection, running, photos, and play.",
     // image auto-wired from src/app/twitter-image.png
   },
 };
@@ -100,6 +100,9 @@ export default function RootLayout({
             <Link href="/#studio" className="hover:text-[var(--ink)] transition-colors">
               Studio
             </Link>
+            <Link href="/support" className="hover:text-[var(--ink)] transition-colors">
+              Support
+            </Link>
             <Link href="/contact" className="hover:text-[var(--ink)] transition-colors">
               Contact
             </Link>
@@ -122,6 +125,9 @@ export default function RootLayout({
             </Link>
             <Link href="/support" className="hover:text-[var(--ink)] transition-colors">
               Support
+            </Link>
+            <Link href="/legal" className="hover:text-[var(--ink)] transition-colors">
+              Legal
             </Link>
             <Link href="/privacy" className="hover:text-[var(--ink)] transition-colors">
               Privacy

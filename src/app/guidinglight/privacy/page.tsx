@@ -7,8 +7,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/guidinglight/privacy" },
 };
 
+import { LEGAL_ENTITY, SUPPORT_EMAIL } from "@/lib/studio";
+
 const EFFECTIVE_DATE = "July 5, 2026";
-const SUPPORT_EMAIL = "support@frozengrape.app";
 
 function SupportEmail() {
   return (
@@ -35,7 +36,7 @@ export default function GuidingLightPrivacyPage() {
           <strong className="text-[var(--ink)]">App:</strong> Guiding Light
         </p>
         <p>
-          <strong className="text-[var(--ink)]">Developer:</strong> Bergy Media
+          <strong className="text-[var(--ink)]">Developer:</strong> {LEGAL_ENTITY}{" "}
           (&ldquo;we,&rdquo; &ldquo;us,&rdquo; &ldquo;our&rdquo;)
         </p>
         <p>
@@ -330,7 +331,7 @@ export default function GuidingLightPrivacyPage() {
         </h2>
         <p>Questions or concerns about this policy:</p>
         <p>
-          <strong>Bergy Media</strong>
+          <strong>{LEGAL_ENTITY}</strong>
           <br />
           <SupportEmail />
         </p>

@@ -121,7 +121,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
 
               {app.usesAI && (
                 <p className="mb-7 text-sm text-[var(--muted)]">
-                  Uses AI to assist with reflection prompts.{" "}
+                  {app.aiNote ?? "Uses AI features."}{" "}
                   <Link href={app.legal?.privacy ?? "/privacy"} className="underline hover:text-[var(--ink)]">
                     How we handle AI &amp; your data
                   </Link>
@@ -202,7 +202,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
                   {app.subscription.period}). It renews unless cancelled at least 24h before the
                   period ends; manage it in your App Store account settings.{" "}
                   {app.subscription.note}{" "}
-                  <Link href="/terms" className="underline hover:text-[var(--ink)]">
+                  <Link href={app.legal?.terms ?? "/terms"} className="underline hover:text-[var(--ink)]">
                     Subscription terms
                   </Link>
                   .

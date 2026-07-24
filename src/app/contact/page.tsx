@@ -71,6 +71,7 @@ function ContactForm() {
           <option value="support">App support</option>
           <option value="bug">Bug report</option>
           <option value="feature">Feature request</option>
+          <option value="feedback">Feedback</option>
           <option value="business">Business inquiry</option>
         </select>
       </div>
