@@ -129,13 +129,20 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
                 </p>
               )}
 
-              {live ? (
-                <AppStoreButton url={app.appStoreUrl!} />
-              ) : (
-                <Link href="/#notify" className="btn btn-dark">
-                  Get notified →
-                </Link>
-              )}
+              <div className="flex gap-3 flex-wrap items-center">
+                {live ? (
+                  <AppStoreButton url={app.appStoreUrl!} />
+                ) : (
+                  <Link href="/#notify" className="btn btn-dark">
+                    Get notified →
+                  </Link>
+                )}
+                {app.landingPath && (
+                  <Link href={app.landingPath} className="btn btn-ghost">
+                    Explore {app.name} →
+                  </Link>
+                )}
+              </div>
 
               {live && (
                 <div className="mt-8 grid grid-cols-4 gap-2 text-center max-w-md">

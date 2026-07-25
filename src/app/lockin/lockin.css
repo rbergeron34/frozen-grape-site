@@ -1,0 +1,485 @@
+/* ============================================================
+   LockIN — bespoke app landing page, styled to the app itself.
+   Palette and motifs come from lockin-v3-identity-the-line.md:
+   Volt Lime on near-black, the band-box brackets, condensed
+   numerals. Scoped under .lk so the light studio shell is
+   untouched everywhere else.
+   ============================================================ */
+
+.lk {
+  --lime: #d2ff3a;
+  --ink: #0a0a0b;
+  --amber: #ffc93d;
+  --red: #ff5a4d;
+  --ice: #6ec1f2;
+  --dim: #8b8f85;
+  --line: rgba(210, 255, 58, 0.14);
+  --card: #121314;
+
+  background: var(--ink);
+  color: #f4f6ef;
+  margin-top: -1px; /* meet the nav without a light seam */
+}
+
+/* Dark canvas. <main> already spans the full content width, so no 100vw
+   trick — that overflows by the scrollbar width and clips both edges. */
+.lk-bleed {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+}
+
+.lk-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- type ---------- */
+.lk h1,
+.lk h2,
+.lk .lk-num {
+  font-family: var(--font-barlow), "Barlow Condensed", Impact, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.lk h1 {
+  font-size: clamp(46px, 9vw, 104px);
+}
+.lk h2 {
+  font-size: clamp(30px, 4.6vw, 54px);
+}
+.lk .lk-micro {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.lk .lk-lime {
+  color: var(--lime);
+}
+
+/* ---------- hero ---------- */
+.lk-hero {
+  padding-block: 132px 84px;
+  position: relative;
+}
+/* faint band guides across the hero, like the 138/150 edges in-app */
+.lk-hero::before,
+.lk-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--line);
+}
+.lk-hero::before {
+  top: 40%;
+}
+.lk-hero::after {
+  top: 62%;
+}
+.lk-hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 880px) {
+  .lk-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .lk-hero {
+    padding-block-start: 116px;
+  }
+}
+
+.lk-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px;
+  border: 1px solid rgba(210, 255, 58, 0.35);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+.lk-badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+}
+
+/* Lock[IN] wordmark — the IN sits inside the band-box brackets.
+   Block-level (not inline-flex) so it can't share a line with the badge. */
+.lk-mark {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: max-content;
+  max-width: 100%;
+}
+.lk-mark .lk-in {
+  position: relative;
+  padding: 0 20px;
+  color: var(--lime);
+}
+.lk-mark .lk-in::before,
+.lk-mark .lk-in::after {
+  content: "";
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  width: 15px;
+  border: 3px solid var(--lime);
+}
+.lk-mark .lk-in::before {
+  left: 0;
+  border-right: 0;
+}
+.lk-mark .lk-in::after {
+  right: 0;
+  border-left: 0;
+}
+
+.lk-tag {
+  margin-top: 18px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 600;
+  color: #f4f6ef;
+}
+.lk-sub {
+  margin-top: 14px;
+  max-width: 46ch;
+  color: #b9bdb2;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.lk-ctas {
+  margin-top: 30px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.lk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s;
+}
+.lk-btn:active {
+  transform: scale(0.97);
+}
+.lk-btn-lime {
+  background: var(--lime);
+  color: var(--ink); /* brand rule: text on lime is always near-black */
+}
+.lk-btn-lime:hover {
+  background: #e2ff74;
+}
+.lk-btn-ghost {
+  border: 1px solid rgba(244, 246, 239, 0.22);
+  color: #f4f6ef;
+}
+.lk-btn-ghost:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+
+/* ---------- phone frame ---------- */
+.lk-phone {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  aspect-ratio: 1206 / 2622;
+  border-radius: 44px;
+  padding: 9px;
+  background: linear-gradient(160deg, #2a2d26, #0e0f0c 55%);
+  box-shadow:
+    0 0 0 1px rgba(210, 255, 58, 0.14),
+    0 40px 90px rgba(0, 0, 0, 0.65),
+    0 0 90px rgba(210, 255, 58, 0.07);
+}
+.lk-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #000;
+}
+.lk-phone-screen img {
+  object-fit: cover;
+}
+
+/* ---------- stat strip ---------- */
+.lk-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(244, 246, 239, 0.1);
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
+  border-bottom: 1px solid rgba(244, 246, 239, 0.1);
+}
+.lk-stat {
+  background: var(--ink);
+  padding: 34px 24px;
+  text-align: center;
+}
+.lk-stat .lk-num {
+  font-size: clamp(38px, 5.4vw, 58px);
+  color: var(--lime);
+}
+.lk-stat p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .lk-stats {
+    grid-template-columns: 1fr;
+  }
+  .lk-stat {
+    padding: 26px 20px;
+  }
+}
+
+/* ---------- alternating feature rows ---------- */
+.lk-row {
+  padding-block: 92px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.lk-row.lk-flip .lk-row-copy {
+  order: 2;
+}
+@media (max-width: 880px) {
+  .lk-row {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-block: 64px;
+  }
+  .lk-row.lk-flip .lk-row-copy {
+    order: 0;
+  }
+}
+.lk-row h2 {
+  margin-top: 12px;
+}
+.lk-row p.lk-body {
+  margin-top: 16px;
+  color: #b9bdb2;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 44ch;
+}
+
+/* cue chips — mirror the app's arrow language */
+.lk-cues {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.lk-cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--card);
+  font-weight: 600;
+  font-size: 15px;
+}
+.lk-cue b {
+  font-family: var(--font-barlow), sans-serif;
+  font-size: 20px;
+  min-width: 18px;
+  text-align: center;
+}
+.lk-cue.hi b {
+  color: var(--amber);
+}
+.lk-cue.lo b {
+  color: var(--ice);
+}
+.lk-cue.in b {
+  color: var(--lime);
+}
+.lk-cue small {
+  color: var(--dim);
+  font-weight: 500;
+}
+
+/* ---------- feature grid ---------- */
+.lk-features {
+  padding-block: 84px;
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
+}
+.lk-fgrid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 880px) {
+  .lk-fgrid {
+    grid-template-columns: 1fr;
+  }
+}
+.lk-fcard {
+  background: var(--card);
+  border: 1px solid rgba(244, 246, 239, 0.07);
+  border-radius: 16px;
+  padding: 24px;
+}
+.lk-fcard span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(210, 255, 58, 0.12);
+  color: var(--lime);
+  font-size: 16px;
+}
+.lk-fcard h3 {
+  margin-top: 14px;
+  font-weight: 700;
+  font-size: 17px;
+}
+.lk-fcard p {
+  margin-top: 7px;
+  color: var(--dim);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+/* ---------- gallery ---------- */
+.lk-gallery {
+  padding-block: 84px;
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
+}
+.lk-shots {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 880px) {
+  .lk-shots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.lk-shot .lk-phone {
+  max-width: 100%;
+  border-radius: 30px;
+  padding: 6px;
+}
+.lk-shot .lk-phone-screen {
+  border-radius: 25px;
+}
+.lk-shot p {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--dim);
+}
+
+/* ---------- privacy ---------- */
+.lk-privacy {
+  padding-block: 84px;
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
+}
+.lk-plist {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .lk-plist {
+    grid-template-columns: 1fr;
+  }
+}
+.lk-pitem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: var(--card);
+}
+.lk-pitem i {
+  color: var(--lime);
+  font-style: normal;
+  font-weight: 700;
+}
+.lk-pitem p {
+  font-size: 14.5px;
+  color: #b9bdb2;
+  line-height: 1.55;
+}
+.lk-pitem strong {
+  color: #f4f6ef;
+  font-weight: 700;
+}
+
+/* ---------- closing CTA ---------- */
+.lk-close {
+  padding-block: 96px 104px;
+  text-align: center;
+  border-top: 1px solid rgba(244, 246, 239, 0.1);
+}
+.lk-close p {
+  margin: 16px auto 0;
+  max-width: 46ch;
+  color: #b9bdb2;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.lk-close .lk-ctas {
+  justify-content: center;
+}
+.lk-legal {
+  margin-top: 34px;
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 13.5px;
+}
+.lk-legal a {
+  color: var(--dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lk-legal a:hover {
+  color: var(--lime);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lk-btn {
+    transition: none;
+  }
+}
