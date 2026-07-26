@@ -13,13 +13,9 @@ export type ScreenKind =
   | { kind: "image"; src: string; alt: string }
   | { kind: "mock"; component: MockComponent };
 
-// Keys map to components in src/app/components/showcase/screens/index.tsx
-export type MockComponent =
-  | "GuidingLightMock"
-  | "BrighterStartMock"
-  | "HoopsMock"
-  | "LockInMock"
-  | "PassPhotoMock";
+// Every featured app now uses a real simulator screenshot. This mock remains
+// only for Hoops Trivia, the unfeatured legacy app we don't rebuild.
+export type MockComponent = "HoopsMock";
 
 export interface ShowcaseFeature {
   glyph: string;
@@ -67,6 +63,8 @@ export interface AppEntry {
   accountDeletionPath?: string;
   /** App-specific legal pages. Every app gets generated /apps/<slug>/privacy + /terms; bespoke pages (Guiding Light) point elsewhere. */
   legal?: { privacy: string; terms: string };
+  /** Bespoke app-branded landing page (e.g. /lockin). Showcase CTAs prefer it over /apps/<slug>. */
+  landingPath?: string;
   /** App-specific disclaimers rendered on the generated terms page and legal hub (e.g. non-affiliation, not-medical-advice). */
   disclaimers?: string[];
   /**
@@ -145,7 +143,7 @@ export const APPS: AppEntry[] = [
     screen: {
       kind: "image",
       src: "/assets/apps/guiding-light/screen-1.png",
-      alt: "Guiding Light home screen with a daily verse",
+      alt: "Guiding Light's Today screen with a cited Psalm, a reading streak, and today's reading plan",
     },
   },
   {
@@ -206,7 +204,11 @@ export const APPS: AppEntry[] = [
       { glyph: "✓", title: "Prove you're up", desc: "Math, steps, or a live photo — no snooze spiral." },
       { glyph: "▷", title: "Straight into a routine", desc: "Dismissing the alarm starts your morning." },
     ],
-    screen: { kind: "mock", component: "BrighterStartMock" },
+    screen: {
+      kind: "image",
+      src: "/assets/apps/brighterstart/screen-1.png",
+      alt: "BrighterStart's home screen with a 6:30 weekday alarm, wake-rhythm chart, and morning routine",
+    },
   },
   {
     slug: "daily-proverb",
@@ -279,7 +281,7 @@ export const APPS: AppEntry[] = [
     screen: {
       kind: "image",
       src: "/assets/apps/daily-proverb/screen-1.png",
-      alt: "Daily Proverb showing a Proverbs verse with copy and share",
+      alt: "Daily Proverb's Today screen with a Proverbs verse, reading streak, and saved reflection",
     },
   },
   {
@@ -345,6 +347,7 @@ export const APPS: AppEntry[] = [
       "LockIN is a fitness training tool, not a medical device. Heart-rate zones and coaching cues are general fitness guidance, not medical advice — consult a qualified physician before starting a new training program, especially if you have a heart condition.",
     ],
     legal: { privacy: "/apps/lockin/privacy", terms: "/apps/lockin/terms" },
+    landingPath: "/lockin",
     accent: "#65A30D",
     tint: "rgba(132,204,22,.13)",
     iconBg: "#101509",
@@ -356,19 +359,24 @@ export const APPS: AppEntry[] = [
       { glyph: "◉", title: "Gentle cues", desc: "A voice and a tap before you drift." },
       { glyph: "▤", title: "80/20 plan", desc: "Scored by minutes in zone, not pace." },
     ],
-    screen: { kind: "mock", component: "LockInMock" },
+    screen: {
+      kind: "image",
+      src: "/assets/apps/lockin/screen-1.png",
+      alt: "LockIN in-run screen showing a heart rate of 144 locked inside the target band",
+    },
   },
   {
+    // Slug stays `hoops-connect` so URLs and legal paths survive the rename.
     slug: "hoops-connect",
-    name: "Hoops Connect", // EDITABLE — may ship as "Hoops Slate" (trademark check pending)
-    shortName: "Hoops",
+    name: "Hoops Slate", // renamed in-app July 2026; trademark check still pending
+    shortName: "Slate",
     category: "Games",
     status: "coming-soon",
     tagline: "Five daily basketball puzzles",
     description:
       "A daily NBA puzzle suite — five quick games on one fresh slate, every day.",
     longDescription:
-      "Hoops Connect is a daily basketball puzzle suite in the spirit of the great newspaper games. Every day brings a fresh slate of five: Hoop Connections (group 16 names into four fours), Lineup (pin down the mystery player in eight guesses), Journey (name the player from their career path), Crossover (spot the odd one out), and HoopGrid (fill the 3×3). Build wins-only streaks, watch your Box Score grow, and share your grids — all offline, no account needed.",
+      "Hoops Slate is a daily basketball puzzle suite in the spirit of the great newspaper games. Every day brings a fresh slate of five: Hoop Connections (group 16 names into four fours), Lineup (pin down the mystery player in eight guesses), Journey (name the player from their career path), Crossover (spot the odd one out), and HoopGrid (fill the 3×3). Build wins-only streaks, watch your Box Score grow, and share your grids — all offline, no account needed.",
     icon: "/assets/apps/hoops-connect/icon.png",
     rating: 0,
     ratingsCount: 0,
@@ -387,13 +395,13 @@ export const APPS: AppEntry[] = [
     privacyInfo: "No data collected",
     platforms: ["iPhone"],
     subscription: {
-      name: "Hoops Connect Pro",
+      name: "Hoops Slate Pro",
       period: "per month", // EDITABLE — pre-release pricing; confirm before launch
       price: "$3.99",
       note: "An annual plan ($24.99/year) and a 12-month Season Pass ($9.99, one-time) are also available.",
     },
     disclaimers: [
-      "Hoops Connect is an independent puzzle game. It is not affiliated with, endorsed by, or sponsored by the NBA or any team, league, or player. Player names and factual sports information are used solely for informational and puzzle purposes.",
+      "Hoops Slate is an independent puzzle game. It is not affiliated with, endorsed by, or sponsored by the NBA or any team, league, or player. Player names and factual sports information are used solely for informational and puzzle purposes.",
     ],
     legal: { privacy: "/apps/hoops-connect/privacy", terms: "/apps/hoops-connect/terms" },
     accent: "#D2742E",
@@ -410,7 +418,7 @@ export const APPS: AppEntry[] = [
     screen: {
       kind: "image",
       src: "/assets/apps/hoops-connect/screen-1.png",
-      alt: "Hoops Connect daily slate puzzle screen",
+      alt: "Hoops Slate's daily challenge screen listing Hoop Connections, Lineup, Journey, Crossover, and HoopGrid",
     },
   },
   {
@@ -470,7 +478,11 @@ export const APPS: AppEntry[] = [
       { glyph: "✓", title: "Compliance checks", desc: "Head size, background, lighting — verified." },
       { glyph: "▣", title: "Never uploaded", desc: "Every pixel processed on your iPhone." },
     ],
-    screen: { kind: "mock", component: "PassPhotoMock" },
+    screen: {
+      kind: "image",
+      src: "/assets/apps/passphoto/screen-1.png",
+      alt: "PassPhoto style picker offering passport, visa, LinkedIn, résumé, and profile photo formats",
+    },
   },
 
   // ——— Live but no longer featured on the home page ———

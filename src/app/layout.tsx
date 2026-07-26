@@ -83,17 +83,21 @@ export default function RootLayout({
         </a>
 
         <nav className="fixed top-3 inset-x-3 sm:inset-x-6 z-50 flex items-center justify-between px-5 sm:px-6 py-3 rounded-full bg-white/70 backdrop-blur-xl border border-[var(--border)] shadow-[0_12px_40px_rgba(31,20,54,0.06)]">
-          <Link href="/" className="flex items-center" aria-label="Frozen Grape Studios — home">
+          <Link
+            href="/"
+            className="flex items-center shrink-0"
+            aria-label="Frozen Grape Studios — home"
+          >
             <Image
               src="/brand/logo-wordmark.png"
               alt="Frozen Grape Studios"
               width={131}
               height={32}
               priority
-              className="h-8 w-auto"
+              className="h-7 sm:h-8 w-auto"
             />
           </Link>
-          <div className="flex items-center gap-6 text-sm font-medium text-[var(--muted)]">
+          <div className="flex items-center gap-4 sm:gap-6 text-[13px] sm:text-sm font-medium text-[var(--muted)]">
             <Link href="/#apps" className="hover:text-[var(--ink)] transition-colors">
               Apps
             </Link>
