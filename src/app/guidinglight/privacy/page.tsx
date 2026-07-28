@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Guiding Light — Privacy Policy",
   description:
-    "How Guiding Light protects your journal: end-to-end encryption on device, no analytics, no ads, and a Local-only mode.",
+    "How Guiding Light protects your journal: encryption on device with a key only you hold, no ads, no third-party analytics SDKs, switchable anonymous usage counts, and a Local-only mode.",
   alternates: { canonical: "/guidinglight/privacy" },
 };
 
 import { LEGAL_ENTITY, SUPPORT_EMAIL } from "@/lib/studio";
 
-const EFFECTIVE_DATE = "July 5, 2026";
+// Mirrors docs/PRIVACY_POLICY.md in the Guiding Light app repo — update both together.
+const EFFECTIVE_DATE = "July 27, 2026";
 
 function SupportEmail() {
   return (
@@ -58,7 +59,8 @@ export default function GuidingLightPrivacyPage() {
           have a copy of that key. We don&rsquo;t run analytics on what you write. We don&rsquo;t
           sell your data. We don&rsquo;t show you ads. The few moments when something does leave
           your device — when you ask the reflective companion for a question, when you download
-          narrated audio — we explain below.
+          narrated audio, and a small count of anonymous usage events you can switch off — we
+          explain below.
         </p>
 
         <h2 id="what-stays-on-your-device" className={h2}>
@@ -102,8 +104,9 @@ export default function GuidingLightPrivacyPage() {
           </li>
           <li>The character count</li>
           <li>
-            Detected theme tags (e.g., &ldquo;anxiety&rdquo;, &ldquo;gratitude&rdquo;) — extracted
-            by simple keyword matching on this device, never sent anywhere
+            Detected theme tags (e.g., &ldquo;anxiety&rdquo;, &ldquo;gratitude&rdquo;) — see
+            &ldquo;How theme detection works&rdquo; below. Computed on this device, never sent
+            anywhere
           </li>
           <li>Whether the entry has been marked as an answered prayer, and when</li>
         </ul>
@@ -112,17 +115,125 @@ export default function GuidingLightPrivacyPage() {
           boundary.
         </p>
 
+        <h2 id="how-theme-detection-works" className={h2}>
+          How theme detection works
+        </h2>
+        <p>
+          Guiding Light notices recurring themes in your writing — &ldquo;4 entries this week
+          mention work&rdquo; — so you can see patterns over time. We want to be precise about how,
+          because &ldquo;the app analyses my journal&rdquo; deserves a real answer.
+        </p>
+        <p>
+          When you save an entry, the app converts its text into a numeric representation (a
+          &ldquo;sentence embedding&rdquo;) using{" "}
+          <strong>Apple&rsquo;s on-device Natural Language framework</strong>, which ships with
+          iOS. It compares that representation against a fixed, human-written list of about 30
+          themes bundled in the app, and tags the entry with the closest matches. No text is
+          generated, no model is trained on you, and no cloud service is involved.
+        </p>
+        <p>Everything about this happens on your iPhone:</p>
+        <ul className={ul}>
+          <li>
+            The embedding is computed on-device by iOS itself. Your entry text is not sent anywhere
+            to be analysed.
+          </li>
+          <li>
+            The theme list is fixed and written by hand. The app cannot invent a new theme about
+            you; adding one requires a new app release.
+          </li>
+          <li>
+            Themes are plain descriptive nouns (&ldquo;work,&rdquo; &ldquo;grief,&rdquo;
+            &ldquo;doubt&rdquo;). The app reports counts and dates, never judgements about you.
+          </li>
+          <li>
+            If a theme doesn&rsquo;t fit, you can hide it. That signal stays on your device and is
+            never reported to us.
+          </li>
+        </ul>
+
         <h2 id="what-we-collect" className={h2}>
           What we collect
         </h2>
         <p>
-          <strong>Effectively nothing about you, individually.</strong> No accounts in V1.0. No
-          usernames. No analytics SDKs (no Mixpanel, no Amplitude, no Firebase Analytics, no
-          Segment, no Sentry-with-user-attribution, no Google).
+          <strong>Nothing that identifies you.</strong> No accounts in V1.0. No usernames, no email
+          addresses, no name, no contacts, no location. No third-party analytics SDKs of any kind
+          (no Mixpanel, no Amplitude, no Firebase Analytics, no Segment, no
+          Sentry-with-user-attribution, no Google).
         </p>
         <p>
-          The only data ever sent off your device, and only when you take the corresponding
-          action, is described in &ldquo;Third-party services&rdquo; below.
+          We do run a small amount of first-party data collection on our own server, described
+          immediately below, and we use two third-party processors for specific features, described
+          after that. That is the complete list.
+        </p>
+
+        <h2 id="what-our-own-server-receives" className={h2}>
+          What our own server receives
+        </h2>
+
+        <h3 id="an-anonymous-device-identifier" className={h3}>
+          An anonymous device identifier
+        </h3>
+        <p>
+          The app generates a random identifier the first time it runs — a UUID, not Apple&rsquo;s
+          advertising or vendor ID — and sends it with the requests described below as{" "}
+          <code>X-GL-Device-ID</code>. It is not linked to your identity, because we have no
+          identity for you: no account, no email, nothing to link it to. Delete and reinstall the
+          app and it becomes a brand-new identifier with no connection to the old one.
+        </p>
+        <p>We use it for three things, and nothing else:</p>
+        <ul className={ul}>
+          <li>
+            <strong>Rate limiting.</strong> So one device can&rsquo;t exhaust the reflective
+            companion&rsquo;s shared capacity. We store one row per allowed request (a timestamp
+            and the identifier) on a rolling 7-day window, then it ages out.
+          </li>
+          <li>
+            <strong>Subscription status.</strong> If you subscribe to Guiding Light Plus, we store
+            a row recording that this install has an active entitlement, so premium features work.
+            Apple tells us about renewals and cancellations; we never see your payment details.
+          </li>
+          <li>
+            <strong>App integrity (Apple App Attest).</strong> To stop other people&rsquo;s
+            software from impersonating the app and running up our AI bill, your iPhone registers a
+            hardware-backed key with us and signs each request. We store the key&rsquo;s public
+            half, its identifier, and a counter. This proves a request came from a genuine copy of
+            Guiding Light on a real Apple device. It says nothing about who you are and cannot be
+            used to identify you.
+          </li>
+        </ul>
+
+        <h3 id="anonymous-usage-counts" className={h3}>
+          Anonymous usage counts — and how to turn them off
+        </h3>
+        <p>
+          So we can tell whether the app works (are people finishing onboarding? does the companion
+          actually get used?), the app sends <strong>per-day counts of a fixed list of events</strong>,
+          keyed to the anonymous identifier above. For example: <code>app_opened: 4</code>,{" "}
+          <code>entry_saved: 2</code>.
+        </p>
+        <p>
+          What this is not: there is no journal text, no verse text, no theme names, no free text
+          of any kind, no screen-by-screen trail, and no timestamps finer than the day. The event
+          names are a short allowlist fixed in advance — things like <code>app_opened</code>,{" "}
+          <code>onboarding_completed</code>, <code>entry_saved</code>,{" "}
+          <code>reflection_requested</code>, <code>upsell_shown</code>. Our server drops any name
+          that isn&rsquo;t on the list. We cannot add a new one without shipping an app update{" "}
+          <em>and</em> a server update.
+        </p>
+        <p>
+          <strong>You can switch this off</strong>, and it is genuinely off — not merely
+          unreported:
+        </p>
+        <ul className={ul}>
+          <li>Settings → Privacy → turn off usage counts, or</li>
+          <li>
+            Settings → Privacy → <strong>Local-only mode</strong>, which disables it along with
+            everything else that uses the network.
+          </li>
+        </ul>
+        <p>
+          With either enabled, the app stops recording events at the source; nothing is buffered
+          and nothing is sent later.
         </p>
 
         <h2 id="third-party-services" className={h2}>
@@ -165,7 +276,8 @@ export default function GuidingLightPrivacyPage() {
           OpenAI — audio narration (premium voices)
         </h3>
         <p>
-          Premium narrated audio of public-domain Bible translations (WEB, KJV) is generated on
+          Premium narrated audio of the bundled public-domain Bible translations (Berean Standard,
+          World English, King James, American Standard, and Young&rsquo;s Literal) is generated on
           demand using OpenAI&rsquo;s text-to-speech API (<code>gpt-4o-mini-tts</code>). When you
           tap play on a passage in a premium voice for the first time, the passage text is sent to
           OpenAI, the audio it returns is cached on your device, and every replay from that point
@@ -231,11 +343,18 @@ export default function GuidingLightPrivacyPage() {
         <p>You can turn on Local-only mode in Settings → Privacy. When Local-only mode is on:</p>
         <ul className={ul}>
           <li>Reflective companion is disabled (no entry text leaves your device for AI)</li>
+          <li>Anonymous usage counts stop being recorded and stop being sent</li>
+          <li>
+            Premium narration is not requested from OpenAI; narration falls back to your
+            iPhone&rsquo;s built-in speech synthesizer
+          </li>
           <li>No future cloud-sync feature will be enabled on your account</li>
         </ul>
         <p>
-          The app remains fully usable in Local-only mode. You give up AI-generated reflective
-          questions; you keep everything else.
+          In Local-only mode the app makes no network requests of its own at all. It remains fully
+          usable — you give up AI-generated reflective questions and premium narration voices, and
+          you keep everything else, including your entire journal, all five translations, and the
+          memory layer.
         </p>
 
         <h2 id="what-we-never-do" className={h2}>
@@ -261,10 +380,12 @@ export default function GuidingLightPrivacyPage() {
         </h2>
         <p>
           Guiding Light is intended for users <strong>age 13 and older</strong>. We do not
-          knowingly collect any information from children under 13. If you believe a child under
-          13 has used the app, contact us at <SupportEmail /> and we will work to address it.
-          Because we don&rsquo;t have accounts or server-side data in V1.0, there is generally no
-          information to delete — but we will help.
+          knowingly collect any information from children under 13, and because the app has no
+          accounts and asks for no personal details, we hold nothing that identifies any user of
+          any age. If you believe a child under 13 has used the app, contact us at <SupportEmail />{" "}
+          and we will work to address it. Deleting the app removes everything stored on the device;
+          if you can supply the install&rsquo;s anonymous identifier, we will delete the associated
+          server-side rows as well.
         </p>
 
         <h2 id="your-data-is-yours" className={h2}>
@@ -294,10 +415,21 @@ export default function GuidingLightPrivacyPage() {
         </h2>
         <p>
           If we are presented with a valid legal request for journal content, we can only provide
-          what we have, which is <strong>nothing</strong> — we hold no copy of your entries, no
-          key to decrypt them, and no server-side store of your activity. If you have asked the
-          reflective companion a question, Anthropic may have retained that submission per their
-          own retention policy; in that case, the request should be directed to Anthropic, not us.
+          what we have, which is <strong>nothing</strong>: we hold no copy of your entries, no key
+          to decrypt them, and nothing that records what you wrote.
+        </p>
+        <p>
+          To be complete rather than merely reassuring — what we could produce, for an install
+          identified by its anonymous UUID, is the material described in &ldquo;What our own server
+          receives&rdquo;: rate-limit rows, a subscription-status row, an App Attest key record,
+          and per-day counts of allowlisted events. None of it contains journal content, and none
+          of it identifies a person. We have no way to connect that identifier to a name, an email,
+          or a device, because we never collect any of those.
+        </p>
+        <p>
+          If you have asked the reflective companion a question, Anthropic may have retained that
+          submission per their own retention policy; in that case, the request should be directed
+          to Anthropic, not us.
         </p>
 
         <h2 id="international-users" className={h2}>
