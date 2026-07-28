@@ -129,6 +129,7 @@ export const APPS: AppEntry[] = [
       note: "Annual ($49.99/year), family ($79.99/year), and one-time lifetime ($99.99) options are also available. Journaling, your full history, the daily verse, and export are never paywalled.",
     },
     legal: { privacy: "/guidinglight/privacy", terms: "/guidinglight/terms" },
+    landingPath: "/guidinglight",
     accent: "#C28A2C",
     tint: "rgba(194,138,44,.12)",
     iconBg: "#F3EAD7",

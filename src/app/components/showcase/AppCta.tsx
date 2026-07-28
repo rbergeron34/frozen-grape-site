@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { AppEntry } from "@/lib/apps";
 
 // Showcase/list CTA. Prefers an app's bespoke branded landing page when it has
-// one (LockIN), otherwise the restyled /apps/[slug] detail page (which links
+// one (LockIN, Guiding Light), otherwise the restyled /apps/[slug] detail page (which links
 // onward to the App Store). Coming-soon apps without a landing page point at
 // the notify form instead.
 export function AppCta({ app, className = "" }: { app: AppEntry; className?: string }) {
