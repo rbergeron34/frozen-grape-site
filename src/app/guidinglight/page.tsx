@@ -342,7 +342,7 @@ export default function GuidingLightPage() {
           <div className="gl-legal">
             <Link href={privacyHref}>Privacy Policy</Link>
             <Link href={termsHref}>Terms of Service</Link>
-            <Link href={`/support#${APP_SLUG}`}>Support</Link>
+            <Link href="/guidinglight/support">Support</Link>
             <Link href="/">Frozen Grape</Link>
           </div>
         </section>

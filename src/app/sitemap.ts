@@ -11,6 +11,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  // Bespoke per-app support/legal pages that don't flow from app.legal below
+  // (BrighterStart's bespoke privacy/terms do, via its legal field).
+  const bespokeAppRoutes = [
+    "/hoopsconnect/support",
+    "/hoopsconnect/privacy",
+    "/hoopsconnect/terms",
+    "/brighterstart/support",
+    "/guidinglight/support",
+    "/lockin/support",
+    "/dailyproverb/support",
+  ].map((path) => ({
+    url: `${SITE_URL}${path}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.5,
+  }));
+
   const appRoutes = APPS.map((app) => ({
     url: `${SITE_URL}/apps/${app.slug}`,
     changeFrequency: "monthly" as const,
@@ -39,5 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.4,
   }));
 
-  return [...staticRoutes, ...landingRoutes, ...appRoutes, ...legalRoutes];
+  return [...staticRoutes, ...landingRoutes, ...bespokeAppRoutes, ...appRoutes, ...legalRoutes];
 }

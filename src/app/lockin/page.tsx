@@ -304,7 +304,7 @@ export default function LockInPage() {
           <div className="lk-legal">
             <Link href={privacyHref}>Privacy Policy</Link>
             <Link href={termsHref}>Terms of Use</Link>
-            <Link href={`/support#${APP_SLUG}`}>Support</Link>
+            <Link href="/lockin/support">Support</Link>
             <Link href="/">Frozen Grape</Link>
           </div>
         </section>

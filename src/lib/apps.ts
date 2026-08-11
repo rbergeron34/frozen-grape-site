@@ -162,7 +162,7 @@ export const APPS: AppEntry[] = [
     rating: 0,
     ratingsCount: 0,
     price: "Free",
-    ageRating: "4+",
+    ageRating: "9+", // recalculated 2026-08 under Apple's new questionnaire (Health or Wellness Topics)
     size: "—",
     developer: APP_STORE_SELLER,
     features: [
@@ -176,24 +176,15 @@ export const APPS: AppEntry[] = [
     ],
     privacyInfo: "No data collected",
     platforms: ["iPhone", "iPad"],
-    privacyNotes: [
-      {
-        heading: "Sleep data (Apple Health)",
-        body: "With your permission, BrighterStart reads sleep data from Apple Health to chart your real wake times alongside your alarms. This data is read on your device, is never transmitted anywhere, and the App Store build never writes to Health.",
-      },
-      {
-        heading: "Camera & motion",
-        body: "The photo wake-up mission uses your camera, and the steps mission counts steps with your iPhone's motion sensors. Both are analyzed entirely on your device — photos are checked in the moment and never uploaded or stored, and step counts never leave your phone.",
-      },
-      {
-        heading: "iCloud sync",
-        body: "Your alarms, routines, and streaks can sync between your devices through your personal iCloud account. That data belongs to you and is handled under Apple's iCloud terms — we run no servers and cannot see it.",
-      },
-    ],
+    // Privacy specifics (HealthKit, Screen Time blocker, camera/motion, iCloud)
+    // live in the bespoke policy at /brighterstart/privacy.
     disclaimers: [
       "BrighterStart is a wellness and productivity tool, not a medical device or mental-health treatment. It does not diagnose, treat, or cure ADHD, insomnia, or any other condition, and it is not a substitute for advice from a qualified healthcare professional.",
+      "BrighterStart is built to ring dependably, but no app can ring on a phone that is powered off, out of battery, or where alarm permissions have been revoked. Don't rely on it as your only alarm in situations where missing a wake-up could put you or others at risk.",
+      "The evening app blocker is a self-management tool you turn on, configure, and can end yourself from inside the app. It is not a parental control and should not be relied on as one.",
     ],
-    legal: { privacy: "/apps/brighterstart/privacy", terms: "/apps/brighterstart/terms" },
+    legal: { privacy: "/brighterstart/privacy", terms: "/brighterstart/terms" },
+    landingPath: "/brighterstart",
     accent: "#FF8A3D",
     tint: "rgba(255,138,61,.12)",
     iconBg: "#FFE9DA",
@@ -268,6 +259,7 @@ export const APPS: AppEntry[] = [
       },
     ],
     legal: { privacy: "/apps/daily-proverb/privacy", terms: "/apps/daily-proverb/terms" },
+    landingPath: "/dailyproverb",
     accent: "#6FA382",
     tint: "rgba(111,163,130,.14)",
     iconBg: "#E7EFEA",
@@ -405,6 +397,7 @@ export const APPS: AppEntry[] = [
       "Hoops Slate is an independent puzzle game. It is not affiliated with, endorsed by, or sponsored by the NBA or any team, league, or player. Player names and factual sports information are used solely for informational and puzzle purposes.",
     ],
     legal: { privacy: "/apps/hoops-connect/privacy", terms: "/apps/hoops-connect/terms" },
+    landingPath: "/hoopsconnect",
     accent: "#D2742E",
     tint: "rgba(210,116,46,.12)",
     iconBg: "#f4f3f0",
