@@ -20,7 +20,25 @@
       "Read(//Users/ryanbergeron/Projects/**)",
       "Bash(npx next *)",
       "Bash(xargs sed -i '' 's/support@frozengrape\\\\.com/support@frozengrape.app/g')",
-      "Bash(git check-ignore *)"
+      "Bash(git check-ignore *)",
+      "Bash(gh pr *)",
+      "Bash(ls .github/PULL_REQUEST_TEMPLATE* .github/pull_request_template*)",
+      "Bash(git log *)",
+      "WebFetch(domain:median.co)",
+      "WebFetch(domain:help.mobihq.com)",
+      "Bash(npx eslint *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000/sitemap.xml)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/guidinglight)",
+      "Bash(curl -s http://localhost:3000/guidinglight/privacy)",
+      "Bash(python3 -c ' *)",
+      "Bash(perl -pi -e 's/\\\\bBergy Media\\\\b/Frozen Grape/g' PRIVACY_POLICY.md TERMS_OF_SERVICE.md)",
+      "Bash(plutil -p BrighterStart/Info.plist)",
+      "Bash(curl -s \"http://localhost:3000/assets/apps/brighterstart/screen-1.png\" -o /tmp/served-screen-1.png)",
+      "Bash(md5 -q /tmp/served-screen-1.png public/assets/apps/brighterstart/screen-1.png)",
+      "Bash(python3 -c \"from PIL import Image; [print\\(f, Image.open\\('public/assets/apps/daily-proverb/'+f\\).size\\) for f in ['screen-1.png','screen-2.png']]\")"
     ]
   }
 }
