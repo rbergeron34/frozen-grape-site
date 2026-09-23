@@ -1,0 +1,4 @@
+.success { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 20px auto 0; max-width: 420px; text-align: left; color: var(--muted); }
+.happy { width: 58px; height: 76px; object-fit: contain; flex: none; }
+.success strong { display: block; color: var(--ink); margin-bottom: 3px; font-weight: 700; }
+.success p { font-size: 14px; line-height: 1.6; }

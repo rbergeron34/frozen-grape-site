@@ -1,0 +1,12 @@
+.lockup { display: inline-flex; align-items: center; gap: 9px; color: #33203e; white-space: nowrap; }
+.character { display: block; width: 34px; height: 43px; object-fit: contain; }
+.wordmark { display: flex; flex-direction: column; gap: 3px; }
+.name { font-size: 16px; font-weight: 800; letter-spacing: -.05em; line-height: 1.1; }
+.descriptor { font-size: 8px; font-weight: 600; line-height: 1; text-transform: uppercase; letter-spacing: .28em; color: #856e94; }
+
+@media (max-width: 440px) {
+  .lockup { gap: 5px; }
+  .character { width: 23px; height: 32px; }
+  .name { font-size: 11px; letter-spacing: -.04em; }
+  .descriptor { font-size: 6px; letter-spacing: .18em; }
+}

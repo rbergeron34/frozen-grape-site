@@ -2,6 +2,8 @@
 
 import { useActionState } from "react";
 import { subscribeNotify, type FormState } from "../actions";
+import { Pip } from "./brand/Pip";
+import styles from "./NotifyForm.module.css";
 
 const initial: FormState = { status: "idle" };
 
@@ -10,9 +12,10 @@ export function NotifyForm() {
 
   if (state.status === "success") {
     return (
-      <p className="text-[var(--muted)] mt-2" role="status">
-        Thanks — we&rsquo;ll be in touch when there&rsquo;s something new.
-      </p>
+      <div className={styles.success} role="status">
+        <Pip pose="happy" className={styles.happy} sizes="58px" />
+        <div><strong>You&rsquo;re on the list.</strong><p>We&rsquo;ll be in touch when something new launches.</p></div>
+      </div>
     );
   }
 

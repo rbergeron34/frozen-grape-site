@@ -30,13 +30,14 @@ const MOCKS: Record<MockComponent, () => React.JSX.Element> = {
   HoopsMock,
 };
 
-export function AppScreen({ app }: { app: AppEntry }) {
+export function AppScreen({ app, eager = false }: { app: AppEntry; eager?: boolean }) {
   if (app.screen.kind === "image") {
     return (
       <Image
         src={app.screen.src}
         alt={app.screen.alt}
         fill
+        loading={eager ? "eager" : "lazy"}
         sizes="(max-width: 900px) 248px, 352px"
         className="object-cover"
       />
