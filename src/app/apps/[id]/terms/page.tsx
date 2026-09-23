@@ -42,7 +42,7 @@ export default async function AppTermsPage({ params }: { params: Promise<{ id: s
 
   return (
     <article className="max-w-2xl mx-auto px-6 pt-28 pb-20">
-      <LegalHeader title="Terms of Use" effectiveDate={EFFECTIVE_DATE} appName={app.name} />
+      <LegalHeader title="Terms of Use" effectiveDate={app.legalEffectiveDate ?? EFFECTIVE_DATE} appName={app.name} />
 
       <div className="mt-8 space-y-5 text-[var(--ink)]/80 leading-relaxed border-t border-[var(--border)] pt-8">
         <h2 id="agreement" className={legalH2}>

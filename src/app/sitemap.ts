@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/brighterstart/support",
     "/guidinglight/support",
     "/lockin/support",
+    "/count21/support",
     "/dailyproverb/support",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,

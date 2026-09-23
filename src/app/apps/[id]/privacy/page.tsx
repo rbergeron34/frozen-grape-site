@@ -43,7 +43,7 @@ export default async function AppPrivacyPage({ params }: { params: Promise<{ id:
 
   return (
     <article className="max-w-2xl mx-auto px-6 pt-28 pb-20">
-      <LegalHeader title="Privacy Policy" effectiveDate={EFFECTIVE_DATE} appName={app.name} />
+      <LegalHeader title="Privacy Policy" effectiveDate={app.legalEffectiveDate ?? EFFECTIVE_DATE} appName={app.name} />
 
       <div className="mt-8 space-y-5 text-[var(--ink)]/80 leading-relaxed border-t border-[var(--border)] pt-8">
         {app.status === "coming-soon" && (
