@@ -73,6 +73,8 @@ export interface AppEntry {
    * Each becomes its own headed section after "What we collect."
    */
   privacyNotes?: { heading: string; body: string }[];
+  /** Overrides the shared effective date on the generated /apps/<slug>/privacy + /terms pages. */
+  legalEffectiveDate?: string;
 
   // --- showcase presentation ---
   accent: string; // hex, applied only while this app is active
@@ -356,6 +358,65 @@ export const APPS: AppEntry[] = [
       kind: "image",
       src: "/assets/apps/lockin/screen-1.png",
       alt: "LockIN in-run screen showing a heart rate of 144 locked inside the target band",
+    },
+  },
+  {
+    slug: "count21",
+    name: "Count21",
+    shortName: "Count21",
+    category: "Education",
+    status: "coming-soon",
+    tagline: "A clear idea. A little practice.",
+    description:
+      "A Hi-Lo card-counting trainer for iPhone and iPad — short lessons, focused drills, and a practice table that explains your decisions.",
+    longDescription:
+      "Count21 teaches blackjack card counting one skill at a time. Seven lessons take you from why counting works through Hi-Lo values, running and true count, basic strategy, deviations and betting concepts — each ending in a ten-question check. Five self-paced drills build fast recall, and a six-deck practice table reviews every decision, separating decision accuracy from whether you won the hand. Inspect the shoe, replay any shuffle seed, and export your hand history. Count21 is an educational simulation: no real-money play, no live-game tracking.",
+    icon: "/assets/apps/count21/icon.png",
+    rating: 0,
+    ratingsCount: 0,
+    price: "Free",
+    ageRating: "18+",
+    size: "—",
+    developer: APP_STORE_SELLER,
+    features: [
+      "Seven Hi-Lo lessons, each ending in a ten-question check",
+      "Five drills: card values, running count, true count, basic strategy, deviations",
+      "Six-deck practice table (S17, DAS, late surrender) with a review of every decision",
+      "Count checks after each hand and optional strategy hints",
+      "Shoe inspection, reproducible shuffle seeds and CSV hand-history export",
+      "Accuracy, pace and practice-day tracking — all on your device",
+      "Dedicated iPhone and iPad layouts, light and dark appearance",
+    ],
+    privacyInfo: "No data collected",
+    platforms: ["iPhone", "iPad"],
+    inAppPurchases: [{ name: "Count21 Complete (one-time)", price: "$14.99" }],
+    privacyNotes: [
+      {
+        heading: "Practice data",
+        body: "Lesson progress, drill results, hand history and preferences are stored only on your device. There is no Count21 account or cloud sync. Settings › Delete practice data removes them.",
+      },
+    ],
+    disclaimers: [
+      "Count21 is an educational simulation. It does not offer real-money gambling, track live games, or guarantee results. All practice cards are generated within the app.",
+    ],
+    legal: { privacy: "/count21/privacy", terms: "/apps/count21/terms" },
+    legalEffectiveDate: "September 22, 2026",
+    landingPath: "/count21",
+    accent: "#895600",
+    tint: "rgba(237,181,76,.16)",
+    iconBg: "#EDB54C",
+    fallbackGlyph: "♠",
+    lead: "Learn to count cards, one idea at a time.",
+    screenHeadline: "Learn the method.",
+    showcaseFeatures: [
+      { glyph: "①", title: "Seven lessons", desc: "From card values to deviations." },
+      { glyph: "±", title: "Five drills", desc: "Fast recall, with guidance when you need it." },
+      { glyph: "♠", title: "Practice table", desc: "Every decision reviewed, honestly." },
+    ],
+    screen: {
+      kind: "image",
+      src: "/assets/apps/count21/screen-1.png",
+      alt: "Count21 Learn screen showing three of seven Hi-Lo lessons complete and the True count lesson up next",
     },
   },
   {
