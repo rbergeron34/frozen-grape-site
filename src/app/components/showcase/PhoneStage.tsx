@@ -1,108 +1,50 @@
 "use client";
 
 import Image from "next/image";
-import { FEATURED_APPS, NEUTRAL_ACCENT, NEUTRAL_TINT, type AppEntry } from "@/lib/apps";
+import { FEATURED_APPS } from "@/lib/apps";
 import { AppScreen } from "./screens";
+import { SceneDetails } from "./SceneDetails";
+import { sceneFor } from "./scenes";
 import type { ShowcaseState } from "./useShowcaseState";
-
-function IconTile({ app, size }: { app: AppEntry; size: "grid" | "big" }) {
-  const cls = size === "grid" ? "tile" : "bigicon-inner";
-  if (app.icon) {
-    return (
-      <div className={cls} style={{ background: app.iconBg }}>
-        <Image src={app.icon} alt="" fill sizes="128px" className="object-cover" />
-      </div>
-    );
-  }
-  // glyph fallback (coming-soon apps with no real icon yet)
-  return (
-    <div className={cls} style={{ background: app.iconBg, color: app.accent }}>
-      <span className="glyph">{app.fallbackGlyph}</span>
-    </div>
-  );
-}
-
-const DOCK = [
-  { key: "phone", d: "M7 4l3 1 1 4-2 1a10 10 0 005 5l1-2 4 1 1 3a2 2 0 01-2 2A15 15 0 015 6a2 2 0 012-2z" },
-  { key: "msg", d: "M4 6h16v9H9l-4 4V6z" },
-  { key: "safari", d: "M15 9l-2 4-4 2 2-4z" },
-  { key: "cam", d: "M4 7h16v12H4z M12 13a3 3 0 100-6 3 3 0 000 6z" },
-];
+import styles from "./showcase.module.css";
 
 export function PhoneStage({ state }: { state: ShowcaseState }) {
-  const activeIndex = state.phase === "home" ? -1 : state.index;
-  const active = activeIndex >= 0 ? FEATURED_APPS[activeIndex] : null;
-  const inApp = state.phase === "screen";
-
-  const styleVars = {
-    "--accent": active?.accent ?? NEUTRAL_ACCENT,
-    "--tint": active?.tint ?? NEUTRAL_TINT,
-  } as React.CSSProperties;
-
+  const active = FEATURED_APPS[state.activeIndex];
   return (
-    <div className="stage" style={styleVars} aria-hidden="true">
-      <div className="phone">
-        <span className="side b-mute" />
-        <span className="side b-vu" />
-        <span className="side b-vd" />
-        <span className="side b-pwr" />
-
-        <div className={`screen${inApp ? " in-app" : ""}`}>
-          <div className="island" />
-          <div className="chrome">
-            <span>9:41</span>
-            <span>5G&nbsp;&nbsp;100%</span>
-          </div>
-
-          {/* layer 1: home grid (shown once at the top) */}
-          <div className={`home${state.phase === "home" ? " show" : ""}`}>
-            <div className="home-grid">
+    <div className={styles.phoneRig} data-phone-rig aria-hidden="true">
+      <div className={styles.phoneShadow} />
+      <div className={styles.phoneBody}>
+        <span className={styles.volumeButton} /><span className={styles.powerButton} />
+        <div className={styles.phoneScreen}>
+          <div className={styles.homeScreen}>
+            <div className={styles.phoneChrome}><span>9:41</span><span>••• ▰</span></div>
+            <span className={styles.island} />
+            <div className={styles.homeGreeting}><span>A little more thoughtful.</span><strong>Your every day.</strong></div>
+            <div className={styles.homeGrid}>
               {FEATURED_APPS.map((app) => (
-                <div className="hicon" key={app.slug}>
-                  <IconTile app={app} size="grid" />
-                  <span className="lbl">{app.shortName}</span>
+                <div className={styles.homeApp} key={app.slug}>
+                  <div className={styles.homeTile} data-grid-icon><Image src={app.icon} alt="" fill sizes="64px" /></div>
+                  <span>{app.shortName}</span>
                 </div>
               ))}
             </div>
-            <div className="dock">
-              {DOCK.map((d) => (
-                <div className="dt" key={d.key}>
-                  <svg viewBox="0 0 24 24">
-                    <path d={d.d} fill="none" stroke="currentColor" strokeWidth="1.6" />
-                  </svg>
-                </div>
-              ))}
+            <div className={styles.phoneSignature}><span>✦</span> Made by Frozen Grape</div>
+          </div>
+          {active && (
+            <div className={styles.openingIcon} key={active.slug}>
+              <Image src={active.icon} alt="" width={160} height={160} sizes="(max-height: 650px) 100px, 160px" />
+              <span>{active.name}</span>
             </div>
-          </div>
-
-          {/* layer 2: single enlarged icon ("steps forward", zooms out on open) */}
-          <div
-            className={`iconstage${state.phase === "icon" ? " show" : ""}${
-              state.phase === "screen" ? " zoom" : ""
-            }`}
-          >
-            {active && (
-              <>
-                <div className={`bigicon${inApp ? " tap" : ""}`} key={active.slug}>
-                  <IconTile app={active} size="big" />
-                  <span className="ripple" />
-                </div>
-                <div className="bigname">{active.name}</div>
-              </>
-            )}
-          </div>
-
-          {/* layer 3: app screens */}
-          {FEATURED_APPS.map((app, i) => (
-            <div
-              className={`appview${inApp && i === activeIndex ? " show" : ""}`}
-              key={app.slug}
-            >
-              <AppScreen app={app} />
+          )}
+          {FEATURED_APPS.map((app, index) => (
+            <div className={styles.screenLayer} data-screen-layer data-active={index === state.activeIndex} key={app.slug}>
+              <AppScreen app={app} eager={index === state.activeIndex} />
             </div>
           ))}
+          <div className={styles.glassReflection} />
         </div>
       </div>
+      <SceneDetails kind={active ? sceneFor(active.slug).detail : undefined} />
     </div>
   );
 }

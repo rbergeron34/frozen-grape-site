@@ -11,14 +11,14 @@
   --ink: #191b1f;
   --muted: #6b7280;
   --border: #e6e8ee;
-  --accent: #7b4ae2; /* studio grape — the neutral/home default; overridden per active app */
-  --tint: rgba(123, 74, 226, 0.1);
+  --accent: #805091; /* studio grape — the neutral/home default; overridden per active app */
+  --tint: rgba(128, 80, 145, 0.1);
 
   /* Frozen Grape brand */
-  --grape: #7b4ae2;
-  --grape-light: #9d6cff;
-  --frost: #84ceeb;
-  --grape-tint: rgba(123, 74, 226, 0.12);
+  --grape: #805091;
+  --grape-light: #92619f;
+  --frost: #aacce6;
+  --grape-tint: rgba(128, 80, 145, 0.12);
 }
 
 @theme inline {
@@ -75,11 +75,11 @@ body {
 .btn-dark {
   background: linear-gradient(135deg, var(--grape), var(--grape-light));
   color: #fff;
-  box-shadow: 0 12px 28px rgba(123, 74, 226, 0.22);
+  box-shadow: 0 12px 28px rgba(128, 80, 145, 0.18);
 }
 .btn-dark:hover {
-  background: linear-gradient(135deg, #6c3dd6, #8f5cf5);
-  box-shadow: 0 14px 32px rgba(123, 74, 226, 0.28);
+  background: linear-gradient(135deg, #704380, #805091);
+  box-shadow: 0 14px 32px rgba(128, 80, 145, 0.24);
 }
 .btn-ghost {
   border: 1px solid var(--border);
@@ -144,12 +144,12 @@ textarea:focus-visible {
   border-image: linear-gradient(
       90deg,
       transparent,
-      rgba(123, 74, 226, 0.35),
-      rgba(132, 206, 235, 0.3),
+      rgba(128, 80, 145, 0.30),
+      rgba(170, 204, 230, 0.4),
       transparent
     )
     1;
-  background: linear-gradient(180deg, rgba(123, 74, 226, 0.04), transparent 70%);
+  background: linear-gradient(180deg, rgba(128, 80, 145, 0.04), transparent 70%);
 }
 
 /* skip link */
