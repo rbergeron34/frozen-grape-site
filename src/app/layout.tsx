@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import Link from "next/link";
 import { BrandLockup } from "./components/brand/BrandLockup";
 import styles from "./shell.module.css";
 import "./globals.css";
 import { APPS } from "@/lib/apps";
 
-const jakarta = Plus_Jakarta_Sans({
+// Fonts are self-hosted (src/fonts, Latin subset from Google Fonts): fetching
+// them from Google at build time breaks when Google answers with extensionless
+// /l/font?kit= URLs (vercel/next.js#99114).
+const jakarta = localFont({
+  src: "../fonts/plus-jakarta-sans.woff2",
+  weight: "400 800",
   variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 

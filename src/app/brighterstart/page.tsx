@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Nunito } from "next/font/google";
+import localFont from "next/font/local";
 import { getApp, upcomingLabel } from "@/lib/apps";
 import "./brighterstart.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
@@ -9,7 +9,7 @@ import { AppStoreBadge } from "../components/AppStoreBadge";
 // Branded landing page — the marketing voice and sunrise palette come from the
 // app itself (see the app repo's design brief and App Store metadata).
 
-const nunito = Nunito({ subsets: ["latin"], weight: ["700", "800", "900"] });
+const nunito = localFont({ src: "../../fonts/nunito.woff2", weight: "700 900" });
 
 // The screens below are the all-new 2.0; the App Store still serves 1.0, so
 // every download button carries the "Version 2.0 coming soon" label.

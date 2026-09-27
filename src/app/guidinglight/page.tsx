@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { IBM_Plex_Mono, Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { getApp } from "@/lib/apps";
 import "./guidinglight.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
@@ -12,18 +12,21 @@ import { AppStoreBadge } from "../components/AppStoreBadge";
 // app itself: parchment paper, ink line-art, a brass lantern glow, and
 // Scripture set in serif italic.
 
-const playfair = Playfair_Display({
+const playfair = localFont({
+  src: [
+    { path: "../../fonts/playfair-display.woff2", weight: "400 600", style: "normal" },
+    { path: "../../fonts/playfair-display-italic.woff2", weight: "400 600", style: "italic" },
+  ],
   variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["italic", "normal"],
-  weight: ["400", "500", "600"],
   display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const plexMono = localFont({
+  src: [
+    { path: "../../fonts/ibm-plex-mono-400.woff2", weight: "400" },
+    { path: "../../fonts/ibm-plex-mono-500.woff2", weight: "500" },
+  ],
   variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
   display: "swap",
 });
 
