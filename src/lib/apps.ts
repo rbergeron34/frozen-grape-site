@@ -50,6 +50,18 @@ export interface AppEntry {
   platforms: string[];
   inAppPurchases?: { name: string; price: string }[];
   whatsNew?: { version: string; date: string; notes: string };
+  /**
+   * The site's screenshots and copy show an update that isn't on the App Store
+   * yet. `appStoreUrl` still serves the current version, so every download
+   * button is paired with a "Version X coming soon" label (see upcomingLabel).
+   */
+  upcoming?: {
+    version: string;
+    /** What the update brings — shown as "Coming in version X". */
+    notes: string;
+    /** How today's App Store listing differs, e.g. an older name or design. */
+    today?: string;
+  };
 
   // --- trust / legal flags (drive Support, Terms, Privacy sections) ---
   hasAccount?: boolean; // app supports account creation → data-deletion instructions
@@ -85,6 +97,8 @@ export interface AppEntry {
   screenHeadline: string; // beat-2 headline
   showcaseFeatures: ShowcaseFeature[]; // 2-3, calm marketing voice
   screen: ScreenKind; // what fills the phone
+  /** A watchOS capture (416×496) shown on an Apple Watch beside the phone, for apps used on the wrist. */
+  watchScreen?: { src: string; alt: string };
 }
 
 // Studio grape — the neutral/home-beat brand. Each app's accent takes over
@@ -98,7 +112,7 @@ export const APPS: AppEntry[] = [
     name: "Guiding Light",
     shortName: "Guiding",
     category: "Reflection",
-    status: "coming-soon",
+    status: "live",
     tagline: "A daily verse, a private journal, a gentle companion",
     description:
       "A Bible journal with a daily cited verse, a private encrypted journal, and a companion that asks good questions.",
@@ -109,7 +123,7 @@ export const APPS: AppEntry[] = [
     ratingsCount: 0,
     price: "Free",
     ageRating: "4+",
-    size: "—",
+    size: "42.8 MB",
     developer: APP_STORE_SELLER,
     features: [
       "A daily cited verse each morning, and a short evening reflection",
@@ -120,6 +134,7 @@ export const APPS: AppEntry[] = [
       "Audio narration with read-along, cached for offline listening",
       "Five offline translations — every verse shows its citation",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/guiding-light-bible-journal/id6787506100",
     privacyInfo: "Data not linked to you",
     platforms: ["iPhone"],
     usesAI: true,
@@ -134,7 +149,7 @@ export const APPS: AppEntry[] = [
     landingPath: "/guidinglight",
     accent: "#C28A2C",
     tint: "rgba(194,138,44,.12)",
-    iconBg: "#F3EAD7",
+    iconBg: "#101010",
     fallbackGlyph: "✦",
     lead: "A daily verse, a private journal, and a gentle companion.",
     screenHeadline: "A quiet daily rhythm.",
@@ -154,18 +169,18 @@ export const APPS: AppEntry[] = [
     name: "BrighterStart",
     shortName: "BrighterStart",
     category: "Productivity",
-    status: "coming-soon", // the all-new 2.0 wake-up app replaces the original listing when it ships
+    status: "live", // the original 1.0 listing; the all-new 2.0 shown here replaces it when it ships
     tagline: "The alarm that walks you into your day",
     description:
       "A wake-up app that doesn't stop at the alarm — dismissing it walks you straight into a guided morning routine.",
     longDescription:
       "BrighterStart is a wake-up app that doesn't stop at the alarm. Its alarm rings with Clock-level reliability — through silent mode and Focus — and clearing it takes a small mission: solve the math, take the steps, or prove you're up with a live photo checked entirely on your device. The moment you're up, BrighterStart walks you into a guided, one-step-at-a-time morning routine, mirrored to your Lock Screen and Dynamic Island. Built for anyone who wins the alarm and still loses the morning.",
     icon: "/assets/apps/brighterstart/icon.png",
-    rating: 0,
-    ratingsCount: 0,
+    rating: 5.0,
+    ratingsCount: 1,
     price: "Free",
     ageRating: "9+", // recalculated 2026-08 under Apple's new questionnaire (Health or Wellness Topics)
-    size: "—",
+    size: "6.7 MB", // the live 1.0 build
     developer: APP_STORE_SELLER,
     features: [
       "A reliable alarm that breaks through silent mode and Focus",
@@ -176,6 +191,12 @@ export const APPS: AppEntry[] = [
       "Wake-rhythm trends and a gentle wake-earlier goal",
       "Guilt-free streaks — skip days don't break them",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/brighterstart/id6745766308",
+    upcoming: {
+      version: "2.0",
+      notes: "The all-new BrighterStart: a reliable alarm, wake-up missions, and a guided morning routine that starts the moment you're up.",
+      today: "Version 1.0 on the App Store is the original BrighterStart routines app.",
+    },
     privacyInfo: "No data collected",
     platforms: ["iPhone", "iPad"],
     // Privacy specifics (HealthKit, Screen Time blocker, camera/motion, iCloud)
@@ -201,7 +222,7 @@ export const APPS: AppEntry[] = [
     screen: {
       kind: "image",
       src: "/assets/apps/brighterstart/screen-1.png",
-      alt: "BrighterStart's home screen with a 6:30 weekday alarm, wake-rhythm chart, and morning routine",
+      alt: "BrighterStart's home screen with a 6:28 weekday alarm, wake-rhythm chart, and morning routine",
     },
   },
   {
@@ -245,10 +266,10 @@ export const APPS: AppEntry[] = [
       price: "$2.99",
       note: "An annual plan ($19.99/year) and a one-time Lifetime unlock ($39.99) are also available; monthly and annual include a 3-day free trial.",
     },
-    whatsNew: {
-      version: "3.0", // EDITABLE — align with the shipped App Store version
-      date: "July 2026",
-      notes: "Complete refresh: 365-verse library, journal notes, streaks, and widgets",
+    upcoming: {
+      version: "3.0",
+      notes: "A complete refresh: a 365-verse library, journal notes, reading streaks, widgets, and four translations.",
+      today: "Until then it's listed on the App Store as Daily Wisdom.",
     },
     privacyNotes: [
       {
@@ -284,7 +305,7 @@ export const APPS: AppEntry[] = [
     name: "LockIN",
     shortName: "LockIN",
     category: "Health & Fitness",
-    status: "coming-soon",
+    status: "live",
     tagline: "Run smarter. Stay locked in.",
     description:
       "A Zone 2–first running coach for iPhone and Apple Watch that keeps your easy runs actually easy.",
@@ -294,8 +315,8 @@ export const APPS: AppEntry[] = [
     rating: 0,
     ratingsCount: 0,
     price: "Free",
-    ageRating: "4+",
-    size: "—",
+    ageRating: "9+", // Apple's questionnaire: Health or Wellness Topics
+    size: "17 MB",
     developer: APP_STORE_SELLER,
     features: [
       "Live heart-rate coaching on 'The Line' — your personal Zone 2 band",
@@ -306,13 +327,14 @@ export const APPS: AppEntry[] = [
       "Runs scored by minutes in zone — not pace",
       "Apple Music with coaching-cue ducking and on-device AI mixes",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/lockin-zone-2-running/id6788562182",
     privacyInfo: "No data collected",
     platforms: ["iPhone", "Apple Watch"],
     usesAI: true,
     aiNote: "Drafts playlists with on-device Apple Intelligence — nothing is sent to AI servers.",
     subscription: {
       name: "LockIN Premium",
-      period: "per month", // EDITABLE — pre-release pricing; confirm before launch
+      period: "per month",
       price: "$5.99",
       note: "An annual plan ($39.99/year) and a one-time lifetime unlock ($99.99) are also available.",
     },
@@ -354,10 +376,16 @@ export const APPS: AppEntry[] = [
       { glyph: "◉", title: "Gentle cues", desc: "A voice and a tap before you drift." },
       { glyph: "▤", title: "80/20 plan", desc: "Scored by minutes in zone, not pace." },
     ],
+    // Runners watch the wrist, not the phone: the run itself is shown on the
+    // watch, and the phone shows the day's plan.
     screen: {
       kind: "image",
       src: "/assets/apps/lockin/screen-1.png",
-      alt: "LockIN in-run screen showing a heart rate of 144 locked inside the target band",
+      alt: "LockIN's Today screen: keep it easy, a 30-minute run in the 138–150 bpm Zone 2 band, and a Start today's run button",
+    },
+    watchScreen: {
+      src: "/assets/apps/lockin/watch-locked.png",
+      alt: "LockIN on Apple Watch mid-run: 144 bpm locked inside the 138–150 target band",
     },
   },
   {
@@ -425,7 +453,7 @@ export const APPS: AppEntry[] = [
     name: "Hoops Slate", // renamed in-app July 2026; trademark check still pending
     shortName: "Slate",
     category: "Games",
-    status: "coming-soon",
+    status: "live",
     tagline: "Five daily basketball puzzles",
     description:
       "A daily NBA puzzle suite — five quick games on one fresh slate, every day.",
@@ -436,7 +464,7 @@ export const APPS: AppEntry[] = [
     ratingsCount: 0,
     price: "Free",
     ageRating: "4+",
-    size: "—",
+    size: "2.9 MB",
     developer: APP_STORE_SELLER,
     features: [
       "Five daily games: Hoop Connections, Lineup, Journey, Crossover, HoopGrid",
@@ -446,13 +474,14 @@ export const APPS: AppEntry[] = [
       "A 30-day puzzle archive for subscribers",
       "Fully offline — no account, no waiting",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/hoop-slate/id6788613770",
     privacyInfo: "No data collected",
     platforms: ["iPhone"],
     subscription: {
       name: "Hoops Slate Pro",
-      period: "per month", // EDITABLE — pre-release pricing; confirm before launch
-      price: "$3.99",
-      note: "An annual plan ($24.99/year) and a 12-month Season Pass ($9.99, one-time) are also available.",
+      period: "per month",
+      price: "$2.99",
+      note: "A one-time Lifetime unlock ($24.99) is also available.",
     },
     disclaimers: [
       "Hoops Slate is an independent puzzle game. It is not affiliated with, endorsed by, or sponsored by the NBA or any team, league, or player. Player names and factual sports information are used solely for informational and puzzle purposes.",
@@ -555,8 +584,8 @@ export const APPS: AppEntry[] = [
       "The most extensive LeBron James quiz you will ever find! With hundreds of questions all about the basketball legend, this app tests your knowledge across six categories: LeBron's Personal Life, High School Career, Cleveland Cavaliers, Miami Heat, Achievements, and Endorsement Deals. Completely ad-free for an uninterrupted trivia experience. Compete on Game Center leaderboards and unlock achievements. A free Lite version is available if you'd like to try before you buy.",
     icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple5/v4/95/4e/33/954e339a-3839-bf69-0004-e0bf5fb86ff9/mzl.cvpayvfg.jpg/200x200bb.png",
     rating: 5.0,
-    ratingsCount: 0,
-    price: "$0.99",
+    ratingsCount: 1,
+    price: "$1.99",
     ageRating: "4+",
     size: "22.5 MB",
     developer: APP_STORE_SELLER,
@@ -569,7 +598,7 @@ export const APPS: AppEntry[] = [
       "Offline play—no internet required",
       "Free Lite version available",
     ],
-    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia-lebron-james-edition/id946326329",
+    appStoreUrl: "https://apps.apple.com/us/app/hoops-trivia/id935030148",
     privacyInfo: "No data collected", // EDITABLE — confirm against the App Store privacy label
     platforms: ["iPhone", "iPad", "Mac", "Apple Vision"],
     inAppPurchases: [{ name: "Try free with Hoops Trivia Lite", price: "Free" }],
@@ -598,4 +627,9 @@ export const FEATURED_APPS: AppEntry[] = APPS.filter((a) => a.featured !== false
 
 export function getApp(slug: string): AppEntry | undefined {
   return APPS.find((a) => a.slug === slug);
+}
+
+/** "Version 2.0 coming soon" for apps whose screenshots show an unreleased update. */
+export function upcomingLabel(app: AppEntry | undefined): string | null {
+  return app?.upcoming ? `Version ${app.upcoming.version} coming soon` : null;
 }

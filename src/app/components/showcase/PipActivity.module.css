@@ -1,0 +1,162 @@
+.companion {
+  position: absolute;
+  right: calc(100% - 18px);
+  bottom: 3%;
+  width: clamp(132px, 14vw, 190px);
+  aspect-ratio: 1;
+  z-index: 9;
+  pointer-events: none;
+  opacity: var(--pip-visibility, 0);
+  transform: translateY(var(--pip-y, 24px)) scale(calc(.94 + var(--pip-visibility, 0) * .06));
+  transform-origin: center bottom;
+}
+
+.companion[data-active="false"] { opacity: 0; visibility: hidden; }
+.figure { position: relative; width: 100%; height: 100%; transform-origin: center 90%; filter: drop-shadow(0 8px 8px #28132e12); }
+.base, .piece { position: absolute; inset: 0; transform-origin: center 90%; }
+.base { clip-path: var(--pip-cutout, none); }
+.piece { clip-path: var(--pip-piece); }
+.artwork { object-fit: contain; }
+.accents { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* Repeat while visible so the moment isn't missed while reading the app copy.
+   The shared pause control and system reduced-motion preference stop motion. */
+.animated { animation-duration: 4.8s; animation-timing-function: ease-in-out; animation-fill-mode: both; animation-iteration-count: infinite; }
+.companion[data-active="false"] .animated,
+.companion:not([data-pip-in-view="true"]) .animated { animation-name: none !important; }
+.companion[data-page-visible="false"] .animated,
+:global([data-pip-paused="true"]) .companion .animated { animation-play-state: paused; }
+
+.companion[data-pip-activity="journal"] .figure { animation-name: thoughtful; }
+.lanternGlow { opacity: 0; mix-blend-mode: screen; filter: blur(3px); animation-name: lantern; }
+.writing { stroke-dasharray: 1; stroke-dashoffset: 1; animation-name: scribble; }
+
+.companion[data-pip-activity="waking"] .piece { transform-origin: 50% 57%; animation-name: stretch; }
+.alarm { opacity: 0; transform-origin: 14% 80%; animation-name: ring; }
+
+.companion[data-pip-activity="reading"] .figure { animation-name: reading; }
+.steam { opacity: 0; animation-name: steam; }
+.steamSecond { animation-name: steamLater; }
+
+.companion[data-pip-activity="running"] .figure { animation-name: jog; }
+.speed { opacity: 0; animation-name: speed; }
+
+.companion[data-pip-activity="cards"] .figure { animation-name: pleased; }
+.luckyCard { opacity: 0; transform-origin: 59% 76%; animation-name: deal; }
+
+.companion[data-pip-activity="basketball"] .base { animation-name: dribbleBody; }
+.companion[data-pip-activity="basketball"] .piece { transform-origin: 18% 98%; animation-name: dribbleBall; }
+.ballShadow { opacity: 0; transform-origin: 18% 99%; animation-name: ballShadow; }
+
+.companion[data-pip-activity="portrait"] .base { transform-origin: 40% 91%; animation-name: pose; }
+.cameraSparkle { opacity: 0; transform-origin: 86% 50%; animation-name: shutter; }
+
+.inline { position: relative; inset: auto; width: 156px; flex: none; opacity: 1; transform: none; }
+
+@media (min-width: 901px) {
+  :global([data-pip-ready="false"]) .companion:not(.inline) .animated { animation-name: none !important; }
+}
+
+@keyframes thoughtful {
+  0%, 100% { transform: rotate(0); }
+  18%, 46% { transform: rotate(-1.3deg); }
+  32%, 62% { transform: rotate(.5deg); }
+  80% { transform: rotate(-.7deg); }
+}
+@keyframes lantern {
+  0%, 100% { opacity: 0; }
+  15%, 39%, 67%, 82% { opacity: .26; }
+  28%, 53%, 73% { opacity: .12; }
+}
+@keyframes scribble {
+  0%, 12% { stroke-dashoffset: 1; opacity: 0; }
+  18% { opacity: .8; }
+  64%, 84% { stroke-dashoffset: 0; opacity: .8; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes stretch {
+  0%, 100% { transform: none; }
+  18% { transform: translateY(-1%) rotate(-2deg); }
+  38%, 52% { transform: translateY(-2%) rotate(2deg); }
+  72% { transform: translateY(-.5%) rotate(-.7deg); }
+}
+@keyframes ring {
+  0%, 38%, 100% { opacity: 0; transform: rotate(0); }
+  5%, 15%, 25% { opacity: .65; transform: rotate(-3deg); }
+  10%, 20%, 30% { opacity: .3; transform: rotate(3deg); }
+}
+@keyframes reading {
+  0%, 100% { transform: none; }
+  30%, 65% { transform: translateY(-1%) rotate(-1deg); }
+  48%, 80% { transform: rotate(.5deg); }
+}
+@keyframes steam {
+  0%, 100% { opacity: 0; transform: translateY(0); }
+  20% { opacity: .5; }
+  65% { opacity: .25; }
+  90% { opacity: 0; transform: translate(1%, -8%); }
+}
+@keyframes steamLater {
+  0%, 20% { opacity: 0; transform: translateY(0); }
+  45% { opacity: .45; }
+  100% { opacity: 0; transform: translate(-1%, -7%); }
+}
+@keyframes jog {
+  0%, 100% { transform: none; }
+  10%, 30%, 50%, 70% { transform: translateY(-4%) rotate(-2deg); }
+  20%, 40%, 60%, 80% { transform: translateY(0) rotate(1.5deg); }
+  90% { transform: translateY(-1.5%) rotate(-.5deg); }
+}
+@keyframes speed {
+  0%, 100% { opacity: 0; transform: translateX(0); }
+  12%, 32%, 52%, 72% { opacity: .65; transform: translateX(-1%); }
+  22%, 42%, 62%, 85% { opacity: 0; transform: translateX(-5%); }
+}
+@keyframes pleased {
+  0%, 100% { transform: none; }
+  20%, 62% { transform: rotate(-1.5deg); }
+  40%, 80% { transform: rotate(1deg); }
+}
+@keyframes deal {
+  0%, 10%, 90%, 100% { opacity: 0; transform: none; }
+  18% { opacity: 1; transform: translateY(-2%) rotate(-5deg); }
+  35%, 48% { opacity: 1; transform: translateY(-9%) rotate(6deg); }
+  68% { opacity: 1; transform: translateY(-3%) rotate(-3deg); }
+  82% { opacity: 0; transform: none; }
+}
+@keyframes dribbleBody {
+  0%, 100% { transform: none; }
+  16%, 40%, 64% { transform: translateY(1%) rotate(-1deg); }
+  28%, 52%, 76% { transform: translateY(-1.5%) rotate(.5deg); }
+}
+@keyframes dribbleBall {
+  0%, 100% { transform: none; }
+  8%, 32%, 56% { transform: translateY(-13%) rotate(-14deg); animation-timing-function: ease-in; }
+  20%, 44%, 68% { transform: translateY(0) scale(1.05, .94); animation-timing-function: ease-out; }
+  80% { transform: translateY(-7%) rotate(-7deg); }
+  90% { transform: none; }
+}
+@keyframes ballShadow {
+  0%, 100% { opacity: 0; }
+  8%, 32%, 56% { opacity: .12; transform: scaleX(.6); }
+  20%, 44%, 68%, 90% { opacity: .24; transform: scaleX(1); }
+  80% { opacity: .16; transform: scaleX(.75); }
+}
+@keyframes pose {
+  0%, 100% { transform: none; }
+  20%, 38% { transform: rotate(2.5deg) translateY(-1%); }
+  55%, 75% { transform: rotate(-1.5deg) translateY(-1%); }
+  90% { transform: rotate(.5deg); }
+}
+@keyframes shutter {
+  0%, 22%, 48%, 100% { opacity: 0; transform: scale(.8); }
+  32% { opacity: .85; transform: scale(1); }
+  40% { opacity: .3; transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated { animation: none !important; }
+  .companion, .figure, .base { transform: none !important; }
+  .base { clip-path: none; }
+  .piece, .accents { display: none; }
+}

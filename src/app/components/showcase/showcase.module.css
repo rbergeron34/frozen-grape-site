@@ -9,6 +9,8 @@
   --home-opacity: 1;
   --open: 0;
   --detail: 0;
+  --pip-visibility: 0;
+  --pip-y: 24px;
   --assembly-caption: 0;
   --ring-opacity: .65;
   position: relative;
@@ -101,6 +103,8 @@
 .sceneCta { margin-top: 22px; background: var(--scene-accent) !important; color: var(--scene-button-ink) !important; border: 1px solid transparent !important; box-shadow: none !important; font-size: 13px; padding: 13px 21px; }
 .sceneCta:hover { transform: translateY(-2px); filter: brightness(1.08); }
 .sceneCta:focus-visible { outline-color: var(--scene-accent); outline-offset: 5px; }
+.ctaRow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 22px; }
+.ctaRow .sceneCta { margin: 0; }
 .inlineVisual { display: none; }
 
 .appRail { position: absolute; right: 20px; top: calc(50% + 28px); transform: translateY(-50%) translateX(12px); display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 12px 7px; background: var(--scene-surface); border: 1px solid var(--scene-border); border-radius: 18px; opacity: 0; visibility: hidden; backdrop-filter: blur(18px); transition: opacity .3s, transform .3s, background .6s, border-color .6s, visibility .3s; }
@@ -125,6 +129,7 @@
 .verseReference { font-size: 8px; text-transform: uppercase; letter-spacing: .16em; color: #a48a5a; }
 .verseStar { position: absolute; right: 19px; bottom: 15px; font-size: 22px; color: #bf994c; }
 .heartCard { width: 258px; margin-left: -34px; border: 1px solid #c4ef5f38; border-radius: 17px; padding: 20px; background: #1e2820f5; color: #d7f682; box-shadow: 0 25px 45px #0000004d; transform: rotate(4deg); }
+.watchDetail { width: 158px; margin: 0 0 0 22px; transform: rotate(-7deg); }
 .heartTop { display: flex; align-items: center; justify-content: space-between; }
 .heartTop .detailEyebrow { color: #b5c3a3; }
 .zoneBadge { font-size: 7px; letter-spacing: .1em; padding: 4px 6px; background: #ceef6117; border-radius: 4px; }
@@ -141,6 +146,11 @@
 .playingCard:nth-child(3) { transform: translateX(calc(42px * var(--detail))) rotate(calc(20deg * var(--detail))); }
 .outro { position: relative; z-index: 3; height: clamp(90px, 16svh, 160px); pointer-events: none; }
 .outro::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(transparent, #f7f8fa); }
+
+@media (min-width: 901px) and (max-width: 1199px) {
+  /* Reserve room to the left of the phone for Pip, including tall tablets. */
+  .phoneRig { height: min(680px, calc(100svh - 166px), 54vw); }
+}
 
 @media (min-width: 901px) and (max-width: 1100px) {
   .detail { right: -32px; width: 200px; --detail-scale: .86; transform-origin: right bottom; }
@@ -166,8 +176,9 @@
   .lead { margin-top: 12px; }
   .feature { padding: 9px 0; }
   .sceneCta { margin-top: 16px; padding: 11px 18px; }
+  .ctaRow { margin-top: 16px; }
   .homeGrid { gap: 14px 8%; }
-  .detail { --detail-scale: .75; transform-origin: right bottom; right: -62px; }
+  .detail { --detail-scale: .75; transform-origin: right bottom; right: -42px; }
   .appRail { gap: 1px; padding-top: 7px; padding-bottom: 7px; }
   .appRail a { width: 46px; height: 44px; }
   .appRail a img { width: 34px; height: 34px; }
@@ -199,7 +210,7 @@
   .appIdentityText > span { font-size: 22px; }
   .chapter h2 { font-size: clamp(37px, 6.5vw, 54px); max-width: 14ch; margin: 23px auto 0; }
   .lead { font-size: 16px; margin: 17px auto 0; max-width: 32ch; }
-  .inlineVisual { display: flex; align-items: center; justify-content: center; width: 100%; margin: 38px 0 40px; padding: 0 20px; }
+  .inlineVisual { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; width: 100%; margin: 38px 0 30px; padding: 0 20px; }
   .inlinePhone { width: min(248px, 70vw); aspect-ratio: 352 / 724; position: relative; border-radius: 15% / 7.3%; padding: 8px; background: linear-gradient(135deg, #777974, #252727 30%, #4b4e48 70%, #71746d); box-shadow: 0 22px 35px -12px #14171b4d, inset 0 0 0 1px #ffffff99; }
   .inlineScreen { position: relative; width: 100%; height: 100%; border-radius: 13% / 6.3%; overflow: hidden; background: var(--scene-bg); border: 2px solid #151916; }
   .inlinePhone .detail { right: -29px; bottom: 10%; transform-origin: right bottom; opacity: 1; transform: scale(.70); }
@@ -208,6 +219,8 @@
   .feature h3 { font-size: 14px; }
   .feature p { font-size: 13px; }
   .sceneCta { display: flex; margin: 27px auto 0; font-size: 13px; }
+  .ctaRow { flex-direction: column; align-items: center; margin-top: 27px; }
+  .ctaRow .sceneCta { align-self: stretch; }
   .outro { height: 90px; background: linear-gradient(#eaf1fa, #f7f8fa); }
   .outro::after { display: none; }
 }

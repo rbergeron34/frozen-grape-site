@@ -23,6 +23,18 @@ const nextConfig: NextConfig = {
         destination: "/apps/daily-proverb",
         permanent: true,
       },
+      // Hoop Slate's App Store listing links here for its privacy policy and
+      // support URL; the real pages live under /hoopsconnect.
+      {
+        source: "/hoops-connect/:path*",
+        destination: "/hoopsconnect/:path*",
+        permanent: true,
+      },
+      {
+        source: "/apps/hoops-connect/support",
+        destination: "/hoopsconnect/support",
+        permanent: true,
+      },
     ];
   },
 };

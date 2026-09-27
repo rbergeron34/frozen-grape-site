@@ -15,7 +15,7 @@
 .texas { display: block; width: 100%; height: auto; }
 
 /* Austin's city marker, projected into the Texas illustration's viewBox. */
-.marker { position: absolute; left: 65.61%; top: 58.37%; width: 36%; transform: translate(-50%, -92%); }
+.marker { position: absolute; left: 65.61%; top: 58.37%; width: 30%; transform: translate(-50%, -92%); }
 .marker::before { content: ""; position: absolute; width: 78%; height: 15%; left: 11%; bottom: -3%; border-radius: 50%; background: #7850a92b; filter: blur(4px); }
 .marker img { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0 3px 3px #70529626); }
 .notify { width: 100%; max-width: 600px; scroll-margin-top: 96px; }

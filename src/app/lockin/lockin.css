@@ -229,6 +229,44 @@
   object-fit: cover;
 }
 
+/* ---------- phone + watch ---------- */
+.lk-duo {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.lk-duo-watch {
+  position: absolute;
+  left: -30%;
+  bottom: 9%;
+  width: 46%;
+  transform: rotate(-6deg);
+}
+@media (max-width: 880px) {
+  .lk-duo { max-width: 280px; }
+  .lk-duo-watch { left: -16%; width: 42%; }
+}
+.lk-watches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  padding-block: 40px;
+}
+.lk-watches figure {
+  width: min(210px, 42vw);
+}
+.lk-watches figure:last-child {
+  transform: translateY(36px);
+}
+.lk-watches figcaption {
+  margin-top: 72px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--dim);
+}
+
 /* ---------- stat strip ---------- */
 .lk-stats {
   display: grid;

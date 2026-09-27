@@ -28,6 +28,9 @@
 .dp-button-secondary { border: 1.5px solid var(--dp-green); color: var(--dp-green); background: transparent; }
 .dp-proof { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 32px; font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dp-green); }
 .dp-proof span::before { content: "✦"; margin-right: 7px; color: var(--dp-gold); }
+.dp-version { max-width: 590px; margin-top: 16px; color: var(--dp-muted); font-size: 14px; line-height: 1.6; }
+.dp-version strong { color: var(--dp-green); font-weight: 700; }
+.dp-gallery .dp-version { color: #b9c1b0; }
 .dp-hero-shot, .dp-shot { position: relative; aspect-ratio: 1206 / 2622; border: 9px solid var(--dp-green-deep); border-radius: 44px; overflow: hidden; background: var(--dp-green-deep); box-shadow: 0 30px 60px rgba(43, 42, 36, 0.2); }
 .dp-hero-shot { width: min(340px, 100%); justify-self: center; transform: rotate(-2deg); }
 .dp-hero-shot img, .dp-shot img { object-fit: cover; }

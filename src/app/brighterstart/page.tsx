@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Nunito } from "next/font/google";
+import { getApp, upcomingLabel } from "@/lib/apps";
 import "./brighterstart.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 // Branded landing page — the marketing voice and sunrise palette come from the
 // app itself (see the app repo's design brief and App Store metadata).
 
 const nunito = Nunito({ subsets: ["latin"], weight: ["700", "800", "900"] });
+
+// The screens below are the all-new 2.0; the App Store still serves 1.0, so
+// every download button carries the "Version 2.0 coming soon" label.
+const app = getApp("brighterstart");
+const APP_STORE_URL = app?.appStoreUrl ?? "/apps/brighterstart";
+const UPCOMING = upcomingLabel(app);
 
 export const metadata: Metadata = {
   title: "BrighterStart — Wake up and actually get up.",
@@ -35,8 +43,8 @@ const nightCards = [
 ];
 
 const shots = [
-  ["/assets/apps/brighterstart/screen-2.png", "BrighterStart dismissal mission asking you to solve 8 × 6 before the alarm clears"],
-  ["/assets/apps/brighterstart/screen-3.png", "BrighterStart guided routine step with a rising-sun countdown and the next step queued"],
+  ["/assets/apps/brighterstart/screen-2.png", "BrighterStart dismissal mission asking you to solve 3 × 6 before the alarm clears"],
+  ["/assets/apps/brighterstart/screen-3.png", "BrighterStart guided routine step on the Lock Screen: take your meds, with a 20-second countdown and the next step queued"],
 ];
 
 export default function BrighterStartPage() {
@@ -53,9 +61,12 @@ export default function BrighterStartPage() {
               mission, then a guided routine that carries you from awake to actually up.
             </p>
             <div className="bs-actions">
-              <Link href="/#notify" className="bs-button bs-button-primary">Get launch updates</Link>
+              <AppStoreBadge href={APP_STORE_URL} height={48} />
               <a href="#how" className="bs-button bs-button-secondary">How it works</a>
             </div>
+            {UPCOMING && (
+              <p className="bs-version"><strong>{UPCOMING}.</strong> {app?.upcoming?.today}</p>
+            )}
             <div className="bs-proof" aria-label="App highlights">
               <span>No account</span><span>No tracking</span><span>Core alarm free, forever</span>
             </div>
@@ -63,7 +74,7 @@ export default function BrighterStartPage() {
           <div className="bs-hero-shot">
             <Image
               src="/assets/apps/brighterstart/screen-1.png"
-              alt="BrighterStart home screen with a 6:30 weekday alarm, wake rhythm chart, and morning routine"
+              alt="BrighterStart home screen with a 6:28 weekday alarm, wake rhythm chart, and morning routine"
               fill
               priority
               sizes="(max-width: 800px) 80vw, 350px"
@@ -95,6 +106,7 @@ export default function BrighterStartPage() {
             from real mornings — with optional, read-only Apple Health overlay — and skip days
             never break your streak. The routine takes the blame, not you.
           </p>
+          {UPCOMING && <p className="bs-version">Screens show version {app?.upcoming?.version}, coming soon.</p>}
           <div className="bs-shots">
             {shots.map(([src, alt], index) => (
               <div className={index === 1 ? "bs-shot bs-shot-raised" : "bs-shot"} key={src}>
@@ -123,11 +135,11 @@ export default function BrighterStartPage() {
 
       <section className="bs-close bs-wrap">
         <div>
-          <p className="bs-kicker">Coming soon to iPhone</p>
+          <p className="bs-kicker">{UPCOMING ?? "Free on the App Store"}</p>
           <h2>Tomorrow morning can go differently.</h2>
           <p>No account. No tracking. Everything stays on your device and your own iCloud.</p>
         </div>
-        <Link href="/#notify" className="bs-button bs-button-primary">Tell me when it launches</Link>
+        <AppStoreBadge href={APP_STORE_URL} height={48} />
       </section>
 
       <nav className="bs-links" aria-label="BrighterStart links">

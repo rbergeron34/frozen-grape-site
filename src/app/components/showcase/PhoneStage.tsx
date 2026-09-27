@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FEATURED_APPS } from "@/lib/apps";
 import { AppScreen } from "./screens";
 import { SceneDetails } from "./SceneDetails";
+import { PipActivity } from "./PipActivity";
 import { sceneFor } from "./scenes";
 import type { ShowcaseState } from "./useShowcaseState";
 import styles from "./showcase.module.css";
@@ -44,7 +45,15 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
           <div className={styles.glassReflection} />
         </div>
       </div>
-      <SceneDetails kind={active ? sceneFor(active.slug).detail : undefined} />
+      <SceneDetails kind={active ? sceneFor(active.slug).detail : undefined} watch={active?.watchScreen} />
+      {FEATURED_APPS.map((app, index) => (
+        <PipActivity
+          key={app.slug}
+          activity={sceneFor(app.slug).activity}
+          active={index === state.activeIndex}
+          eager={Math.abs(index - state.activeIndex) <= 1}
+        />
+      ))}
     </div>
   );
 }
