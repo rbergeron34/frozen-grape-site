@@ -138,6 +138,11 @@ export default function RootLayout({
           </div>
           <span>© {new Date().getFullYear()} Frozen Grape Studios</span>
           </div>
+          {/* Credit line Apple requires wherever the App Store badge appears. */}
+          <p className="max-w-5xl mx-auto w-full mt-5 text-[11px] leading-relaxed">
+            Apple, the Apple logo, App Store, iPhone, iPad, and Apple Watch are trademarks of Apple
+            Inc., registered in the U.S. and other countries.
+          </p>
         </footer>
 
         <script

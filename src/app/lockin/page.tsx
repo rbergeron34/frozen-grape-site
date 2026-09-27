@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Barlow_Condensed } from "next/font/google";
 import { getApp } from "@/lib/apps";
 import "./lockin.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 // Bespoke, app-branded landing page for LockIN. Everything factual here
 // (features, pricing, privacy claims) mirrors src/lib/apps.ts — update both
@@ -81,9 +82,7 @@ export default function LockInPage() {
               </p>
 
               <div className="lk-ctas">
-                <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="lk-btn lk-btn-lime">
-                  Download on the App Store
-                </a>
+                <AppStoreBadge href={appStoreUrl} height={48} />
                 <Link href={`/apps/${APP_SLUG}`} className="lk-btn lk-btn-ghost">
                   App details
                 </Link>
@@ -298,9 +297,7 @@ export default function LockInPage() {
             all included.
           </p>
           <div className="lk-ctas">
-            <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="lk-btn lk-btn-lime">
-              Download on the App Store
-            </a>
+            <AppStoreBadge href={appStoreUrl} height={48} />
           </div>
           <div className="lk-legal">
             <Link href={privacyHref}>Privacy Policy</Link>

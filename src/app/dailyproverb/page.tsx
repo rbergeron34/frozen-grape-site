@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Lora } from "next/font/google";
 import { getApp, upcomingLabel } from "@/lib/apps";
 import "./dailyproverb.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 // Branded landing page for Daily Proverb — cream paper, deep green, gold
 // citations, book serif: the app's own reading aesthetic.
@@ -59,7 +60,7 @@ export default function DailyProverbPage() {
               morning, room to journal what it stirs, and nothing else pulling at your attention.
             </p>
             <div className="dp-actions">
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="dp-button dp-button-primary">Download on the App Store</a>
+              <AppStoreBadge href={APP_STORE_URL} height={48} />
               <a href="#inside" className="dp-button dp-button-secondary">What&rsquo;s inside</a>
             </div>
             {UPCOMING && (
@@ -125,7 +126,7 @@ export default function DailyProverbPage() {
           <h2 className="dp-serif">Begin tomorrow morning.</h2>
           <p>No account. No tracking. Your notes stay in your own iCloud.</p>
         </div>
-        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="dp-button dp-button-primary">Download on the App Store</a>
+        <AppStoreBadge href={APP_STORE_URL} height={48} />
       </section>
 
       <nav className="dp-links" aria-label="Daily Proverb links">

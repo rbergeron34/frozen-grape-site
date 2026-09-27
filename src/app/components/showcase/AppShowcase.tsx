@@ -7,6 +7,7 @@ import { FEATURED_APPS, upcomingLabel } from "@/lib/apps";
 import { PhoneStage } from "./PhoneStage";
 import { AppScreen } from "./screens";
 import { AppCta } from "./AppCta";
+import { AppStoreBadge } from "../AppStoreBadge";
 import { SceneDetails } from "./SceneDetails";
 import { PipActivity } from "./PipActivity";
 import { PipMotionToggle } from "./PipMotionToggle";
@@ -96,7 +97,10 @@ export function AppShowcase() {
                 <div className={styles.features}>{app.showcaseFeatures.map((feature) => (
                   <div className={styles.feature} key={feature.title}><span className={styles.featureGlyph} aria-hidden="true">{feature.glyph}</span><div><h3>{feature.title}</h3><p>{feature.desc}</p></div></div>
                 ))}</div>
-                <AppCta app={app} className={styles.sceneCta} />
+                <div className={styles.ctaRow}>
+                  <AppCta app={app} className={styles.sceneCta} />
+                  {app.status === "live" && app.appStoreUrl && <AppStoreBadge href={app.appStoreUrl} />}
+                </div>
               </div>
             </div>
           </section>

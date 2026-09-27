@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IBM_Plex_Mono, Playfair_Display } from "next/font/google";
 import { getApp } from "@/lib/apps";
 import "./guidinglight.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 // Bespoke, app-branded landing page for Guiding Light. Everything factual here
 // (features, privacy claims, what's free) mirrors src/lib/apps.ts and
@@ -113,9 +114,7 @@ export default function GuidingLightPage() {
               </p>
 
               <div className="gl-ctas">
-                <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="gl-btn gl-btn-ink">
-                  Download on the App Store
-                </a>
+                <AppStoreBadge href={appStoreUrl} height={48} />
                 <Link href={`/apps/${APP_SLUG}`} className="gl-btn gl-btn-ghost">
                   App details
                 </Link>
@@ -335,9 +334,7 @@ export default function GuidingLightPage() {
             export are free and stay that way.
           </p>
           <div className="gl-ctas">
-            <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="gl-btn gl-btn-ink">
-              Download on the App Store
-            </a>
+            <AppStoreBadge href={appStoreUrl} height={48} />
           </div>
           <div className="gl-legal">
             <Link href={privacyHref}>Privacy Policy</Link>

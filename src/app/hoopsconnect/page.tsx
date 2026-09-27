@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getApp } from "@/lib/apps";
 import "./hoopsconnect.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 const APP_STORE_URL = getApp("hoops-connect")?.appStoreUrl ?? "/apps/hoops-connect";
 
@@ -48,7 +49,7 @@ export default function HoopsConnectPage() {
               the group chat.
             </p>
             <div className="hs-actions">
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hs-button hs-button-primary">Download on the App Store</a>
+              <AppStoreBadge href={APP_STORE_URL} height={48} />
               <a href="#games" className="hs-button hs-button-secondary">Meet the games</a>
             </div>
             <div className="hs-proof" aria-label="App highlights">
@@ -98,7 +99,7 @@ export default function HoopsConnectPage() {
           <h2>Your next daily ritual tips off at midnight.</h2>
           <p>No ads. No account. Your game data stays on your phone.</p>
         </div>
-        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hs-button hs-button-primary">Download on the App Store</a>
+        <AppStoreBadge href={APP_STORE_URL} height={48} />
       </section>
 
       <nav className="hs-links" aria-label="Hoops Slate links">

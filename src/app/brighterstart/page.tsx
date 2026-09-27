@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Nunito } from "next/font/google";
 import { getApp, upcomingLabel } from "@/lib/apps";
 import "./brighterstart.css";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 
 // Branded landing page — the marketing voice and sunrise palette come from the
 // app itself (see the app repo's design brief and App Store metadata).
@@ -60,7 +61,7 @@ export default function BrighterStartPage() {
               mission, then a guided routine that carries you from awake to actually up.
             </p>
             <div className="bs-actions">
-              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="bs-button bs-button-primary">Download on the App Store</a>
+              <AppStoreBadge href={APP_STORE_URL} height={48} />
               <a href="#how" className="bs-button bs-button-secondary">How it works</a>
             </div>
             {UPCOMING && (
@@ -138,7 +139,7 @@ export default function BrighterStartPage() {
           <h2>Tomorrow morning can go differently.</h2>
           <p>No account. No tracking. Everything stays on your device and your own iCloud.</p>
         </div>
-        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="bs-button bs-button-primary">Download on the App Store</a>
+        <AppStoreBadge href={APP_STORE_URL} height={48} />
       </section>
 
       <nav className="bs-links" aria-label="BrighterStart links">
