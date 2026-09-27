@@ -45,7 +45,7 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
           <div className={styles.glassReflection} />
         </div>
       </div>
-      <SceneDetails kind={active ? sceneFor(active.slug).detail : undefined} />
+      <SceneDetails kind={active ? sceneFor(active.slug).detail : undefined} watch={active?.watchScreen} />
       {FEATURED_APPS.map((app, index) => (
         <PipActivity
           key={app.slug}

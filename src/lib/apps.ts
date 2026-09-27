@@ -97,6 +97,8 @@ export interface AppEntry {
   screenHeadline: string; // beat-2 headline
   showcaseFeatures: ShowcaseFeature[]; // 2-3, calm marketing voice
   screen: ScreenKind; // what fills the phone
+  /** A watchOS capture (416×496) shown on an Apple Watch beside the phone, for apps used on the wrist. */
+  watchScreen?: { src: string; alt: string };
 }
 
 // Studio grape — the neutral/home-beat brand. Each app's accent takes over
@@ -374,10 +376,16 @@ export const APPS: AppEntry[] = [
       { glyph: "◉", title: "Gentle cues", desc: "A voice and a tap before you drift." },
       { glyph: "▤", title: "80/20 plan", desc: "Scored by minutes in zone, not pace." },
     ],
+    // Runners watch the wrist, not the phone: the run itself is shown on the
+    // watch, and the phone shows the day's plan.
     screen: {
       kind: "image",
-      src: "/assets/apps/lockin/screen-1.png",
-      alt: "LockIN in-run screen showing a heart rate of 144 locked inside the target band",
+      src: "/assets/apps/lockin/screen-3.png",
+      alt: "LockIN home screen showing a 10K plan week and today's easy run",
+    },
+    watchScreen: {
+      src: "/assets/apps/lockin/watch-locked.png",
+      alt: "LockIN on Apple Watch mid-run: 144 bpm locked inside the 138–150 target band",
     },
   },
   {

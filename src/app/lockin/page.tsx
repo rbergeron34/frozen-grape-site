@@ -5,6 +5,7 @@ import { Barlow_Condensed } from "next/font/google";
 import { getApp } from "@/lib/apps";
 import "./lockin.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
+import { WatchFrame } from "../components/WatchFrame";
 
 // Bespoke, app-branded landing page for LockIN. Everything factual here
 // (features, pricing, privacy claims) mirrors src/lib/apps.ts — update both
@@ -34,12 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
+// Phone: the day around the run. Watch: the run itself — that's where a
+// runner actually looks.
 const SHOTS = [
-  { src: "/assets/apps/lockin/screen-1.png", caption: "Locked in — inside your band", alt: "LockIN in-run screen showing a heart rate of 144 inside the lime target band" },
-  { src: "/assets/apps/lockin/screen-2.png", caption: "Drifting high — ease up", alt: "LockIN in-run screen showing 164 bpm above the band with an Ease up cue" },
-  { src: "/assets/apps/lockin/screen-3.png", caption: "Today's session", alt: "LockIN home screen showing a 10K plan week and today's easy run" },
+  { src: "/assets/apps/lockin/screen-3.png", caption: "Today's run", alt: "LockIN home screen showing a 10K plan week and today's easy run" },
+  { src: "/assets/apps/lockin/screen-3.png", caption: "This week's plan", alt: "LockIN plan screen showing a 10K plan week and today's easy run" },
   { src: "/assets/apps/lockin/screen-4.png", caption: "Minutes in zone, by week", alt: "LockIN progress screen showing total minutes in zone and a weekly bar chart" },
 ];
+
+const WATCH = {
+  locked: { src: "/assets/apps/lockin/watch-locked.png", alt: "LockIN on Apple Watch mid-run: 144 bpm locked inside the 138–150 target band" },
+  high: { src: "/assets/apps/lockin/watch-high.png", alt: "LockIN on Apple Watch at 167 bpm, 17 over the band, telling the runner to walk it back" },
+};
 
 const FEATURES = [
   { glyph: "∿", title: "The Line", desc: "Your live heart rate drawn against your target band, so trend is obvious at a glance." },
@@ -89,15 +96,20 @@ export default function LockInPage() {
               </div>
             </div>
 
-            <div className="lk-phone">
-              <div className="lk-phone-screen">
-                <Image
-                  src={SHOTS[0].src}
-                  alt={SHOTS[0].alt}
-                  fill
-                  priority
-                  sizes="(max-width: 880px) 320px, 320px"
-                />
+            <div className="lk-duo">
+              <div className="lk-phone">
+                <div className="lk-phone-screen">
+                  <Image
+                    src={SHOTS[0].src}
+                    alt={SHOTS[0].alt}
+                    fill
+                    priority
+                    sizes="(max-width: 880px) 320px, 320px"
+                  />
+                </div>
+              </div>
+              <div className="lk-duo-watch">
+                <WatchFrame src={WATCH.locked.src} alt={WATCH.locked.alt} sizes="160px" priority />
               </div>
             </div>
           </div>
@@ -131,8 +143,9 @@ export default function LockInPage() {
             <p className="lk-body">
               The brackets are your target zone. The line is your heart rate arriving from the
               left, and the big number rides its tip — so its height tells you where you are
-              before you&rsquo;ve read a single digit. Inside the box, everything is lime. Leave
-              it, and only the line recolors.
+              before you&rsquo;ve read a single digit. Inside the box, everything is lime. Drift
+              out and the line recolors; go well over and the whole screen tells you to walk it
+              back. It&rsquo;s all on your wrist, so your phone stays in your pocket.
             </p>
             <div className="lk-cues">
               <div className="lk-cue in">
@@ -155,10 +168,15 @@ export default function LockInPage() {
               </div>
             </div>
           </div>
-          <div className="lk-phone">
-            <div className="lk-phone-screen">
-              <Image src={SHOTS[1].src} alt={SHOTS[1].alt} fill sizes="(max-width: 880px) 320px, 400px" />
-            </div>
+          <div className="lk-watches">
+            <figure>
+              <WatchFrame src={WATCH.locked.src} alt={WATCH.locked.alt} sizes="220px" />
+              <figcaption>Inside the band</figcaption>
+            </figure>
+            <figure>
+              <WatchFrame src={WATCH.high.src} alt={WATCH.high.alt} sizes="220px" />
+              <figcaption>Drifting over</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -180,7 +198,7 @@ export default function LockInPage() {
           </div>
           <div className="lk-phone">
             <div className="lk-phone-screen">
-              <Image src={SHOTS[2].src} alt={SHOTS[2].alt} fill sizes="(max-width: 880px) 320px, 400px" />
+              <Image src={SHOTS[1].src} alt={SHOTS[1].alt} fill sizes="(max-width: 880px) 320px, 400px" />
             </div>
           </div>
         </section>
@@ -202,7 +220,7 @@ export default function LockInPage() {
           </div>
           <div className="lk-phone">
             <div className="lk-phone-screen">
-              <Image src={SHOTS[3].src} alt={SHOTS[3].alt} fill sizes="(max-width: 880px) 320px, 400px" />
+              <Image src={SHOTS[2].src} alt={SHOTS[2].alt} fill sizes="(max-width: 880px) 320px, 400px" />
             </div>
           </div>
         </section>

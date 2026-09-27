@@ -10,7 +10,7 @@ export interface ShowcaseScene {
   surface: string;
   border: string;
   buttonInk: string;
-  detail?: "verse" | "heart" | "cards";
+  detail?: "verse" | "heart" | "cards" | "watch";
   activity?: PipActivityKind;
 }
 
@@ -35,7 +35,7 @@ export const SCENES: Record<string, ShowcaseScene> = {
   },
   lockin: {
     background: "#151b17", glow: "#394e24", ink: "#f1f5e9", muted: "#b2bdaa",
-    accent: "#ceef61", surface: "#ffffff08", border: "#ceef6126", buttonInk: "#1c2810", detail: "heart", activity: "running",
+    accent: "#ceef61", surface: "#ffffff08", border: "#ceef6126", buttonInk: "#1c2810", detail: "watch", activity: "running",
   },
   count21: {
     background: "#f4efdf", glow: "#ebcd85", ink: "#3d3220", muted: "#6e6046",

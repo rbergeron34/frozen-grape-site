@@ -89,7 +89,7 @@ export function AppShowcase() {
                 <p className={styles.lead}>{app.lead}</p>
               </div>
               <div className={styles.inlineVisual}>
-                <div className={styles.inlinePhone}><div className={styles.inlineScreen}><AppScreen app={app} /></div><SceneDetails kind={scene.detail} /></div>
+                <div className={styles.inlinePhone}><div className={styles.inlineScreen}><AppScreen app={app} /></div><SceneDetails kind={scene.detail} watch={app.watchScreen} /></div>
                 <PipActivity activity={scene.activity} inline />
                 <PipMotionToggle paused={motionPaused} onToggle={toggleMotion} />
               </div>

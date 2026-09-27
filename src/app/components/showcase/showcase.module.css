@@ -129,6 +129,7 @@
 .verseReference { font-size: 8px; text-transform: uppercase; letter-spacing: .16em; color: #a48a5a; }
 .verseStar { position: absolute; right: 19px; bottom: 15px; font-size: 22px; color: #bf994c; }
 .heartCard { width: 258px; margin-left: -34px; border: 1px solid #c4ef5f38; border-radius: 17px; padding: 20px; background: #1e2820f5; color: #d7f682; box-shadow: 0 25px 45px #0000004d; transform: rotate(4deg); }
+.watchDetail { width: 158px; margin: 0 0 0 22px; transform: rotate(-7deg); }
 .heartTop { display: flex; align-items: center; justify-content: space-between; }
 .heartTop .detailEyebrow { color: #b5c3a3; }
 .zoneBadge { font-size: 7px; letter-spacing: .1em; padding: 4px 6px; background: #ceef6117; border-radius: 4px; }

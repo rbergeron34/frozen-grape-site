@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { APPS, getApp, upcomingLabel } from "@/lib/apps";
 import { AppScreen } from "../../components/showcase/screens";
 import { AppStoreBadge } from "../../components/AppStoreBadge";
+import { WatchFrame } from "../../components/WatchFrame";
 
 export function generateStaticParams() {
   return APPS.map((a) => ({ id: a.slug }));
@@ -160,10 +161,17 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
 
             {/* preview phone */}
             <div className="flex justify-center">
-              <div className="m-phone">
-                <div className="m-screen">
-                  <AppScreen app={app} />
+              <div className="relative">
+                <div className="m-phone">
+                  <div className="m-screen">
+                    <AppScreen app={app} />
+                  </div>
                 </div>
+                {app.watchScreen && (
+                  <div className="m-watch">
+                    <WatchFrame src={app.watchScreen.src} alt={app.watchScreen.alt} sizes="120px" />
+                  </div>
+                )}
               </div>
             </div>
           </div>
