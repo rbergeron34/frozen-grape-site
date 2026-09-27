@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { JetBrains_Mono, Newsreader } from "next/font/google";
+import localFont from "next/font/local";
 import {
   COMPLETE_INCLUDES, DISCLAIMER, FREE_INCLUDES, HILO, PLATFORMS, PRICE, PRIVACY_POINTS,
   SHOTS, TABLE_RULES, count21Links,
@@ -14,8 +14,8 @@ import "./count21.css";
 // the App Store listing — update them together. This URL is the Marketing URL
 // in App Store Connect.
 
-const serif = Newsreader({ variable: "--font-c21a-serif", subsets: ["latin"], weight: ["500", "600"], display: "swap" });
-const mono = JetBrains_Mono({ variable: "--font-c21a-mono", subsets: ["latin"], weight: ["500", "700"], display: "swap" });
+const serif = localFont({ src: "../../fonts/newsreader.woff2", weight: "500 600", variable: "--font-c21a-serif", display: "swap" });
+const mono = localFont({ src: "../../fonts/jetbrains-mono.woff2", weight: "500 700", variable: "--font-c21a-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Count21 — Learn to count cards, one idea at a time",

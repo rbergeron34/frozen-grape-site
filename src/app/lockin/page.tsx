@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Barlow_Condensed } from "next/font/google";
+import localFont from "next/font/local";
 import { getApp } from "@/lib/apps";
 import "./lockin.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
@@ -12,10 +12,12 @@ import { WatchFrame } from "../components/WatchFrame";
 // together. Visual language follows the app's own identity brief:
 // Volt Lime on near-black, band-box brackets, condensed numerals.
 
-const barlow = Barlow_Condensed({
+const barlow = localFont({
+  src: [
+    { path: "../../fonts/barlow-condensed-600.woff2", weight: "600" },
+    { path: "../../fonts/barlow-condensed-700.woff2", weight: "700" },
+  ],
   variable: "--font-barlow",
-  subsets: ["latin"],
-  weight: ["600", "700"],
   display: "swap",
 });
 

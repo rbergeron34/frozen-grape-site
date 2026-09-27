@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Lora } from "next/font/google";
+import localFont from "next/font/local";
 import { getApp, upcomingLabel } from "@/lib/apps";
 import "./dailyproverb.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
@@ -9,10 +9,11 @@ import { AppStoreBadge } from "../components/AppStoreBadge";
 // Branded landing page for Daily Proverb — cream paper, deep green, gold
 // citations, book serif: the app's own reading aesthetic.
 
-const lora = Lora({
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+const lora = localFont({
+  src: [
+    { path: "../../fonts/lora.woff2", weight: "500 700", style: "normal" },
+    { path: "../../fonts/lora-italic.woff2", weight: "500 700", style: "italic" },
+  ],
   variable: "--font-dp-serif",
 });
 
