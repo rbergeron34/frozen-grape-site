@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FEATURED_APPS } from "@/lib/apps";
@@ -8,6 +8,8 @@ import { PhoneStage } from "./PhoneStage";
 import { AppScreen } from "./screens";
 import { AppCta } from "./AppCta";
 import { SceneDetails } from "./SceneDetails";
+import { PipActivity } from "./PipActivity";
+import { PipMotionToggle } from "./PipMotionToggle";
 import { Pip } from "../brand/Pip";
 import { ORBITS, sceneFor, sceneStyle, STUDIO_SCENE } from "./scenes";
 import { useShowcaseState } from "./useShowcaseState";
@@ -15,12 +17,14 @@ import styles from "./showcase.module.css";
 
 export function AppShowcase() {
   const root = useRef<HTMLDivElement>(null);
+  const [motionPaused, setMotionPaused] = useState(false);
+  const toggleMotion = () => setMotionPaused((paused) => !paused);
   const state = useShowcaseState(root);
   const active = FEATURED_APPS[state.activeIndex];
   const theme = active ? sceneFor(active.slug) : STUDIO_SCENE;
 
   return (
-    <div ref={root} className={styles.experience} style={sceneStyle(theme)}>
+    <div ref={root} className={styles.experience} style={sceneStyle(theme)} data-pip-paused={motionPaused}>
       <div className={styles.canvas} data-canvas>
         <div className={styles.backdrop} aria-hidden="true" />
         <div className={styles.stageWorld} data-stage-world>
@@ -50,6 +54,7 @@ export function AppShowcase() {
             </a>
           ))}
           <span className={styles.railCount}>{String(Math.max(0, state.activeIndex) + 1).padStart(2, "0")} <span>/ {String(FEATURED_APPS.length).padStart(2, "0")}</span></span>
+          <PipMotionToggle paused={motionPaused} onToggle={toggleMotion} compact />
         </nav>
       </div>
       <header className={styles.intro} data-intro>
@@ -83,6 +88,8 @@ export function AppShowcase() {
               </div>
               <div className={styles.inlineVisual}>
                 <div className={styles.inlinePhone}><div className={styles.inlineScreen}><AppScreen app={app} /></div><SceneDetails kind={scene.detail} /></div>
+                <PipActivity activity={scene.activity} inline />
+                <PipMotionToggle paused={motionPaused} onToggle={toggleMotion} />
               </div>
               <div className={styles.chapterInfo}>
                 <div className={styles.features}>{app.showcaseFeatures.map((feature) => (

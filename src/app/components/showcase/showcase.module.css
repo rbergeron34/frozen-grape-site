@@ -9,6 +9,8 @@
   --home-opacity: 1;
   --open: 0;
   --detail: 0;
+  --pip-visibility: 0;
+  --pip-y: 24px;
   --assembly-caption: 0;
   --ring-opacity: .65;
   position: relative;
@@ -142,6 +144,11 @@
 .outro { position: relative; z-index: 3; height: clamp(90px, 16svh, 160px); pointer-events: none; }
 .outro::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(transparent, #f7f8fa); }
 
+@media (min-width: 901px) and (max-width: 1199px) {
+  /* Reserve room to the left of the phone for Pip, including tall tablets. */
+  .phoneRig { height: min(680px, calc(100svh - 166px), 54vw); }
+}
+
 @media (min-width: 901px) and (max-width: 1100px) {
   .detail { right: -32px; width: 200px; --detail-scale: .86; transform-origin: right bottom; }
   .heartCard { width: 234px; }
@@ -167,7 +174,7 @@
   .feature { padding: 9px 0; }
   .sceneCta { margin-top: 16px; padding: 11px 18px; }
   .homeGrid { gap: 14px 8%; }
-  .detail { --detail-scale: .75; transform-origin: right bottom; right: -62px; }
+  .detail { --detail-scale: .75; transform-origin: right bottom; right: -42px; }
   .appRail { gap: 1px; padding-top: 7px; padding-bottom: 7px; }
   .appRail a { width: 46px; height: 44px; }
   .appRail a img { width: 34px; height: 34px; }
@@ -199,7 +206,7 @@
   .appIdentityText > span { font-size: 22px; }
   .chapter h2 { font-size: clamp(37px, 6.5vw, 54px); max-width: 14ch; margin: 23px auto 0; }
   .lead { font-size: 16px; margin: 17px auto 0; max-width: 32ch; }
-  .inlineVisual { display: flex; align-items: center; justify-content: center; width: 100%; margin: 38px 0 40px; padding: 0 20px; }
+  .inlineVisual { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; width: 100%; margin: 38px 0 30px; padding: 0 20px; }
   .inlinePhone { width: min(248px, 70vw); aspect-ratio: 352 / 724; position: relative; border-radius: 15% / 7.3%; padding: 8px; background: linear-gradient(135deg, #777974, #252727 30%, #4b4e48 70%, #71746d); box-shadow: 0 22px 35px -12px #14171b4d, inset 0 0 0 1px #ffffff99; }
   .inlineScreen { position: relative; width: 100%; height: 100%; border-radius: 13% / 6.3%; overflow: hidden; background: var(--scene-bg); border: 2px solid #151916; }
   .inlinePhone .detail { right: -29px; bottom: 10%; transform-origin: right bottom; opacity: 1; transform: scale(.70); }

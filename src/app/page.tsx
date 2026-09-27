@@ -14,7 +14,7 @@ export default function Home() {
           <div className={styles.map} aria-hidden="true">
             <Image src="/brand/texas-outline.svg" alt="" width={360} height={340} className={styles.texas} />
             <div className={styles.marker}>
-              <Pip pose="macbook" sizes="(max-width: 440px) 94px, 137px" />
+              <Pip pose="macbook" sizes="(max-width: 440px) 78px, 114px" />
             </div>
           </div>
           <h2 id="studio-title" className="font-extrabold tracking-[-0.03em] text-[clamp(28px,3.4vw,40px)]">

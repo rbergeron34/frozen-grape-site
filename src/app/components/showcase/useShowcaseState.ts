@@ -49,7 +49,7 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
 
     const update = () => {
       frame = 0;
-      if (!desktop.matches) { commit(-1, false, true); return; }
+      if (!desktop.matches) { element.setAttribute("data-pip-ready", "false"); commit(-1, false, true); return; }
       if (needsMeasure) {
         width = world.clientWidth;
         height = world.clientHeight;
@@ -85,6 +85,12 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
       commit(exit >= 0.9 ? -1 : activeIndex, showNavigation, intro < 0.62);
       const open = activeIndex < 0 ? 0 : smooth((height * 0.6 - rects[activeIndex].top) / (height * 0.3));
       const detail = activeIndex < 0 ? 0 : smooth((height * 0.46 - rects[activeIndex].top) / (height * 0.26));
+      const activeRect = rects[activeIndex];
+      // Pip leaves before the next app takes over. Both directions and anchor
+      // jumps derive from geometry, with no timers or per-scroll React state.
+      const pipEnter = activeRect ? smooth((height * 0.52 - activeRect.top) / (height * 0.22)) : 0;
+      const pipLeave = activeRect ? smooth((height * 0.78 - activeRect.bottom) / (height * 0.18)) : 0;
+      element.setAttribute("data-pip-ready", String(pipEnter > 0.55 && pipLeave < 0.95 && showNavigation));
       const set = (name: string, value: number | string) => element.style.setProperty(name, String(value));
       set("--hero-opacity", 1 - smooth(intro / 0.62));
       set("--hero-y", `${-90 * assembly}px`);
@@ -96,6 +102,8 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
       set("--home-opacity", activeIndex < 0 ? 1 : 0);
       set("--open", open);
       set("--detail", detail);
+      set("--pip-visibility", pipEnter * (1 - pipLeave));
+      set("--pip-y", `${24 * (1 - pipEnter) - 10 * pipLeave}px`);
       set("--assembly-caption", smooth((intro - 0.62) / 0.25) * (1 - shift));
       set("--ring-opacity", (1 - shift) * 0.65);
       orbits.forEach((orb, index) => {

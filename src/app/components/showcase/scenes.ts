@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import type { PipActivityKind } from "./PipActivity";
 
 export interface ShowcaseScene {
   background: string;
@@ -10,6 +11,7 @@ export interface ShowcaseScene {
   border: string;
   buttonInk: string;
   detail?: "verse" | "heart" | "cards";
+  activity?: PipActivityKind;
 }
 
 export const STUDIO_SCENE: ShowcaseScene = {
@@ -21,31 +23,31 @@ export const STUDIO_SCENE: ShowcaseScene = {
 export const SCENES: Record<string, ShowcaseScene> = {
   "guiding-light": {
     background: "#f4eddf", glow: "#e9d2a0", ink: "#392e20", muted: "#6f6049",
-    accent: "#8b641e", surface: "#fffdf7bb", border: "#8b641e26", buttonInk: "#ffffff", detail: "verse",
+    accent: "#8b641e", surface: "#fffdf7bb", border: "#8b641e26", buttonInk: "#ffffff", detail: "verse", activity: "journal",
   },
   brighterstart: {
     background: "#fff0e6", glow: "#ffc091", ink: "#482c26", muted: "#79574c",
-    accent: "#ac471c", surface: "#fffaf5bb", border: "#ac471c26", buttonInk: "#ffffff",
+    accent: "#ac471c", surface: "#fffaf5bb", border: "#ac471c26", buttonInk: "#ffffff", activity: "waking",
   },
   "daily-proverb": {
     background: "#eaf0e6", glow: "#c7d9b8", ink: "#293e2c", muted: "#53664f",
-    accent: "#486a41", surface: "#fafff6bb", border: "#486a4126", buttonInk: "#ffffff",
+    accent: "#486a41", surface: "#fafff6bb", border: "#486a4126", buttonInk: "#ffffff", activity: "reading",
   },
   lockin: {
     background: "#151b17", glow: "#394e24", ink: "#f1f5e9", muted: "#b2bdaa",
-    accent: "#ceef61", surface: "#ffffff08", border: "#ceef6126", buttonInk: "#1c2810", detail: "heart",
+    accent: "#ceef61", surface: "#ffffff08", border: "#ceef6126", buttonInk: "#1c2810", detail: "heart", activity: "running",
   },
   count21: {
     background: "#f4efdf", glow: "#ebcd85", ink: "#3d3220", muted: "#6e6046",
-    accent: "#885b0d", surface: "#fffdf6bb", border: "#885b0d26", buttonInk: "#ffffff", detail: "cards",
+    accent: "#885b0d", surface: "#fffdf6bb", border: "#885b0d26", buttonInk: "#ffffff", detail: "cards", activity: "cards",
   },
   "hoops-connect": {
     background: "#faf0e8", glow: "#ecc3a4", ink: "#422d23", muted: "#795c4c",
-    accent: "#a14d27", surface: "#fffaf7bb", border: "#a14d2726", buttonInk: "#ffffff",
+    accent: "#a14d27", surface: "#fffaf7bb", border: "#a14d2726", buttonInk: "#ffffff", activity: "basketball",
   },
   passphoto: {
     background: "#eaf1fa", glow: "#bdd5f2", ink: "#273951", muted: "#52657e",
-    accent: "#365f99", surface: "#f8fcffbb", border: "#365f9926", buttonInk: "#ffffff",
+    accent: "#365f99", surface: "#f8fcffbb", border: "#365f9926", buttonInk: "#ffffff", activity: "portrait",
   },
 };
 
