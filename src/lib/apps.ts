@@ -380,8 +380,8 @@ export const APPS: AppEntry[] = [
     // watch, and the phone shows the day's plan.
     screen: {
       kind: "image",
-      src: "/assets/apps/lockin/screen-3.png",
-      alt: "LockIN home screen showing a 10K plan week and today's easy run",
+      src: "/assets/apps/lockin/screen-1.png",
+      alt: "LockIN's Today screen: keep it easy, a 30-minute run in the 138–150 bpm Zone 2 band, and a Start today's run button",
     },
     watchScreen: {
       src: "/assets/apps/lockin/watch-locked.png",

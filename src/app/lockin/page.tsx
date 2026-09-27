@@ -38,9 +38,10 @@ export const metadata: Metadata = {
 // Phone: the day around the run. Watch: the run itself — that's where a
 // runner actually looks.
 const SHOTS = [
-  { src: "/assets/apps/lockin/screen-3.png", caption: "Today's run", alt: "LockIN home screen showing a 10K plan week and today's easy run" },
-  { src: "/assets/apps/lockin/screen-3.png", caption: "This week's plan", alt: "LockIN plan screen showing a 10K plan week and today's easy run" },
-  { src: "/assets/apps/lockin/screen-4.png", caption: "Minutes in zone, by week", alt: "LockIN progress screen showing total minutes in zone and a weekly bar chart" },
+  { src: "/assets/apps/lockin/screen-1.png", caption: "Today's run", alt: "LockIN's Today screen: keep it easy, a 30-minute run in the 138–150 bpm Zone 2 band, and a Start today's run button" },
+  { src: "/assets/apps/lockin/screen-2.png", caption: "This week's plan", alt: "LockIN plan screen with a coach's note, a 10-week journey, and the daily three-tap check-in" },
+  { src: "/assets/apps/lockin/screen-3.png", caption: "Minutes in zone, by week", alt: "LockIN progress screen showing 372 total minutes in zone and a weekly bar chart" },
+  { src: "/assets/apps/lockin/screen-4.png", caption: "Every run, mapped by effort", alt: "LockIN maps screen with a sample run around a reservoir, colored by heart-rate zone" },
 ];
 
 const WATCH = {
