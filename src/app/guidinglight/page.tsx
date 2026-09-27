@@ -77,6 +77,7 @@ export default function GuidingLightPage() {
   const app = getApp(APP_SLUG);
   const privacyHref = app?.legal?.privacy ?? "/privacy";
   const termsHref = app?.legal?.terms ?? "/terms";
+  const appStoreUrl = app?.appStoreUrl ?? "/apps/guiding-light";
 
   return (
     <div className={`gl ${playfair.variable} ${plexMono.variable}`}>
@@ -88,7 +89,7 @@ export default function GuidingLightPage() {
               <div>
                 <span className="gl-badge">
                   <i />
-                  Coming soon
+                  Now on the App Store
                 </span>
               </div>
 
@@ -112,9 +113,9 @@ export default function GuidingLightPage() {
               </p>
 
               <div className="gl-ctas">
-                <Link href="/#notify" className="gl-btn gl-btn-ink">
-                  Get notified →
-                </Link>
+                <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="gl-btn gl-btn-ink">
+                  Download on the App Store
+                </a>
                 <Link href={`/apps/${APP_SLUG}`} className="gl-btn gl-btn-ghost">
                   App details
                 </Link>
@@ -330,14 +331,13 @@ export default function GuidingLightPage() {
             <span className="gl-brass">as many times as it takes.</span>
           </h2>
           <p>
-            Guiding Light is finishing up before release. Journaling, your full history, the daily
-            verse, and export are free and stay that way. Leave your email and we&rsquo;ll tell you
-            the day it lands — nothing else.
+            Guiding Light is free on iPhone. Journaling, your full history, the daily verse, and
+            export are free and stay that way.
           </p>
           <div className="gl-ctas">
-            <Link href="/#notify" className="gl-btn gl-btn-ink">
-              Get notified →
-            </Link>
+            <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="gl-btn gl-btn-ink">
+              Download on the App Store
+            </a>
           </div>
           <div className="gl-legal">
             <Link href={privacyHref}>Privacy Policy</Link>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Lora } from "next/font/google";
+import { getApp, upcomingLabel } from "@/lib/apps";
 import "./dailyproverb.css";
 
 // Branded landing page for Daily Proverb — cream paper, deep green, gold
@@ -14,7 +15,11 @@ const lora = Lora({
   variable: "--font-dp-serif",
 });
 
-const APP_STORE_URL = "https://apps.apple.com/us/app/daily-wisdom-book-of-proverbs/id977329614";
+// The screens below are the 3.0 redesign; the App Store still serves 2.x as
+// "Daily Wisdom", so download buttons carry the "Version 3.0 coming soon" label.
+const app = getApp("daily-proverb");
+const APP_STORE_URL = app?.appStoreUrl ?? "/apps/daily-proverb";
+const UPCOMING = upcomingLabel(app);
 
 export const metadata: Metadata = {
   title: "Daily Proverb — One proverb a day, beautifully set.",
@@ -57,6 +62,9 @@ export default function DailyProverbPage() {
               <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="dp-button dp-button-primary">Download on the App Store</a>
               <a href="#inside" className="dp-button dp-button-secondary">What&rsquo;s inside</a>
             </div>
+            {UPCOMING && (
+              <p className="dp-version"><strong>{UPCOMING}.</strong> {app?.upcoming?.today}</p>
+            )}
             <div className="dp-proof" aria-label="App highlights">
               <span>365 curated verses</span><span>No feeds, no ads</span><span>Private iCloud sync</span>
             </div>
@@ -100,6 +108,7 @@ export default function DailyProverbPage() {
             ESV — monthly and annual plans include a 3-day free trial, or unlock it once with
             Lifetime.
           </p>
+          {UPCOMING && <p className="dp-version">Screens and pricing show version {app?.upcoming?.version}, coming soon.</p>}
           <div className="dp-shots">
             {shots.map(([src, alt], index) => (
               <div className={index === 1 ? "dp-shot dp-shot-raised" : "dp-shot"} key={src}>
@@ -112,11 +121,11 @@ export default function DailyProverbPage() {
 
       <section className="dp-close dp-wrap">
         <div>
-          <p className="dp-kicker">Free on the App Store</p>
+          <p className="dp-kicker">{UPCOMING ?? "Free on the App Store"}</p>
           <h2 className="dp-serif">Begin tomorrow morning.</h2>
           <p>No account. No tracking. Your notes stay in your own iCloud.</p>
         </div>
-        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="dp-button dp-button-primary">Download Daily Proverb</a>
+        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="dp-button dp-button-primary">Download on the App Store</a>
       </section>
 
       <nav className="dp-links" aria-label="Daily Proverb links">

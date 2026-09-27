@@ -53,6 +53,7 @@ export default function LockInPage() {
   const app = getApp(APP_SLUG);
   const privacyHref = app?.legal?.privacy ?? "/privacy";
   const termsHref = app?.legal?.terms ?? "/terms";
+  const appStoreUrl = app?.appStoreUrl ?? "/apps/lockin";
 
   return (
     <div className={`lk ${barlow.variable}`}>
@@ -64,7 +65,7 @@ export default function LockInPage() {
               <div>
                 <span className="lk-badge">
                   <i />
-                  Coming soon
+                  Now on the App Store
                 </span>
               </div>
 
@@ -80,9 +81,9 @@ export default function LockInPage() {
               </p>
 
               <div className="lk-ctas">
-                <Link href="/#notify" className="lk-btn lk-btn-lime">
-                  Get notified →
-                </Link>
+                <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="lk-btn lk-btn-lime">
+                  Download on the App Store
+                </a>
                 <Link href={`/apps/${APP_SLUG}`} className="lk-btn lk-btn-ghost">
                   App details
                 </Link>
@@ -293,13 +294,13 @@ export default function LockInPage() {
             <span className="lk-lime">finally easy.</span>
           </h2>
           <p>
-            LockIN is in the final stretch before release. Leave your email and we&rsquo;ll tell
-            you the day it lands — nothing else.
+            LockIN is free on iPhone and Apple Watch. Heart-rate coaching, plans, and progress are
+            all included.
           </p>
           <div className="lk-ctas">
-            <Link href="/#notify" className="lk-btn lk-btn-lime">
-              Get notified →
-            </Link>
+            <a href={appStoreUrl} target="_blank" rel="noopener noreferrer" className="lk-btn lk-btn-lime">
+              Download on the App Store
+            </a>
           </div>
           <div className="lk-legal">
             <Link href={privacyHref}>Privacy Policy</Link>

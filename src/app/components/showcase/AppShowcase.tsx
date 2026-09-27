@@ -3,7 +3,7 @@
 import { useRef, useState, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FEATURED_APPS } from "@/lib/apps";
+import { FEATURED_APPS, upcomingLabel } from "@/lib/apps";
 import { PhoneStage } from "./PhoneStage";
 import { AppScreen } from "./screens";
 import { AppCta } from "./AppCta";
@@ -81,6 +81,7 @@ export function AppShowcase() {
                   <div className={styles.appIdentityText}>
                     <span>{app.name}</span>
                     {app.status === "coming-soon" && <small>Coming soon</small>}
+                    {app.status === "live" && app.upcoming && <small>{upcomingLabel(app)}</small>}
                   </div>
                 </div>
                 <h2 id={`title-${app.slug}`}>{app.screenHeadline}</h2>

@@ -45,7 +45,7 @@ export const HILO = [
 
 export const SHOTS = [
   { src: "/assets/apps/count21/screen-1.png", title: "Learn the method.", caption: "A structured path from card values to deviations.", alt: "Count21 Learn screen with three of seven lessons complete and True count up next" },
-  { src: "/assets/apps/count21/screen-2.png", title: "Understand the count.", caption: "Clear explanations, examples and lesson checks.", alt: "Count21 True count lesson showing +6 ÷ 1 = +6 beside +6 ÷ 3 = +2" },
+  { src: "/assets/apps/count21/screen-2.png", title: "Understand the count.", caption: "Clear explanations, examples and lesson checks.", alt: "Count21 Card values lesson explaining that low cards add one, with audio narration and a tap-to-answer card" },
   { src: "/assets/apps/count21/screen-3.png", title: "Build fast recall.", caption: "Focused drills with guidance when you need it.", alt: "Count21 card-value drill asking the Hi-Lo value of a nine of clubs" },
   { src: "/assets/apps/count21/screen-4.png", title: "Practice every decision.", caption: "A simulated table with honest strategy review.", alt: "Count21 practice table with a soft 15 against a dealer king" },
   { src: "/assets/apps/count21/screen-5.png", title: "Nothing hidden.", caption: "Inspect the shoe, count and shuffle seed.", alt: "Count21 shoe inspector showing remaining cards by rank and the shuffle seed" },

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { APPS, getApp } from "@/lib/apps";
+import { APPS, getApp, upcomingLabel } from "@/lib/apps";
 import { AppScreen } from "../../components/showcase/screens";
 
 export function generateStaticParams() {
@@ -69,6 +69,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
   if (!app) notFound();
 
   const live = app.status === "live" && app.appStoreUrl;
+  const upcoming = live ? upcomingLabel(app) : null;
 
   return (
     <div
@@ -106,6 +107,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--accent)]">
                     {app.category}
                     {!live && <span className="soon-tag">Coming soon</span>}
+                    {upcoming && <span className="soon-tag">{upcoming}</span>}
                   </div>
                   <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-1">{app.name}</h1>
                   <p className="text-[var(--muted)] font-medium">{app.tagline}</p>
@@ -143,6 +145,11 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
                   </Link>
                 )}
               </div>
+              {upcoming && (
+                <p className="mt-3 max-w-md text-sm text-[var(--muted)]">
+                  Screenshots show version {app.upcoming!.version}, coming soon. {app.upcoming!.today}
+                </p>
+              )}
 
               {live && (
                 <div className="mt-8 grid grid-cols-4 gap-2 text-center max-w-md">
@@ -194,7 +201,12 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
 
           {app.inAppPurchases && app.inAppPurchases.length > 0 && (
             <div className="mt-12">
-              <h3 className="font-bold mb-4">In-app purchases</h3>
+              <h3 className="font-bold mb-4">
+                In-app purchases
+                {app.upcoming && (
+                  <span className="font-normal text-[var(--muted)]"> · version {app.upcoming.version}</span>
+                )}
+              </h3>
               <div className="space-y-2 max-w-md">
                 {app.inAppPurchases.map((p) => (
                   <div key={p.name} className="flex items-center justify-between p-3 rounded-xl bg-[var(--ink)]/[0.04]">
@@ -225,6 +237,13 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
                 Version {app.whatsNew.version} · {app.whatsNew.date}
               </div>
               <p className="text-[var(--ink)]/80 max-w-2xl">{app.whatsNew.notes}</p>
+            </div>
+          )}
+
+          {app.upcoming && (
+            <div className="mt-12">
+              <h3 className="font-bold mb-1">Coming in version {app.upcoming.version}</h3>
+              <p className="text-[var(--ink)]/80 max-w-2xl">{app.upcoming.notes}</p>
             </div>
           )}
 
@@ -272,6 +291,7 @@ export default async function AppPage({ params }: { params: Promise<{ id: string
             Support
           </Link>
         </div>
+        {upcoming && <p className="mt-4 text-sm text-[var(--muted)]">{upcoming}</p>}
       </section>
     </div>
   );

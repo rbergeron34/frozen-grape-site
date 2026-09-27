@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getApp } from "@/lib/apps";
 import "./hoopsconnect.css";
+
+const APP_STORE_URL = getApp("hoops-connect")?.appStoreUrl ?? "/apps/hoops-connect";
 
 export const metadata: Metadata = {
   title: "Hoops Slate — Five basketball puzzles. One slate.",
@@ -45,7 +48,7 @@ export default function HoopsConnectPage() {
               the group chat.
             </p>
             <div className="hs-actions">
-              <Link href="/#notify" className="hs-button hs-button-primary">Get launch updates</Link>
+              <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hs-button hs-button-primary">Download on the App Store</a>
               <a href="#games" className="hs-button hs-button-secondary">Meet the games</a>
             </div>
             <div className="hs-proof" aria-label="App highlights">
@@ -91,11 +94,11 @@ export default function HoopsConnectPage() {
 
       <section className="hs-close hs-wrap">
         <div>
-          <p className="hs-kicker">Coming soon to iPhone</p>
-          <h2>Your next daily ritual is warming up.</h2>
+          <p className="hs-kicker">Free on iPhone</p>
+          <h2>Your next daily ritual tips off at midnight.</h2>
           <p>No ads. No account. Your game data stays on your phone.</p>
         </div>
-        <Link href="/#notify" className="hs-button hs-button-primary">Tell me when it drops</Link>
+        <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hs-button hs-button-primary">Download on the App Store</a>
       </section>
 
       <nav className="hs-links" aria-label="Hoops Slate links">
