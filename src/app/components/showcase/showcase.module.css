@@ -68,7 +68,9 @@
 .homeGreeting > strong { display: block; font-size: clamp(16px, 1.8vw, 24px); font-weight: 600; letter-spacing: -.04em; margin-top: 4px; }
 .homeGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 8%; padding: 0 9%; }
 .homeApp { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 0; }
-.homeTile { width: 100%; aspect-ratio: 1; position: relative; border-radius: 24%; overflow: hidden; box-shadow: 0 8px 14px #35223e20; opacity: var(--grid-opacity); }
+.experience[data-grid-ready="true"] .homeApp { pointer-events: auto; }
+.homeTile { width: 100%; aspect-ratio: 1; position: relative; border-radius: 24%; overflow: hidden; box-shadow: 0 8px 14px #35223e20; opacity: var(--grid-opacity); transition: transform .2s, box-shadow .2s; }
+.homeApp:hover .homeTile { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 20px #35223e30; }
 .homeTile img { object-fit: cover; }
 .homeApp > span { font-size: clamp(8px, .8vw, 10px); font-weight: 500; color: #5b4b69; white-space: nowrap; opacity: var(--grid-opacity); }
 .phoneSignature { position: absolute; bottom: 7%; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 9px; color: #84718d; opacity: var(--grid-opacity); }
