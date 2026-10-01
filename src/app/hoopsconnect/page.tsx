@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getApp } from "@/lib/apps";
+import { getApp, smartAppBanner } from "@/lib/apps";
 import "./hoopsconnect.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "A fresh slate of five quick basketball puzzles every day: Hoop Connections, Lineup, Journey, Crossover, and HoopGrid.",
   alternates: { canonical: "/hoopsconnect" },
+  ...smartAppBanner("hoops-connect"),
   openGraph: {
     type: "website",
     url: "/hoopsconnect",

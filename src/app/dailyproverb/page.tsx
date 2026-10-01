@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp, upcomingLabel } from "@/lib/apps";
+import { getApp, smartAppBanner, upcomingLabel } from "@/lib/apps";
 import "./dailyproverb.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   description:
     "A clean, distraction-free way to read, journal, and reflect on the Book of Proverbs — one verse a day, with private iCloud sync and no feeds.",
   alternates: { canonical: "/dailyproverb" },
+  ...smartAppBanner("daily-proverb"),
   openGraph: {
     type: "website",
     url: "/dailyproverb",

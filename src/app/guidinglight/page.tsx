@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp } from "@/lib/apps";
+import { getApp, smartAppBanner } from "@/lib/apps";
 import "./guidinglight.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   description:
     "A daily Bible journal for iPhone. A cited verse each morning, a short reflection at night, and a private journal encrypted on your device — with a companion that asks good questions instead of giving easy answers.",
   alternates: { canonical: "/guidinglight" },
+  ...smartAppBanner(APP_SLUG),
   openGraph: {
     type: "website",
     url: "/guidinglight",

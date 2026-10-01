@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp } from "@/lib/apps";
+import { getApp, smartAppBanner } from "@/lib/apps";
 import "./lockin.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 import { WatchFrame } from "../components/WatchFrame";
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   description:
     "A Zone 2–first running coach for iPhone and Apple Watch. LockIN keeps your easy runs actually easy — live heart-rate coaching, an adaptive 80/20 plan, and runs scored by minutes in zone.",
   alternates: { canonical: "/lockin" },
+  ...smartAppBanner(APP_SLUG),
   openGraph: {
     type: "website",
     url: "/lockin",

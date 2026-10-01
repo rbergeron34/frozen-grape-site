@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { smartAppBanner } from "@/lib/apps";
 import { SUPPORT_EMAIL } from "@/lib/studio";
 
 export const metadata: Metadata = {
   title: "Hoops Slate — Support",
   description: "Get help with Hoops Slate, report a problem, or contact support.",
   alternates: { canonical: "/hoopsconnect/support" },
+  ...smartAppBanner("hoops-connect"),
 };
 
 const mail = (subject: string) => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp, upcomingLabel } from "@/lib/apps";
+import { getApp, smartAppBanner, upcomingLabel } from "@/lib/apps";
 import "./brighterstart.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   description:
     "The alarm that walks you into your morning: dismiss it into a short wake-up mission, then a guided routine. Private by design. The core alarm is free, forever.",
   alternates: { canonical: "/brighterstart" },
+  ...smartAppBanner("brighterstart"),
   openGraph: {
     type: "website",
     url: "/brighterstart",

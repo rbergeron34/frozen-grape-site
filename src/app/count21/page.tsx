@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { smartAppBanner } from "@/lib/apps";
 import {
   COMPLETE_INCLUDES, DISCLAIMER, FREE_INCLUDES, HILO, PLATFORMS, PRICE, PRIVACY_POINTS,
   SHOTS, TABLE_RULES, count21Links,
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   description:
     "A Hi-Lo card-counting trainer for iPhone and iPad: seven lessons, five drills and a practice table that explains every decision.",
   alternates: { canonical: "/count21" },
+  ...smartAppBanner("count21"),
   openGraph: {
     type: "website",
     url: "/count21",

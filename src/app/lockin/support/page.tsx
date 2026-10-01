@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { smartAppBanner } from "@/lib/apps";
 import { SUPPORT_EMAIL } from "@/lib/studio";
 
 // This URL becomes the Support URL in App Store Connect for LockIN.
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "LockIN — Support",
   description: "Get help with LockIN, report a problem, or contact support.",
   alternates: { canonical: "/lockin/support" },
+  ...smartAppBanner("lockin"),
 };
 
 const mail = (subject: string) => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;
