@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { smartAppBanner } from "@/lib/apps";
 import { SUPPORT_EMAIL } from "@/lib/studio";
 
 // This URL is the Support URL in App Store Connect for Daily Proverb.
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   title: "Daily Proverb — Support",
   description: "Get help with Daily Proverb, report a problem, or contact support.",
   alternates: { canonical: "/dailyproverb/support" },
+  ...smartAppBanner("daily-proverb"),
 };
 
 const mail = (subject: string) => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;

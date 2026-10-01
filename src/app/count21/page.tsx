@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { smartAppBanner } from "@/lib/apps";
 import {
   COMPLETE_INCLUDES, DISCLAIMER, FREE_INCLUDES, HILO, PLATFORMS, PRICE, PRIVACY_POINTS,
   SHOTS, TABLE_RULES, count21Links,
 } from "./content";
 import { CountDrill, HeroDeal } from "./LiveCount";
 import "./count21.css";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#0e1012", ink: "#f4f1e9", muted: "#b2b6ae", accent: "#edb54c" };
 
 // Bespoke, app-branded landing page for Count21 ("Live Count": the page itself
 // keeps a count). Facts live in ./content.ts, which mirrors src/lib/apps.ts and
@@ -22,6 +27,7 @@ export const metadata: Metadata = {
   description:
     "A Hi-Lo card-counting trainer for iPhone and iPad: seven lessons, five drills and a practice table that explains every decision.",
   alternates: { canonical: "/count21" },
+  ...smartAppBanner("count21"),
   openGraph: {
     type: "website",
     url: "/count21",
@@ -40,7 +46,7 @@ const PATH = [
 export default function Count21Page() {
   const links = count21Links();
   return (
-    <div className={`c21a ${serif.variable} ${mono.variable}`}>
+    <div className={`c21a ${serif.variable} ${mono.variable}`} {...navScene(NAV_SCENE)}>
       <section className="c21a-hero">
         <div className="c21a-wrap c21a-hero-grid">
           <div>

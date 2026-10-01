@@ -19,13 +19,12 @@
 .artwork { object-fit: contain; }
 .accents { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 
-/* Repeat while visible so the moment isn't missed while reading the app copy.
-   The shared pause control and system reduced-motion preference stop motion. */
-.animated { animation-duration: 4.8s; animation-timing-function: ease-in-out; animation-fill-mode: both; animation-iteration-count: infinite; }
+/* One pass per view, kept under 5s so no pause control is needed (WCAG 2.2.2).
+   Every keyframe ends on the rest pose; leaving view resets it to replay on return. */
+.animated { animation-duration: 4.8s; animation-timing-function: ease-in-out; animation-fill-mode: both; animation-iteration-count: 1; }
 .companion[data-active="false"] .animated,
 .companion:not([data-pip-in-view="true"]) .animated { animation-name: none !important; }
-.companion[data-page-visible="false"] .animated,
-:global([data-pip-paused="true"]) .companion .animated { animation-play-state: paused; }
+.companion[data-page-visible="false"] .animated { animation-play-state: paused; }
 
 .companion[data-pip-activity="journal"] .figure { animation-name: thoughtful; }
 .lanternGlow { opacity: 0; mix-blend-mode: screen; filter: blur(3px); animation-name: lantern; }

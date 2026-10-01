@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { APPS, getApp, upcomingLabel } from "@/lib/apps";
+import { APPS, getApp, smartAppBanner, upcomingLabel } from "@/lib/apps";
 import { AppScreen } from "../../components/showcase/screens";
 import { AppStoreBadge } from "../../components/AppStoreBadge";
 import { WatchFrame } from "../../components/WatchFrame";
@@ -23,6 +23,7 @@ export async function generateMetadata({
     title: app.name,
     description: app.description,
     alternates: { canonical: `/apps/${app.slug}` },
+    ...smartAppBanner(app.slug),
     openGraph: { title: `${app.name} · Frozen Grape`, description: app.description },
   };
 }

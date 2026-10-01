@@ -217,10 +217,12 @@
     0 40px 90px rgba(0, 0, 0, 0.65),
     0 0 90px rgba(210, 255, 58, 0.07);
 }
+/* Pinned to the padding box, not height: 100% — Safari resolves a percentage
+   height inside an aspect-ratio box against the wrong size, and the screen
+   spills out past the bottom bezel. */
 .lk-phone-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 9px;
   border-radius: 36px;
   overflow: hidden;
   background: #000;

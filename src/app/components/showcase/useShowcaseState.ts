@@ -49,7 +49,7 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
 
     const update = () => {
       frame = 0;
-      if (!desktop.matches) { element.setAttribute("data-pip-ready", "false"); commit(-1, false, true); return; }
+      if (!desktop.matches) { element.setAttribute("data-pip-ready", "false"); element.setAttribute("data-grid-ready", "false"); commit(-1, false, true); return; }
       if (needsMeasure) {
         width = world.clientWidth;
         height = world.clientHeight;
@@ -91,6 +91,10 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
       const pipEnter = activeRect ? smooth((height * 0.52 - activeRect.top) / (height * 0.22)) : 0;
       const pipLeave = activeRect ? smooth((height * 0.78 - activeRect.bottom) / (height * 0.18)) : 0;
       element.setAttribute("data-pip-ready", String(pipEnter > 0.55 && pipLeave < 0.95 && showNavigation));
+      const gridOpacity = smooth((intro - 0.9) / 0.1);
+      // Home icons only take clicks while the assembled grid is what's on screen,
+      // never through an open app screen layered above it.
+      element.setAttribute("data-grid-ready", String(activeIndex < 0 && gridOpacity > 0.9));
       const set = (name: string, value: number | string) => element.style.setProperty(name, String(value));
       set("--hero-opacity", 1 - smooth(intro / 0.62));
       set("--hero-y", `${-90 * assembly}px`);
@@ -98,7 +102,7 @@ export function useShowcaseState(root: RefObject<HTMLDivElement | null>): Showca
       set("--phone-y", `${phoneY}px`);
       set("--phone-scale", scale);
       set("--phone-opacity", smooth((intro - 0.12) / 0.36) * (1 - exit));
-      set("--grid-opacity", smooth((intro - 0.9) / 0.1));
+      set("--grid-opacity", gridOpacity);
       set("--home-opacity", activeIndex < 0 ? 1 : 0);
       set("--open", open);
       set("--detail", detail);

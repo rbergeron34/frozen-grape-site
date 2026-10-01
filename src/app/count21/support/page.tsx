@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { smartAppBanner } from "@/lib/apps";
 import { SUPPORT_EMAIL } from "@/lib/studio";
 
 // This URL becomes the Support URL in App Store Connect for Count21.
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Get help with Count21: what's free, restoring Complete, table rules, progress and hand history, or contact support.",
   alternates: { canonical: "/count21/support" },
+  ...smartAppBanner("count21"),
 };
 
 const mail = (subject: string) => `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;

@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp } from "@/lib/apps";
+import { getApp, smartAppBanner } from "@/lib/apps";
 import "./lockin.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 import { WatchFrame } from "../components/WatchFrame";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#0a0a0b", ink: "#f4f6ef", muted: "#8b8f85", accent: "#d2ff3a" };
 
 // Bespoke, app-branded landing page for LockIN. Everything factual here
 // (features, pricing, privacy claims) mirrors src/lib/apps.ts — update both
@@ -28,6 +32,7 @@ export const metadata: Metadata = {
   description:
     "A Zone 2–first running coach for iPhone and Apple Watch. LockIN keeps your easy runs actually easy — live heart-rate coaching, an adaptive 80/20 plan, and runs scored by minutes in zone.",
   alternates: { canonical: "/lockin" },
+  ...smartAppBanner(APP_SLUG),
   openGraph: {
     type: "website",
     url: "/lockin",
@@ -67,7 +72,7 @@ export default function LockInPage() {
   const appStoreUrl = app?.appStoreUrl ?? "/apps/lockin";
 
   return (
-    <div className={`lk ${barlow.variable}`}>
+    <div className={`lk ${barlow.variable}`} {...navScene(NAV_SCENE)}>
       <div className="lk-bleed">
         {/* ---------- hero ---------- */}
         <section className="lk-hero">

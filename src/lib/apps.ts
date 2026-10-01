@@ -7,6 +7,7 @@
 // (Hoops Trivia) keep their detail + legal pages and stay listed on
 // Support/Legal so live App Store links never break.
 
+import type { Metadata } from "next";
 import { APP_STORE_SELLER } from "./studio";
 
 export type ScreenKind =
@@ -632,4 +633,18 @@ export function getApp(slug: string): AppEntry | undefined {
 /** "Version 2.0 coming soon" for apps whose screenshots show an unreleased update. */
 export function upcomingLabel(app: AppEntry | undefined): string | null {
   return app?.upcoming ? `Version ${app.upcoming.version} coming soon` : null;
+}
+
+/**
+ * iOS Safari's Smart App Banner (the native Get/Open row at the top of the
+ * page), spread into a page's `metadata`. Empty until the App Store listing
+ * matches the site: the app must be live, and while `upcoming` is set the
+ * banner would show the old listing's name and icon. Removing `upcoming` at
+ * launch turns it on. The apps don't read incoming URLs, so no app-argument.
+ */
+export function smartAppBanner(slug: string): Pick<Metadata, "itunes"> {
+  const app = getApp(slug);
+  if (app?.status !== "live" || app.upcoming) return {};
+  const appId = app.appStoreUrl?.match(/\/id(\d+)/)?.[1];
+  return appId ? { itunes: { appId } } : {};
 }

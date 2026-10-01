@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { getApp, upcomingLabel } from "@/lib/apps";
+import { getApp, smartAppBanner, upcomingLabel } from "@/lib/apps";
 import "./dailyproverb.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#f7f4ec", ink: "#2b2a24", muted: "#6b6a5e", accent: "#2f4a2b" };
 
 // Branded landing page for Daily Proverb — cream paper, deep green, gold
 // citations, book serif: the app's own reading aesthetic.
@@ -28,6 +32,7 @@ export const metadata: Metadata = {
   description:
     "A clean, distraction-free way to read, journal, and reflect on the Book of Proverbs — one verse a day, with private iCloud sync and no feeds.",
   alternates: { canonical: "/dailyproverb" },
+  ...smartAppBanner("daily-proverb"),
   openGraph: {
     type: "website",
     url: "/dailyproverb",
@@ -50,7 +55,7 @@ const shots = [
 
 export default function DailyProverbPage() {
   return (
-    <div className={`dp ${lora.variable}`}>
+    <div className={`dp ${lora.variable}`} {...navScene(NAV_SCENE)}>
       <section className="dp-hero">
         <div className="dp-wrap dp-hero-grid">
           <div>

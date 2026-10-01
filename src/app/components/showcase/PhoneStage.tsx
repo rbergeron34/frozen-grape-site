@@ -22,11 +22,13 @@ export function PhoneStage({ state }: { state: ShowcaseState }) {
             <span className={styles.island} />
             <div className={styles.homeGreeting}><span>A little more thoughtful.</span><strong>Your every day.</strong></div>
             <div className={styles.homeGrid}>
+              {/* Pointer shortcut into each chapter. The rig is aria-hidden, so
+                  keyboard and screen reader users get the same jump from the rail. */}
               {FEATURED_APPS.map((app) => (
-                <div className={styles.homeApp} key={app.slug}>
+                <a className={styles.homeApp} href={`#app-${app.slug}`} tabIndex={-1} key={app.slug}>
                   <div className={styles.homeTile} data-grid-icon><Image src={app.icon} alt="" fill sizes="64px" /></div>
                   <span>{app.shortName}</span>
-                </div>
+                </a>
               ))}
             </div>
             <div className={styles.phoneSignature}><span>✦</span> Made by Frozen Grape</div>
