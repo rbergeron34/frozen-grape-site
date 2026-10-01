@@ -41,7 +41,7 @@ export function useReducedMotion() {
 
 export type HomeSection = "apps" | "studio" | null;
 
-/** Scrollspy for the home page: which section has reached the upper part of the viewport. */
+/** Home-page scrollspy: which section has reached the upper part of the viewport. */
 export function useHomeSection(enabled: boolean): HomeSection {
   const [section, setSection] = useState<HomeSection>(null);
   useEffect(() => {
@@ -77,22 +77,28 @@ function readTone(element: HTMLElement): SceneTone | null {
 }
 
 /**
- * The app scene currently painted behind the nav. On desktop the pinned showcase
- * paints its active scene full-screen; below 901px (or with reduced motion) each
- * chapter paints its own background, so read whichever chapter is under the bar.
+ * The app scene currently painted behind the nav, so the bar can take on its
+ * colors. App landing pages mark their root with navScene(); the home showcase
+ * marks its root and swaps the active scene inline. The pinned desktop showcase
+ * paints that scene full-screen; below 901px (or with reduced motion — the same
+ * query useShowcaseState pins on) each [data-chapter] paints its own background,
+ * so read whichever chapter is under the bar. `routeKey` re-subscribes after
+ * client navigation swaps the page.
  */
-export function useSceneTone(enabled: boolean): SceneTone | null {
+export function useSceneTone(routeKey: string): SceneTone | null {
   const [tone, setTone] = useState<SceneTone | null>(null);
   useEffect(() => {
-    if (!enabled) return;
-    const experience = document.querySelector<HTMLElement>("[data-pip-paused]");
-    if (!experience) return;
-    const chapters = Array.from(experience.querySelectorAll<HTMLElement>("[data-chapter]"));
+    const root = document.querySelector<HTMLElement>("[data-scene-root]");
+    if (!root) {
+      const frame = requestAnimationFrame(() => setTone(null));
+      return () => cancelAnimationFrame(frame);
+    }
+    const chapters = Array.from(root.querySelectorAll<HTMLElement>("[data-chapter]"));
     const pinned = window.matchMedia("(min-width: 901px) and (prefers-reduced-motion: no-preference)");
     const read = () => {
       let next: SceneTone | null = null;
-      if (experience.getBoundingClientRect().bottom > NAV_LINE) {
-        if (pinned.matches) next = readTone(experience);
+      if (root.getBoundingClientRect().bottom > NAV_LINE) {
+        if (pinned.matches || chapters.length === 0) next = readTone(root);
         else {
           const chapter = chapters.find((c) => { const r = c.getBoundingClientRect(); return r.top <= NAV_LINE && r.bottom > NAV_LINE; });
           if (chapter) next = readTone(chapter);
@@ -101,10 +107,10 @@ export function useSceneTone(enabled: boolean): SceneTone | null {
       setTone((prev) => (prev?.bg === next?.bg && prev?.ink === next?.ink && prev?.accent === next?.accent ? prev : next));
     };
     const scroll = onScrollFrame(read);
-    // The showcase swaps scene variables on the experience element as chapters change.
+    // The showcase swaps its scene variables inline as the active app changes.
     const observer = new MutationObserver(scroll.schedule);
-    observer.observe(experience, { attributes: true, attributeFilter: ["style"] });
+    observer.observe(root, { attributes: true, attributeFilter: ["style"] });
     return () => { observer.disconnect(); scroll.dispose(); };
-  }, [enabled]);
-  return enabled ? tone : null;
+  }, [routeKey]);
+  return tone;
 }

@@ -5,6 +5,10 @@ import localFont from "next/font/local";
 import { getApp, smartAppBanner, upcomingLabel } from "@/lib/apps";
 import "./brighterstart.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#fffaf3", ink: "#2c2013", muted: "#6f6253", accent: "#ff8243" };
 
 // Branded landing page — the marketing voice and sunrise palette come from the
 // app itself (see the app repo's design brief and App Store metadata).
@@ -50,7 +54,7 @@ const shots = [
 
 export default function BrighterStartPage() {
   return (
-    <div className={`bs ${nunito.className}`}>
+    <div className={`bs ${nunito.className}`} {...navScene(NAV_SCENE)}>
       <section className="bs-hero">
         <div className="bs-wrap bs-hero-grid">
           <div>

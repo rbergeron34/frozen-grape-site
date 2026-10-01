@@ -22,7 +22,7 @@ export function AppShowcase() {
   const theme = active ? sceneFor(active.slug) : STUDIO_SCENE;
 
   return (
-    <div ref={root} className={styles.experience} style={sceneStyle(theme)}>
+    <div ref={root} className={styles.experience} style={sceneStyle(theme)} data-scene-root>
       <div className={styles.canvas} data-canvas>
         <div className={styles.backdrop} aria-hidden="true" />
         <div className={styles.stageWorld} data-stage-world>

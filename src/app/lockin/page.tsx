@@ -6,6 +6,10 @@ import { getApp, smartAppBanner } from "@/lib/apps";
 import "./lockin.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
 import { WatchFrame } from "../components/WatchFrame";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#0a0a0b", ink: "#f4f6ef", muted: "#8b8f85", accent: "#d2ff3a" };
 
 // Bespoke, app-branded landing page for LockIN. Everything factual here
 // (features, pricing, privacy claims) mirrors src/lib/apps.ts — update both
@@ -68,7 +72,7 @@ export default function LockInPage() {
   const appStoreUrl = app?.appStoreUrl ?? "/apps/lockin";
 
   return (
-    <div className={`lk ${barlow.variable}`}>
+    <div className={`lk ${barlow.variable}`} {...navScene(NAV_SCENE)}>
       <div className="lk-bleed">
         {/* ---------- hero ---------- */}
         <section className="lk-hero">
