@@ -40,10 +40,6 @@
 .c21a-brand img { border-radius: 11px; }
 .c21a-brand > span { font: 700 22px/1 -apple-system, "SF Pro Rounded", system-ui, sans-serif; }
 .c21a-brand b { color: var(--amber); }
-.c21a-brand em {
-  font: 700 11px/1 var(--mono); font-style: normal; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--amber); border: 1px solid rgba(237, 181, 76, 0.4); border-radius: 999px; padding: 6px 11px;
-}
 .c21a-lede { margin-top: 22px; color: var(--muted); font-size: 18px; line-height: 1.6; max-width: 44ch; }
 .c21a-ctas { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
 .c21a-center-row { justify-content: center; }

@@ -13,7 +13,7 @@ export function count21Links() {
     terms: app?.legal?.terms ?? "/terms",
     support: "/count21/support",
     details: `/apps/${SLUG}`,
-    notify: "/#notify",
+    appStore: app?.appStoreUrl ?? `/apps/${SLUG}`,
   };
 }
 

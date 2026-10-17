@@ -394,7 +394,7 @@ export const APPS: AppEntry[] = [
     name: "Count21",
     shortName: "Count21",
     category: "Education",
-    status: "coming-soon",
+    status: "live",
     tagline: "A clear idea. A little practice.",
     description:
       "A Hi-Lo card-counting trainer for iPhone and iPad — short lessons, focused drills, and a practice table that explains your decisions.",
@@ -405,7 +405,7 @@ export const APPS: AppEntry[] = [
     ratingsCount: 0,
     price: "Free",
     ageRating: "18+",
-    size: "—",
+    size: "3.7 MB",
     developer: APP_STORE_SELLER,
     features: [
       "Seven Hi-Lo lessons, each ending in a ten-question check",
@@ -416,6 +416,7 @@ export const APPS: AppEntry[] = [
       "Accuracy, pace and practice-day tracking — all on your device",
       "Dedicated iPhone and iPad layouts, light and dark appearance",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/count21-blackjack-practice/id6815519440",
     privacyInfo: "No data collected",
     platforms: ["iPhone", "iPad"],
     inAppPurchases: [{ name: "Count21 Complete (one-time)", price: "$14.99" }],
