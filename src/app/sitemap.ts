@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/guidinglight/support",
     "/lockin/support",
     "/count21/support",
+    "/hoopstrivia2/support",
     "/dailyproverb/support",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,

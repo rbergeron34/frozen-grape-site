@@ -49,6 +49,10 @@ export const SCENES: Record<string, ShowcaseScene> = {
     background: "#eaf1fa", glow: "#bdd5f2", ink: "#273951", muted: "#52657e",
     accent: "#365f99", surface: "#f8fcffbb", border: "#365f9926", buttonInk: "#ffffff", activity: "portrait",
   },
+  hoopstrivia2: {
+    background: "#fff3da", glow: "#ffce96", ink: "#101820", muted: "#626052",
+    accent: "#1152b8", surface: "#fffaf0bb", border: "#1152b826", buttonInk: "#ffffff", activity: "basketball",
+  },
 };
 
 export function sceneFor(slug: string): ShowcaseScene {
@@ -73,4 +77,5 @@ export const ORBITS = [
   { x: 0.25, y: 0.84, size: 87, angle: -12 },
   { x: 0.76, y: 0.83, size: 95, angle: 15 },
   { x: 0.61, y: 0.90, size: 61, angle: -8 },
+  { x: 0.39, y: 0.91, size: 67, angle: 9 },
 ];

@@ -13,13 +13,13 @@ function HoopsMock() {
       <div className="ball" />
       <div className="mcard">
         <div className="mcard-title">
-          Which team did LeBron win his first championship with?
+          Who holds the record for most points in a single game?
         </div>
-        <span className="chip">Cavaliers</span>
-        <span className="chip">Heat</span>
-        <span className="chip">Lakers</span>
+        <span className="chip">Wilt Chamberlain</span>
+        <span className="chip">Kobe Bryant</span>
+        <span className="chip">Michael Jordan</span>
       </div>
-      <div className="mfoot">Six categories · ad-free</div>
+      <div className="mfoot">Multiple choice · ad-free</div>
     </div>
   );
 }

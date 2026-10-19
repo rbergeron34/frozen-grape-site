@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { smartAppBanner } from "@/lib/apps";
+import { AppStoreBadge } from "../components/AppStoreBadge";
 import {
   COMPLETE_INCLUDES, DISCLAIMER, FREE_INCLUDES, HILO, PLATFORMS, PRICE, PRIVACY_POINTS,
   SHOTS, TABLE_RULES, count21Links,
@@ -55,7 +56,7 @@ export default function Count21Page() {
               <span>
                 Count<b>21</b>
               </span>
-              <em>Coming soon</em>
+              <em>Available now</em>
             </div>
             <h1>
               Keep the count.
@@ -67,7 +68,7 @@ export default function Count21Page() {
               drills and a practice table that explains your decisions.
             </p>
             <div className="c21a-ctas">
-              <Link href={links.notify} className="c21a-btn c21a-btn-amber">Get notified →</Link>
+              {links.appStore && <AppStoreBadge href={links.appStore} height={48} />}
               <a href="#try" className="c21a-btn c21a-btn-ghost">Try a count</a>
             </div>
             <p className="c21a-fine">{PLATFORMS} · Free to start</p>
@@ -162,7 +163,7 @@ export default function Count21Page() {
       <footer className="c21a-wrap c21a-close">
         <h2>A clear idea. A little practice.</h2>
         <div className="c21a-ctas c21a-center-row">
-          <Link href={links.notify} className="c21a-btn c21a-btn-amber">Tell me when it launches →</Link>
+          {links.appStore && <AppStoreBadge href={links.appStore} height={48} />}
         </div>
         <p className="c21a-disclaimer">{DISCLAIMER} Rated 18+.</p>
         <nav className="c21a-legal" aria-label="Count21 links">
