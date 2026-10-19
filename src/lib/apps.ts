@@ -14,7 +14,7 @@ export type ScreenKind =
   | { kind: "image"; src: string; alt: string }
   | { kind: "mock"; component: MockComponent };
 
-// Every featured app now uses a real simulator screenshot. This mock remains
+// Every featured app uses a capture from its current build. This mock remains
 // only for Hoops Trivia, the unfeatured legacy app we don't rebuild.
 export type MockComponent = "HoopsMock";
 
@@ -394,7 +394,7 @@ export const APPS: AppEntry[] = [
     name: "Count21",
     shortName: "Count21",
     category: "Education",
-    status: "coming-soon",
+    status: "live",
     tagline: "A clear idea. A little practice.",
     description:
       "A Hi-Lo card-counting trainer for iPhone and iPad — short lessons, focused drills, and a practice table that explains your decisions.",
@@ -405,7 +405,7 @@ export const APPS: AppEntry[] = [
     ratingsCount: 0,
     price: "Free",
     ageRating: "18+",
-    size: "—",
+    size: "3.7 MB",
     developer: APP_STORE_SELLER,
     features: [
       "Seven Hi-Lo lessons, each ending in a ten-question check",
@@ -416,6 +416,7 @@ export const APPS: AppEntry[] = [
       "Accuracy, pace and practice-day tracking — all on your device",
       "Dedicated iPhone and iPad layouts, light and dark appearance",
     ],
+    appStoreUrl: "https://apps.apple.com/us/app/count21-blackjack-practice/id6815519440",
     privacyInfo: "No data collected",
     platforms: ["iPhone", "iPad"],
     inAppPurchases: [{ name: "Count21 Complete (one-time)", price: "$14.99" }],
@@ -570,6 +571,58 @@ export const APPS: AppEntry[] = [
     },
   },
 
+  {
+    slug: "hoopstrivia2",
+    name: "Hoops Trivia 2.0",
+    shortName: "Hoops 2.0",
+    category: "Games",
+    status: "coming-soon",
+    tagline: "Know the game. Build your court.",
+    description:
+      "A new basketball board game: roll through the neighborhood, answer trivia, build your court and put together your team. Coming soon for iPhone and iPad.",
+    longDescription:
+      "Hoops Trivia 2.0 brings basketball knowledge to a neighborhood board game. Roll two dice around the block, take on trivia for extra rewards and turn an empty court into your home court. Scout players, choose your five and take your team into a home game. This new game is in development for iPhone and iPad; the preview shows the current build.",
+    icon: "/assets/apps/hoopstrivia2/icon.png",
+    rating: 0,
+    ratingsCount: 0,
+    price: "Free",
+    ageRating: "—",
+    size: "—",
+    developer: APP_STORE_SELLER,
+    features: [
+      "A neighborhood board with two-dice turns",
+      "Basketball trivia for extra rewards",
+      "Build and upgrade your home court",
+      "Scout players and choose your starting five",
+      "Take your team into home games",
+      "Collect basketball art through play",
+    ],
+    privacyInfo: "Details before launch",
+    platforms: ["iPhone", "iPad"],
+    legal: { privacy: "/hoopstrivia2/privacy", terms: "/hoopstrivia2/terms" },
+    legalEffectiveDate: "October 18, 2026",
+    landingPath: "/hoopstrivia2",
+    disclaimers: [
+      "Hoops Trivia 2.0 is an independent basketball game. It is not affiliated with, endorsed by, or sponsored by the NBA or any team, league, or player.",
+    ],
+    accent: "#1152B8",
+    tint: "rgba(17,82,184,.12)",
+    iconBg: "#17458B",
+    fallbackGlyph: "🏀",
+    lead: "Your knowledge. Your team. Your home court.",
+    screenHeadline: "Build your home court.",
+    showcaseFeatures: [
+      { glyph: "⚄", title: "Roll the block", desc: "Two dice. A neighborhood of possibilities." },
+      { glyph: "?", title: "Know your hoops", desc: "Turn basketball knowledge into rewards." },
+      { glyph: "⌂", title: "Make it yours", desc: "Build your court and choose your five." },
+    ],
+    screen: {
+      kind: "image",
+      src: "/assets/apps/hoopstrivia2/screen-1.png",
+      alt: "Hoops Trivia 2.0 development build showing two orange dice, the basketball mascot and a neighborhood board around a home court",
+    },
+  },
+
   // ——— Live but no longer featured on the home page ———
   {
     slug: "hoops-trivia",
@@ -580,9 +633,9 @@ export const APPS: AppEntry[] = [
     featured: false,
     tagline: "Test your knowledge on all things basketball",
     description:
-      "A pro basketball trivia game from 2014. A rebuilt version is in the works.",
+      "The original multiple-choice pro basketball trivia game, first released in 2014.",
     longDescription:
-      "Hoops Trivia is a multiple-choice pro basketball quiz with Game Center leaderboards, first released in 2014. It is being rebuilt as a daily shot-clock quiz with a shot chart and box score; the current App Store version is the original.",
+      "Hoops Trivia is a multiple-choice pro basketball quiz with Game Center leaderboards, first released in 2014. This App Store listing is the original game. The new Hoops Trivia 2.0 is listed separately as coming soon.",
     icon: "https://is1-ssl.mzstatic.com/image/thumb/Purple5/v4/95/4e/33/954e339a-3839-bf69-0004-e0bf5fb86ff9/mzl.cvpayvfg.jpg/200x200bb.png",
     rating: 5.0,
     ratingsCount: 1,
