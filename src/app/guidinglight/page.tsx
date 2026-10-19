@@ -5,6 +5,10 @@ import localFont from "next/font/local";
 import { getApp, smartAppBanner } from "@/lib/apps";
 import "./guidinglight.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#ece7df", ink: "#14130f", muted: "#7b7466", accent: "#c28a2c" };
 
 // Bespoke, app-branded landing page for Guiding Light. Everything factual here
 // (features, privacy claims, what's free) mirrors src/lib/apps.ts and
@@ -85,7 +89,7 @@ export default function GuidingLightPage() {
   const appStoreUrl = app?.appStoreUrl ?? "/apps/guiding-light";
 
   return (
-    <div className={`gl ${playfair.variable} ${plexMono.variable}`}>
+    <div className={`gl ${playfair.variable} ${plexMono.variable}`} {...navScene(NAV_SCENE)}>
       <div className="gl-bleed">
         {/* ---------- hero ---------- */}
         <section className="gl-hero">

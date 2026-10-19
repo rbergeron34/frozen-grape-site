@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
 import { BrandLockup } from "./components/brand/BrandLockup";
+import { SiteNav } from "./components/nav/SiteNav";
 import styles from "./shell.module.css";
 import "./globals.css";
 import { APPS } from "@/lib/apps";
@@ -86,29 +87,7 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        <nav className={styles.navigation} aria-label="Main navigation">
-          <Link
-            href="/"
-            className={styles.brandLink}
-            aria-label="Frozen Grape Studios — home"
-          >
-            <BrandLockup priority />
-          </Link>
-          <div className={styles.links}>
-            <Link href="/#apps" className="hover:text-[var(--ink)] transition-colors">
-              Apps
-            </Link>
-            <Link href="/#studio" className="hover:text-[var(--ink)] transition-colors">
-              Studio
-            </Link>
-            <Link href="/support" className="hover:text-[var(--ink)] transition-colors">
-              Support
-            </Link>
-            <Link href="/contact" className="hover:text-[var(--ink)] transition-colors">
-              Contact
-            </Link>
-          </div>
-        </nav>
+        <SiteNav />
 
         <main id="main" className="flex-grow">
           {children}

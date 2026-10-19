@@ -4,6 +4,10 @@ import Link from "next/link";
 import { getApp, smartAppBanner } from "@/lib/apps";
 import "./hoopsconnect.css";
 import { AppStoreBadge } from "../components/AppStoreBadge";
+import { navScene } from "../components/nav/navScene";
+
+// The top nav takes on this page's palette.
+const NAV_SCENE = { bg: "#fbf9f4", ink: "#14181e", muted: "#5f636a", accent: "#d2742e" };
 
 const APP_STORE_URL = getApp("hoops-connect")?.appStoreUrl ?? "/apps/hoops-connect";
 
@@ -37,7 +41,7 @@ const shots = [
 
 export default function HoopsConnectPage() {
   return (
-    <div className="hs">
+    <div className="hs" {...navScene(NAV_SCENE)}>
       <section className="hs-hero">
         <div className="hs-wrap hs-hero-grid">
           <div>
